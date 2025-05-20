@@ -3,19 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ls
+  - bg
+  - plate
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - noCheck
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ls
+  - blinkBlock
+  - dropBlock
+  - bg
+  - beeLayer
   - 
   - 
   - 
@@ -40,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: cube
+    uniqueID: 141322561
+    locked: 0
+  - name: sp
+    uniqueID: 1508177083
     locked: 0

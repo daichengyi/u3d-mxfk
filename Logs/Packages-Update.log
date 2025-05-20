@@ -67,3 +67,13 @@ The following packages were updated:
   com.unity.textmeshpro from version 1.4.1 to 3.0.6
 The following packages were removed:
   com.unity.package-manager-ui@2.0.13
+
+=== Tue May 20 17:50:26 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ai.navigation@1.1.5
+The following packages were updated:
+  com.unity.addressables from version 1.19.19 to 1.21.19

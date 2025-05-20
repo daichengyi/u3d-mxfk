@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UIPrefab
+  m_EditorClassIdentifier: 
+  m_GroupName: UIPrefab
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4a627288286a4c5428247cca136277d7
+  m_SerializeEntries:
+  - m_GUID: fa12ae13c5fe29e4c8a3a7b819d92f1a
+    m_Address: Assets/uiPrefab/TipUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb45b67488f3a1946a52a7415eb62554
+    m_Address: Assets/uiPrefab/LoadWindow.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 177cc2b459c059b419ba3ab0b039e1e7, type: 2}
+    - {fileID: 11400000, guid: 4a2012b72da86ef47a4d9e8983b78176, type: 2}

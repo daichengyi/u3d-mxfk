@@ -1,5 +1,4 @@
 trackSelection = true
-refreshSearchWindowsInPlayMode = false
 fetchPreview = true
 defaultFlags = 0
 keepOpen = false
@@ -8,8 +7,39 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.72713459" = ""
+	"OpenInspectorPreview.72713459" = "0"
+	"currentGroup.72713459" = "asset"
+	"last_search.2F14879A" = "input"
+	"OpenInspectorPreview.2F14879A" = "0"
+	"currentGroup.2F14879A" = "all"
+	"last_search.3F14879A" = ""
+	"OpenInspectorPreview.3F14879A" = "0"
+	"currentGroup.3F14879A" = "all"
+	"last_search.10697386" = ""
+	"OpenInspectorPreview.10697386" = "0"
+	"currentGroup.10697386" = "all"
+	"last_search.EAB0C2BA" = ""
+	"OpenInspectorPreview.EAB0C2BA" = "0"
+	"currentGroup.EAB0C2BA" = "all"
+	"last_search.3619CCAF" = ""
+	"OpenInspectorPreview.3619CCAF" = "0"
+	"currentGroup.3619CCAF" = "all"
+	"last_search.D0B831D8" = "winui"
+	"OpenInspectorPreview.D0B831D8" = "0"
+	"currentGroup.D0B831D8" = "asset"
 }
 providers = {
+	log = {
+		active = false
+		priority = 210
+		defaultAction = null
+	}
+	performance = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
 	scene = {
 		active = true
 		priority = 50
@@ -20,19 +50,14 @@ providers = {
 		priority = 25
 		defaultAction = null
 	}
-	log = {
+	adb = {
 		active = false
-		priority = 210
+		priority = 2500
 		defaultAction = null
 	}
-	packages = {
+	find = {
 		active = true
-		priority = 90
-		defaultAction = null
-	}
-	performance = {
-		active = false
-		priority = 100
+		priority = 25
 		defaultAction = null
 	}
 	profilermarkers = {
@@ -40,19 +65,19 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
-	adb = {
-		active = false
-		priority = 2500
-		defaultAction = null
-	}
 	store = {
-		active = true
+		active = false
 		priority = 100
 		defaultAction = null
 	}
-	find = {
+	packages = {
+		active = false
+		priority = 90
+		defaultAction = null
+	}
+	query = {
 		active = true
-		priority = 25
+		priority = 100
 		defaultAction = null
 	}
 }
@@ -64,12 +89,9 @@ searchItemFavorites = [
 ]
 savedSearchesSortOrder = 0
 showSavedSearchPanel = false
-hideTabs = false
 expandedQueries = [
 ]
-queryBuilder = false
+queryBuilder = true
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "all"
 disabledIndexers = ""
-minIndexVariations = 2
-findProviderIndexHelper = true
