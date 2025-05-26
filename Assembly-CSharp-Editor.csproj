@@ -1171,6 +1171,7 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj" />
     <ProjectReference Include="spine-csharp.csproj" />
+    <ProjectReference Include="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
     <ProjectReference Include="Wx.csproj" />
     <ProjectReference Include="spine-unity.csproj" />
     <ProjectReference Include="WxEditor.csproj" />
