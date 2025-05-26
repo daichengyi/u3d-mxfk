@@ -1,0 +1,5 @@
+jiazai.png
+size:34,34
+filter:Linear,Linear
+圆
+bounds:2,2,30,30

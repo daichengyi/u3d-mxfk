@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Spine.Unity;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -81,14 +80,14 @@ public class PoolManager : MonoBehaviour
             obj.SetActive(false);
             obj.transform.SetParent(transform);
             objectPool.Add(obj);
-            if (tag == "xingxing")
-            {
-                void OnAnimationComplete(Spine.TrackEntry trackEntry)
-                {
-                    ReturnObject("xingxing", obj);
-                }
-                obj.GetComponent<SkeletonGraphic>().AnimationState.Complete += OnAnimationComplete;
-            }
+            // if (tag == "xingxing")
+            // {
+            //     void OnAnimationComplete(Spine.TrackEntry trackEntry)
+            //     {
+            //         ReturnObject("xingxing", obj);
+            //     }
+            //     obj.GetComponent<SkeletonGraphic>().AnimationState.Complete += OnAnimationComplete;
+            // }
         }
 
         poolDictionary.Add(tag, objectPool);
@@ -151,14 +150,14 @@ public class PoolManager : MonoBehaviour
             if (pool != null)
             {
                 GameObject obj = Object.Instantiate(pool.prefab);
-                if (tag == "xingxing")
-                {
-                    void OnAnimationComplete(Spine.TrackEntry trackEntry)
-                    {
-                        ReturnObject("xingxing", obj);
-                    }
-                    obj.GetComponent<SkeletonGraphic>().AnimationState.Complete += OnAnimationComplete;
-                }
+                // if (tag == "xingxing")
+                // {
+                //     void OnAnimationComplete(Spine.TrackEntry trackEntry)
+                //     {
+                //         ReturnObject("xingxing", obj);
+                //     }
+                //     obj.GetComponent<SkeletonGraphic>().AnimationState.Complete += OnAnimationComplete;
+                // }
                 obj.SetActive(true);
                 return obj;
             }

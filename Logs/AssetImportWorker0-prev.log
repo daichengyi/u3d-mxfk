@@ -15,7 +15,7 @@ F:/u3d/mxfk
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-57402
+61996
 Successfully changed project path to: F:/u3d/mxfk
 F:/u3d/mxfk
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ F:/u3d/mxfk
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [1780] Host "[IP] 192.168.8.73 [Port] 0 [Flags] 2 [Guid] 4165755333 [EditorId] 4165755333 [Version] 1048832 [Id] WindowsEditor(7,Dai) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [19400] Host "[IP] 192.168.8.38 [Port] 0 [Flags] 2 [Guid] 142471472 [EditorId] 142471472 [Version] 1048832 [Id] WindowsEditor(7,Dai) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [1780] Host "[IP] 192.168.8.73 [Port] 0 [Flags] 2 [Guid] 4165755333 [EditorId] 4165755333 [Version] 1048832 [Id] WindowsEditor(7,Dai) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [19400] Host "[IP] 192.168.8.38 [Port] 0 [Flags] 2 [Guid] 142471472 [EditorId] 142471472 [Version] 1048832 [Id] WindowsEditor(7,Dai) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 5 workers.
-Refreshing native plugins compatible for Editor in 49.71 ms, found 10 plugins.
+Refreshing native plugins compatible for Editor in 49.00 ms, found 10 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.14f1c1 (25540d4d24fc)
 [Subsystems] Discovering subsystems at path D:/Program Files/2022.3.14f1c1/Editor/Data/Resources/UnitySubsystems
@@ -74,46 +74,46 @@ Initialize mono
 Mono path[0] = 'D:/Program Files/2022.3.14f1c1/Editor/Data/Managed'
 Mono path[1] = 'D:/Program Files/2022.3.14f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/Program Files/2022.3.14f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56268
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56620
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Program Files/2022.3.14f1c1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: D:/Program Files/2022.3.14f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007503 seconds.
-- Loaded All Assemblies, in  0.389 seconds
+Registered in 0.007900 seconds.
+- Loaded All Assemblies, in  0.369 seconds
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.263 seconds
-Domain Reload Profiling: 650ms
-	BeginReloadAssembly (105ms)
+- Finished resetting the current domain, in  0.274 seconds
+Domain Reload Profiling: 642ms
+	BeginReloadAssembly (109ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (33ms)
+	RebuildCommonClasses (35ms)
 	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (56ms)
-	LoadAllAssembliesAndSetupDomain (181ms)
-		LoadAssemblies (102ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (151ms)
+		LoadAssemblies (107ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (179ms)
-			TypeCache.Refresh (178ms)
-				TypeCache.ScanAssembly (122ms)
+		AnalyzeDomain (149ms)
+			TypeCache.Refresh (147ms)
+				TypeCache.ScanAssembly (134ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (263ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (275ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (200ms)
+		SetupLoadedEditorAssemblies (210ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (6ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (7ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (132ms)
-			ProcessInitializeOnLoadMethodAttributes (50ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (138ms)
+			ProcessInitializeOnLoadMethodAttributes (53ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -121,8 +121,8 @@ Domain Reload Profiling: 650ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.891 seconds
-Refreshing native plugins compatible for Editor in 15.89 ms, found 10 plugins.
+- Loaded All Assemblies, in  0.902 seconds
+Refreshing native plugins compatible for Editor in 16.43 ms, found 10 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -130,110 +130,48 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.153 seconds
-Domain Reload Profiling: 2040ms
-	BeginReloadAssembly (147ms)
+- Finished resetting the current domain, in  1.167 seconds
+Domain Reload Profiling: 2067ms
+	BeginReloadAssembly (155ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (33ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (645ms)
-		LoadAssemblies (464ms)
+		CreateAndSetChildDomain (21ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (646ms)
+		LoadAssemblies (473ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (265ms)
-			TypeCache.Refresh (234ms)
-				TypeCache.ScanAssembly (216ms)
-			ScanForSourceGeneratedMonoScriptInfo (21ms)
+		AnalyzeDomain (263ms)
+			TypeCache.Refresh (230ms)
+				TypeCache.ScanAssembly (209ms)
+			ScanForSourceGeneratedMonoScriptInfo (23ms)
 			ResolveRequiredComponents (8ms)
-	FinalizeReload (1153ms)
+	FinalizeReload (1169ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (960ms)
+		SetupLoadedEditorAssemblies (969ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (6ms)
+			InitializePlatformSupportModulesInManaged (7ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (105ms)
-			ProcessInitializeOnLoadAttributes (737ms)
-			ProcessInitializeOnLoadMethodAttributes (99ms)
+			BeforeProcessingInitializeOnLoad (107ms)
+			ProcessInitializeOnLoadAttributes (747ms)
+			ProcessInitializeOnLoadMethodAttributes (96ms)
 			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (14ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 15.91 ms, found 10 plugins.
+		AwakeInstancesAfterBackupRestoration (18ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 16.05 ms, found 10 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4211 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 120 unused Assets / (1.6 MB). Loaded Objects now: 4678.
-Memory consumption went from 175.6 MB to 174.0 MB.
-Total: 17.934000 ms (FindLiveObjects: 0.332700 ms CreateObjectMapping: 0.295700 ms MarkObjects: 16.421100 ms  DeleteObjects: 0.883200 ms)
+Unloading 120 unused Assets / (1.5 MB). Loaded Objects now: 4678.
+Memory consumption went from 175.6 MB to 174.1 MB.
+Total: 17.730800 ms (FindLiveObjects: 0.305700 ms CreateObjectMapping: 0.260800 ms MarkObjects: 16.230400 ms  DeleteObjects: 0.932500 ms)
 
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 33485.515979 seconds.
-  path: Assets/Lib/TextMesh Pro/Shaders
-  artifactKey: Guid(10c2055d1945a9344b57b6d82db12e3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Shaders using Guid(10c2055d1945a9344b57b6d82db12e3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e35786ac84156e74977c2b031825fb8b') in 0.001559 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Lib/TextMesh Pro/Resources
-  artifactKey: Guid(5274ada1906e4c94a9afd06b59f178b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Resources using Guid(5274ada1906e4c94a9afd06b59f178b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '703210f9677bfe6bd0268ed312eed4e7') in 0.000359 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000084 seconds.
-  path: Assets/Lib/TextMesh Pro/Fonts
-  artifactKey: Guid(fed304bd066b4cc4f8d1b5198a6d6974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Fonts using Guid(fed304bd066b4cc4f8d1b5198a6d6974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a77fcdbe5dba3530819e1a90aafbf4e5') in 0.000481 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Lib/TextMesh Pro/Resources/TMP Settings.asset
-  artifactKey: Guid(d0053bdcd3872ca4f8fcfdaf218775ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Resources/TMP Settings.asset using Guid(d0053bdcd3872ca4f8fcfdaf218775ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '182394988940267742be435a39b03834') in 0.033123 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 6
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/Lib/TextMesh Pro/Sprites
-  artifactKey: Guid(0335f26600e71fc4087a6d9b858b35f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Sprites using Guid(0335f26600e71fc4087a6d9b858b35f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce494c58e632e8e317fb3eea0303be9') in 0.000449 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 15.85 ms, found 10 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 15 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 16 unused Assets / (1.5 MB). Loaded Objects now: 4679.
-Memory consumption went from 97.7 MB to 96.2 MB.
-Total: 16.822600 ms (FindLiveObjects: 0.302000 ms CreateObjectMapping: 0.252400 ms MarkObjects: 15.464400 ms  DeleteObjects: 0.802800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -249,57 +187,497 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 36.882112 seconds.
-  path: Assets/Lib/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset
-  artifactKey: Guid(a6cfee8d3686a2d41a0e740260d2ece8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset using Guid(a6cfee8d3686a2d41a0e740260d2ece8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '253a6add71c51a4ed0dcfb90103341fb') in 0.002511 seconds
+  Time since last request: 6903.226976 seconds.
+  path: Assets/Editor/PlatformSelect.cs
+  artifactKey: Guid(140764cc61e435f488b4f4b76fd8fb61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Editor/PlatformSelect.cs using Guid(140764cc61e435f488b4f4b76fd8fb61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c646fa5779cb568921d05c9a0a08e3d') in 0.001565 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 4.008523 seconds.
-  path: Assets/Lib/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset
-  artifactKey: Guid(a10ab96eb5e8d4a48a16fd4d0104cede) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Lib/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset using Guid(a10ab96eb5e8d4a48a16fd4d0104cede) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0375fb59ec0a69f97f595d0c321252d') in 0.002504 seconds
+  Time since last request: 56.422541 seconds.
+  path: Assets/Lib/Spine
+  artifactKey: Guid(30918bcaadaaecc42bc215ff52f75b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Lib/Spine using Guid(30918bcaadaaecc42bc215ff52f75b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e68b31b138673d3ab18790f07e5fbbd8') in 0.000387 seconds
+Number of updated asset objects reloaded before import = 23
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.938 seconds
+Refreshing native plugins compatible for Editor in 15.64 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.411 seconds
+Domain Reload Profiling: 2348ms
+	BeginReloadAssembly (463ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (49ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (386ms)
+		LoadAssemblies (444ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (27ms)
+			TypeCache.Refresh (12ms)
+				TypeCache.ScanAssembly (3ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1412ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (834ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (106ms)
+			ProcessInitializeOnLoadAttributes (622ms)
+			ProcessInitializeOnLoadMethodAttributes (83ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (16ms)
+Refreshing native plugins compatible for Editor in 15.75 ms, found 10 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3888 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 99 unused Assets / (63.4 KB). Loaded Objects now: 4681.
+Memory consumption went from 155.3 MB to 155.2 MB.
+Total: 16.189800 ms (FindLiveObjects: 0.293400 ms CreateObjectMapping: 0.238900 ms MarkObjects: 15.547100 ms  DeleteObjects: 0.109300 ms)
+
+Prepare: number of updated asset objects reloaded= 28
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Assembly with name 'spine-csharp' already exists (Assets/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-csharp' already exists (Assets/Lib/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Lib/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Lib/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Lib/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Lib/Spine Examples/spine-unity-examples.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Spine Examples/spine-unity-examples.asmdef)
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/BlendModeMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/MaterialChecks.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBinary.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonJson.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineSpriteAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skin.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SkeletonExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshGenerator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BoneData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonMecanimRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonMecanim.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotionBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/BuildUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AtlasAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/BlendModeMaterialsAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/Attachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SkeletonRendererInstruction.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/BoundingBoxAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SpineMesh.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Slot.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonClipping.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/ActivateBasedOnFlipDirection.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AtlasUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowSkeletonUtilityRootRotation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BlendMode.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PointAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/EventDataReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/ClippingAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentCloneExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SpineAttributes.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonPartsRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataModifierAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/DoubleBuffered.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineTrackEntryEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshRendererBuffers.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PathAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonRendererCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityBone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AnimationReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody2D.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationStateData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Animation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AtlasAssetBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/EventData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Modules/TK2D/SpriteCollectionAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/ISkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBounds.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SlotData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ExposedList.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Event.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IUpdatable.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Bone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonRenderSeparator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Json.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skeleton.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/VertexAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Internal/SkeletonSubmeshGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Atlas.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationComplete.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentType.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/RegionlessAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/RegionAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/MathUtils.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonGraphicCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/MeshAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataCompatibility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Triangulator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/PointFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SettingsTriState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/TimelineExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineEvent.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentRegionExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Assembly with name 'spine-csharp' already exists (Assets/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-csharp' already exists (Assets/Lib/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Lib/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Lib/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Lib/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Lib/Spine Examples/spine-unity-examples.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Spine Examples/spine-unity-examples.asmdef)
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/BlendModeMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/MaterialChecks.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBinary.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonJson.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineSpriteAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skin.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SkeletonExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshGenerator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BoneData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonMecanimRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonMecanim.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotionBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/BuildUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AtlasAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/BlendModeMaterialsAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/Attachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SkeletonRendererInstruction.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/BoundingBoxAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SpineMesh.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Slot.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonClipping.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/ActivateBasedOnFlipDirection.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AtlasUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowSkeletonUtilityRootRotation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BlendMode.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PointAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/EventDataReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/ClippingAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentCloneExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SpineAttributes.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonPartsRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataModifierAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/DoubleBuffered.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineTrackEntryEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshRendererBuffers.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PathAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonRendererCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityBone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AnimationReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody2D.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationStateData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Animation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AtlasAssetBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/EventData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Modules/TK2D/SpriteCollectionAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/ISkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBounds.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SlotData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ExposedList.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Event.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IUpdatable.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Bone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonRenderSeparator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Json.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skeleton.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/VertexAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Internal/SkeletonSubmeshGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Atlas.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationComplete.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentType.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/RegionlessAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/RegionAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/MathUtils.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonGraphicCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/MeshAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataCompatibility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Triangulator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/PointFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SettingsTriState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/TimelineExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineEvent.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentRegionExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.128 seconds
+Refreshing native plugins compatible for Editor in 16.38 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Assembly with name 'spine-csharp' already exists (Assets/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-csharp' already exists (Assets/Lib/Spine/Runtime/spine-csharp/spine-csharp.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity' already exists (Assets/Lib/Spine/Runtime/spine-unity.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Lib/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-examples-editor' already exists (Assets/Spine Examples/Scripts/Sample Components/SkeletonUtility Modules/Editor/spine-unity-examples-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Lib/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-editor' already exists (Assets/Spine/Editor/spine-unity-editor.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Lib/Spine Examples/spine-unity-examples.asmdef)
+Assembly with name 'spine-unity-examples' already exists (Assets/Spine Examples/spine-unity-examples.asmdef)
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/BlendModeMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/MaterialChecks.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBinary.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonJson.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineSpriteAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skin.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SkeletonExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshGenerator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BoneData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonMecanimRootMotion.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonMecanim.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/RootMotion/SkeletonRootMotionBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IkConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/BuildUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AtlasAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/BlendModeMaterialsAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/Attachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SkeletonRendererInstruction.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/BoundingBoxAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/SpineMesh.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Slot.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonClipping.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoundingBoxFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/ActivateBasedOnFlipDirection.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AtlasUtilities.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowSkeletonUtilityRootRotation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollowerGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/BlendMode.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PointAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/EventDataReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/ClippingAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentCloneExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/SpineAttributes.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonPartsRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataModifierAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/DoubleBuffered.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineTrackEntryEnd.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Mesh Generation/MeshRendererBuffers.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/PathAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonRendererCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityBone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AnimationReferenceAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody2D.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/AnimationStateData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Animation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/AtlasAssetBase.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/EventData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Modules/TK2D/SpriteCollectionAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/ISkeletonAnimation.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonBounds.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SkeletonLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/SlotData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/ExposedList.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Event.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/IUpdatable.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Bone.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/PathConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/SkeletonUtilityConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderSeparator/SkeletonRenderSeparator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Json.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraint.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Skeleton.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SpineAtlasAsset.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/VertexAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Internal/SkeletonSubmeshGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Atlas.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineAnimationComplete.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/AttachmentType.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/RegionlessAttachmentLoader.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/RegionAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/MathUtils.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/BoneFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonUtility/FollowLocationRigidbody.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRendererCustomMaterials/SkeletonGraphicCustomMaterials.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Attachments/MeshAttachment.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Asset Types/SkeletonDataCompatibility.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/Triangulator.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonGraphic.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-csharp/TransformConstraintData.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/Following/PointFollower.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/SettingsTriState.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/TimelineExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Components/SkeletonRenderer.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/YieldInstructions/WaitForSpineEvent.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+Script 'Assets/Spine/Runtime/spine-unity/Utility/AttachmentRegionExtensions.cs' will not be compiled because it exists outside the Assets folder and does not to belong to any assembly definition file.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.484 seconds
+Domain Reload Profiling: 2606ms
+	BeginReloadAssembly (538ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (59ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (468ms)
+		LoadAssemblies (534ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (36ms)
+			TypeCache.Refresh (17ms)
+				TypeCache.ScanAssembly (7ms)
+			ScanForSourceGeneratedMonoScriptInfo (9ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1485ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (856ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (144ms)
+			ProcessInitializeOnLoadAttributes (599ms)
+			ProcessInitializeOnLoadMethodAttributes (93ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (21ms)
+Refreshing native plugins compatible for Editor in 16.09 ms, found 10 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4148 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 143 unused Assets / (3.9 MB). Loaded Objects now: 4657.
+Memory consumption went from 173.3 MB to 169.4 MB.
+Total: 18.686000 ms (FindLiveObjects: 0.316600 ms CreateObjectMapping: 0.242200 ms MarkObjects: 16.143200 ms  DeleteObjects: 1.982600 ms)
+
+Prepare: number of updated asset objects reloaded= 216
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 182.467894 seconds.
+  path: Assets/Editor/SpineSettings.asset
+  artifactKey: Guid(aa5b116780e5eda44910bde940c71c9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Editor/SpineSettings.asset using Guid(aa5b116780e5eda44910bde940c71c9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cb28dbbe79239b8183e3cd919dbb04d') in 0.009931 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 126.914846 seconds.
-  path: Assets/Font/fangzhengcuyuan.TTF
-  artifactKey: Guid(266c2327d549993419f36d490f2b9318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/fangzhengcuyuan.TTF using Guid(266c2327d549993419f36d490f2b9318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b566ef625039ea21e747bbd801dbbf7') in 0.131920 seconds
+  Time since last request: 14.597119 seconds.
+  path: Assets/Spine Examples
+  artifactKey: Guid(e6712a5a0c05f9f4092f9a3197925e99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Spine Examples using Guid(e6712a5a0c05f9f4092f9a3197925e99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73709ede8bc711c42c40e2804f282ffb') in 0.000453 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 4
+Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 23.723130 seconds.
-  path: Assets/Font/fangzhengcuyuan SDF.asset
-  artifactKey: Guid(c4f14666121b6ab4dbffa83298cf0010) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/fangzhengcuyuan SDF.asset using Guid(c4f14666121b6ab4dbffa83298cf0010) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d43bb8039dec4ba99ae0419dc8ab63d') in 0.085861 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 8
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
-  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7e4f5c578f3baed571e2e8a42b43a60') in 0.075193 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
-  artifactKey: Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset using Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48a95b73cac1d21925e61d47ce142062') in 0.030800 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
-========================================================================
-Received Import Request.
-  Time since last request: 70.280568 seconds.
-  path: Assets/TextMesh Pro
-  artifactKey: Guid(f54d1bd14bd3ca042bd867b519fee8cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro using Guid(f54d1bd14bd3ca042bd867b519fee8cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30796653c4dfc1f2480bca9d8b60487c') in 0.000754 seconds
+  Time since last request: 7.265145 seconds.
+  path: Assets/AddressableAssetsData/AssetGroups
+  artifactKey: Guid(9200963ff425d4948b4edaabe7fe9aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AddressableAssetsData/AssetGroups using Guid(9200963ff425d4948b4edaabe7fe9aa3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca1485fba6b10d09dc78b831df73c78d') in 0.000577 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0

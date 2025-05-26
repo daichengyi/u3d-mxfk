@@ -69,8 +69,8 @@
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Components\RootMotion\SkeletonRootMotionBase.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Asset Types\SpineSpriteAtlasAsset.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Utility\MathUtilities.cs" />
-    <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Asset Types\SkeletonDataCompatibility.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Utility\YieldInstructions\WaitForSpineEvent.cs" />
+    <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Asset Types\SkeletonDataCompatibility.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Asset Types\AnimationReferenceAsset.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Components\Following\BoneFollowerGraphic.cs" />
     <Compile Include="Assets\Lib\Spine\Runtime\spine-unity\Components\SkeletonUtility\FollowLocationRigidbody.cs" />

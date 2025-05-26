@@ -29,11 +29,9 @@
 
 using System;
 
-namespace Spine
-{
+namespace Spine {
 	/// <summary>Attachment that displays a texture region.</summary>
-	public class RegionAttachment : Attachment, IHasTextureRegion
-	{
+	public class RegionAttachment : Attachment, IHasTextureRegion {
 		public const int BLX = 0, BLY = 1;
 		public const int ULX = 2, ULY = 3;
 		public const int URX = 4, URY = 5;
@@ -67,15 +65,13 @@ namespace Spine
 		public float[] UVs { get { return uvs; } }
 		public Sequence Sequence { get { return sequence; } set { sequence = value; } }
 
-		public RegionAttachment(string name)
-			: base(name)
-		{
+		public RegionAttachment (string name)
+			: base(name) {
 		}
 
 		/// <summary>Copy constructor.</summary>
-		public RegionAttachment(RegionAttachment other)
-			: base(other)
-		{
+		public RegionAttachment (RegionAttachment other)
+			: base(other) {
 			region = other.region;
 			Path = other.Path;
 			x = other.x;
@@ -96,11 +92,9 @@ namespace Spine
 
 		/// <summary>Calculates the <see cref="Offset"/> and <see cref="UVs"/> using the region and the attachment's transform. Must be called if the
 		/// region, the region's properties, or the transform are changed.</summary>
-		public void UpdateRegion()
-		{
+		public void UpdateRegion () {
 			float[] uvs = this.uvs;
-			if (region == null)
-			{
+			if (region == null) {
 				uvs[BLX] = 0;
 				uvs[BLY] = 0;
 				uvs[ULX] = 0;
@@ -119,19 +113,15 @@ namespace Spine
 			float localX = -localX2;
 			float localY = -localY2;
 			bool rotated = false;
-			if (region is AtlasRegion)
-			{
+			if (region is AtlasRegion) {
 				AtlasRegion region = (AtlasRegion)this.region;
 				localX += region.offsetX / region.originalWidth * width;
 				localY += region.offsetY / region.originalHeight * height;
-				if (region.degrees == 90)
-				{
+				if (region.degrees == 90) {
 					rotated = true;
 					localX2 -= (region.originalWidth - region.offsetX - region.packedHeight) / region.originalWidth * width;
 					localY2 -= (region.originalHeight - region.offsetY - region.packedWidth) / region.originalHeight * height;
-				}
-				else
-				{
+				} else {
 					localX2 -= (region.originalWidth - region.offsetX - region.packedWidth) / region.originalWidth * width;
 					localY2 -= (region.originalHeight - region.offsetY - region.packedHeight) / region.originalHeight * height;
 				}
@@ -165,8 +155,7 @@ namespace Spine
 			offset[BRX] = localX2Cos - localYSin;
 			offset[BRY] = localYCos + localX2Sin;
 
-			if (rotated)
-			{
+			if (rotated) {
 				uvs[BLX] = region.u2;
 				uvs[BLY] = region.v;
 				uvs[ULX] = region.u2;
@@ -175,9 +164,7 @@ namespace Spine
 				uvs[URY] = region.v2;
 				uvs[BRX] = region.u;
 				uvs[BRY] = region.v;
-			}
-			else
-			{
+			} else {
 				uvs[BLX] = region.u2;
 				uvs[BLY] = region.v2;
 				uvs[ULX] = region.u;
@@ -196,8 +183,7 @@ namespace Spine
 		/// <param name="worldVertices">The output world vertices. Must have a length greater than or equal to offset + 8.</param>
 		/// <param name="offset">The worldVertices index to begin writing values.</param>
 		/// <param name="stride">The number of worldVertices entries between the value pairs written.</param>
-		public void ComputeWorldVertices(Slot slot, float[] worldVertices, int offset, int stride = 2)
-		{
+		public void ComputeWorldVertices (Slot slot, float[] worldVertices, int offset, int stride = 2) {
 			if (sequence != null) sequence.Apply(slot, this);
 
 			float[] vertexOffset = this.offset;
@@ -232,8 +218,7 @@ namespace Spine
 			//offset += stride;
 		}
 
-		public override Attachment Copy()
-		{
+		public override Attachment Copy () {
 			return new RegionAttachment(this);
 		}
 	}
