@@ -1,23 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Assets.Scripts.manager;
 using Newtonsoft.Json;
 using ZhiSe;
 
-internal class UserModel
+public class UserModel:SingletonBase<UserModel>
 {
-
-	private static UserModel instance;
-
-	public static UserModel Ins
-	{
-		get
-		{
-			instance ??= new UserModel();
-			return instance;
-		}
-	}
 	// 是否是新用户
 	private bool _isNew = true;
 	private long _loginTime = 0;
@@ -43,11 +32,6 @@ internal class UserModel
 	public string version;
 	// 埋点数据
 	private Dictionary<string, object> buryDot = new();
-
-	private UserModel()
-	{
-		instance = this;
-	}
 
 	public void InitData(Dictionary<string, object> ret)
 	{

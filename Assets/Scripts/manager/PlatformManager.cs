@@ -348,7 +348,7 @@ public class WeChatPlatform : PlatformBase
         {
             OpenDataMessage msgData = new OpenDataMessage();
 		    msgData.type = "setUserRecord";
-		    msgData.score = UserModel.Ins.levelId;
+		    msgData.score = UserModel.Instance.levelId;
 		    string msg = JsonUtility.ToJson(msgData);
 		    GameData.openDataContext.PostMessage(msg);
         }

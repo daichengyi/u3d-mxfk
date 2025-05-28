@@ -21,6 +21,12 @@ MonoBehaviour:
     m_Address: Assets/Scene/Start.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dd5c342b0cde254d9f77eca309368fc
+    m_Address: Assets/Scene/Game.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}
   m_SchemaSet:

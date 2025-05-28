@@ -94,11 +94,11 @@ public class Load : MonoBehaviour
             success = (ret) =>
             {
                 loginData = ret;
-                UserModel.Ins.userId = ret.userId;
-                UserModel.Ins.isTest = ret.isTest;
+                UserModel.Instance.userId = ret.userId;
+                UserModel.Instance.isTest = ret.isTest;
                 string[] versionArr = GameData.version.Split('.');
                 versionArr[1] = ret.abTest;
-                UserModel.Ins.version = string.Join(".", versionArr);
+                UserModel.Instance.version = string.Join(".", versionArr);
                 GetUserData();
                 // 登录成功才能上报用户数据
             },
@@ -173,7 +173,7 @@ public class Load : MonoBehaviour
             // Debug.Log("用户数据JSON字符串: " + userData);
             // Debug.Log("游戏用户数据获取成功=" + ret);
             // Debug.LogFormat("游戏用户数据获取成功=%s", ret);
-            UserModel.Ins.InitData(ret);
+            UserModel.Instance.InitData(ret);
             AdManager.Ins.Init();
         }
         else
@@ -183,7 +183,7 @@ public class Load : MonoBehaviour
             {
                 success = (ret) =>
                 {
-                    UserModel.Ins.InitData(ret);
+                    UserModel.Instance.InitData(ret);
                     Debug.LogFormat("游戏用户数据获取成功=%s", ret);
                 },
                 fail = (code, msg) =>
