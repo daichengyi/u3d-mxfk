@@ -122,14 +122,14 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (!cellNodes.TryGetValue(key, out GameObject cellNode))
             {
                 cellNode = new GameObject("Cell");
-                var spriteRenderer = cellNode.AddComponent<SpriteRenderer>();
-                spriteRenderer.sprite = filledSprites[colorIndex];
+                Image image = cellNode.AddComponent<Image>();
+                image.sprite = filledSprites[colorIndex];
                 cellNode.transform.SetParent(gridContainer);
 
                 float padding = 0;
                 cellNode.transform.localScale = new Vector3(
-                    (cellSize - padding * 2) / spriteRenderer.sprite.bounds.size.x,
-                    (cellSize - padding * 2) / spriteRenderer.sprite.bounds.size.y,
+                    (cellSize - padding * 2) / image.sprite.bounds.size.x,
+                    (cellSize - padding * 2) / image.sprite.bounds.size.y,
                     1
                 );
 
@@ -196,12 +196,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 node.transform.localScale = Vector3.zero;
                 node.transform.DOScale(Vector3.one * 1.2f, 0.2f)
                     .OnComplete(() => node.transform.DOScale(Vector3.one, 0.1f));
-                var spriteRenderer = node.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
+                Image image = node.GetComponent<Image>();
+                if (image != null)
                 {
-                    Color color = spriteRenderer.color;
+                    Color color = image.color;
                     color.a = 1f;
-                    spriteRenderer.color = color;
+                    image.color = color;
                 }
             }
 
@@ -360,11 +360,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             cellNodes.Clear();
         }
 
-        public void LoadGridData(string jsonData)
+        public void LoadGridData(GridDataWrapper jsonData)
         {
             try
             {
-                var data = JsonUtility.FromJson<GridDataWrapper>(jsonData);
+                var data = jsonData;// JsonUtility.FromJson<GridDataWrapper>(jsonData);
                 if (!ValidateJsonData(data))
                 {
                     Debug.LogWarning("无效的JSON格式");
@@ -372,13 +372,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 }
 
                 history.Clear();
-                foreach (var step in data.steps)
+                foreach (var step in data.s)
                 {
                     history.Add(new GridData
                     {
-                        positions = step.positions.Select(p => new Vector2Int(p[0], p[1])).ToList(),
-                        colorIndex = step.colorIndex,
-                        step = step.step
+                        positions = step.p.Select(p => new Vector2Int(p[0], p[1])).ToList(),
+                        colorIndex = step.c,
+                        step = step.s
                     });
                 }
 
@@ -427,37 +427,37 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private bool ValidateJsonData(GridDataWrapper data)
         {
-            if (data == null || data.steps == null)
+            if (data == null || data.s == null)
             {
                 Debug.LogWarning("数据为空");
                 return false;
             }
 
-            foreach (var step in data.steps)
+            foreach (var step in data.s)
             {
-                if (step.positions == null)
+                if (step.p == null)
                 {
-                    Debug.LogWarning($"步骤 {step.step} 的位置数据无效");
+                    Debug.LogWarning($"步骤 {step.s} 的位置数据无效");
                     return false;
                 }
 
-                if (step.colorIndex < 0 || step.colorIndex >= COLORS_COUNT)
+                if (step.c < 0 || step.c >= COLORS_COUNT)
                 {
-                    Debug.LogWarning($"步骤 {step.step} 的颜色索引无效: {step.colorIndex}");
+                    Debug.LogWarning($"步骤 {step.s} 的颜色索引无效: {step.c}");
                     return false;
                 }
 
-                foreach (var pos in step.positions)
+                foreach (var pos in step.p)
                 {
                     if (pos.Length != 2)
                     {
-                        Debug.LogWarning($"步骤 {step.step} 的位置格式无效: {string.Join(",", pos)}");
+                        Debug.LogWarning($"步骤 {step.s} 的位置格式无效: {string.Join(",", pos)}");
                         return false;
                     }
 
                     if (!IsPointInGrid(pos[0], pos[1]))
                     {
-                        Debug.LogWarning($"步骤 {step.step} 的位置超出网格范围: x={pos[0]}, y={pos[1]}");
+                        Debug.LogWarning($"步骤 {step.s} 的位置超出网格范围: x={pos[0]}, y={pos[1]}");
                         return false;
                     }
                 }
@@ -477,8 +477,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
             string path = EditorUtility.OpenFilePanel("选择JSON文件", "", "json");
             if (string.IsNullOrEmpty(path)) return;
 
-            string jsonData = File.ReadAllText(path);
-            LoadGridData(jsonData);
+            //string jsonData = File.ReadAllText(path);
+            //LoadGridData(jsonData);
         }
 
         private void ScrollToCell(int x, int y)
@@ -632,17 +632,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
         }
 
         [Serializable]
-        private class GridDataWrapper
+        public class GridDataWrapper
         {
-            public List<StepData> steps;
+            public float r;
+            public float c;
+            public List<StepData> s;
         }
 
         [Serializable]
-        private class StepData
+        public class StepData
         {
-            public int[][] positions;
-            public int colorIndex;
-            public int step;
+            public List<int[]> p;
+            public int c;
+            public int s;
         }
     }
 }

@@ -39,7 +39,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void Start()
         {
-            
+            /*EventManager.Instance.AddListener("btn_add_tmp", OnUnlockTmp);
+            EventManager.Instance.AddListener("remove_board", OnRemoveBoard);
+            EventManager.Instance.AddListener("btn_clear_tmp", OnClearTmp);
+            EventManager.Instance.AddListener("unlock_2", OnUnlock);
+            EventManager.Instance.AddListener("unlock_1", OnUnlock);*/
+            progressBar.sizeDelta = new Vector2(17f,0);
+            feibiao = transform.parent.GetComponent<Feibiao>();
         }
 
         public void SetData(List<int> newData, GamePlay gameplay)
@@ -82,9 +88,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private void HandleTargetGeneration(int index, int type)
         {
             Vector3 position = targetPos[index];
-            GameObject node = Instantiate(targetPrefab);
+            GameObject node = Instantiate(targetPrefab, targetsNode);
             node.transform.position = new Vector3(position.x - 750, position.y, 0);
-            node.transform.SetParent(targetsNode);
             node.transform.SetSiblingIndex(10 - index);
 
             Target targetComp = node.GetComponent<Target>();
@@ -119,11 +124,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
         }
     }
 
-    private Target FindMatchingTarget(object obj, bool checkReadyState = true)
+    private Target FindMatchingTarget(RopeBase obj, bool checkReadyState = true)
     {
         return targets.FirstOrDefault(target =>
             target.targetCount > 0 &&
-            target.type == ((Rope)obj).type &&
+            target.type == obj.type &&
             (!checkReadyState || target.state == (int)TargetState.Ready));
     }
 
@@ -146,8 +151,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
     private RopeTexture CreateRopeNode(GameObject startNode, int type, float amplitude = 20)
     {
-        GameObject ropeNode = Instantiate(ropePrefab);
-        ropeNode.transform.SetParent(levelRoot);
+        GameObject ropeNode = Instantiate(ropePrefab, levelRoot);
         ropeNode.transform.SetAsLastSibling();
 
         RopeTexture ropeController = ropeNode.GetComponent<RopeTexture>();
@@ -562,7 +566,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
     {
         if (IsTmpFull())
         {
-            //UIService.Instance.ShowMessage("槽位已满,无法继续放入");
+            UIManager.Instance.ShowMsg("槽位已满,无法继续放入");
             return;
         }
         Target comp = FindMatchingTarget(params_);
@@ -652,11 +656,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
     private void OperateObjAnimation(RopeBase operateObj, GameObject tmpNode, Action callback, float amplitude = 20)
     {
-            //LeanTween.cancel(operateObj.gameObject);
             operateObj.gameObject.transform.DOKill();
             RopeTexture ropeController = CreateRopeNode(operateObj.gameObject, operateObj.type, amplitude);
 
-        Vector3 endLocal = ConvertToNodeSpaceAR(tmpNode, ropeController.transform.parent);
+        Vector3 endLocal = ConvertToNodeSpaceAR(tmpNode, ropeController.transform);
         Vector3[] points = new Vector3[]
         {
             new Vector3(endLocal.x - 20, endLocal.y, 0),

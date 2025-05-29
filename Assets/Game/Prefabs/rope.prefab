@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a3d1d24332ee84bad0173d1a481294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  isLocked: 0
   spriteFrames:
   - {fileID: 21300000, guid: fba6ca1bfbdce4c42b9fd12b39ebe49d, type: 3}
   - {fileID: 21300000, guid: df9a03685209d834c9e2460639347c7f, type: 3}
@@ -60,7 +62,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee04e4bf2d50cb24f94d1da2af2aa7d3, type: 3}
   - {fileID: 21300000, guid: 25984d9568daf4c4ab15d3bc757b0502, type: 3}
   - {fileID: 21300000, guid: e989af5d9fa781f4c9bd652ba95541a2, type: 3}
-  sprite: {fileID: 5958653497611481364}
+  sprite: {fileID: 2295773814437481132}
 --- !u!1 &5958653497611481364
 GameObject:
   m_ObjectHideFlags: 0

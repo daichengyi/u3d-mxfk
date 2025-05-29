@@ -1,8 +1,7 @@
 ﻿using DG.Tweening;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
@@ -18,36 +17,23 @@ namespace Assets.Game.Scripts.modes.Feibiao
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform child = transform.GetChild(i);
-                SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
+                Image sprite = child.GetComponent<Image>();
+                if (sprite != null)
                 {
-                    loadSprite(i * 0.1f, spriteRenderer);
+                    loadSprite(i * 0.1f, sprite);
                 }
             }
             this.isAnimated = isAnimated;
         }
 
-        private async void loadSprite(float time,SpriteRenderer spriteRenderer)
+        private async void loadSprite(float time, Image sprite)
         {
-            string path = $"Feibiao/images/tmp/{type + 1}";
-            var handler = ResourceManager.LoadAsset<Sprite>(path);
-            while (!handler.IsDone)
-            {
-                await Task.Yield();
-            }
-            if (handler.Status == AsyncOperationStatus.Succeeded)
-            {
-                spriteRenderer.sprite = handler.Result;
-                Color color = spriteRenderer.color;
-                color.a = 0;
-                spriteRenderer.color = color;
+            string path = $"Res/tmp/{type + 1}.png";
+            Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
 
-                DOVirtual.DelayedCall(time, () => {
-                    Color color = spriteRenderer.color;
-                    color.a = 1;
-                    spriteRenderer.DOBlendableColor(color, 0.2f);
-                });
-            }
+            sprite.sprite = spriteFrame;
+            sprite.DOFade(0, 0);
+            sprite.DOFade(1, 0.2f).SetDelay(time);    
         }
 
         public void RemoveFromBoard() { }

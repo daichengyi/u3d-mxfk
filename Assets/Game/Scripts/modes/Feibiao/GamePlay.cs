@@ -1,7 +1,8 @@
-using Assets.Game.Scripts;
+﻿using Assets.Game.Scripts;
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.Events;
+using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
 
 
 public class GamePlay : MonoBehaviour,IPointerClickHandler
@@ -69,11 +71,11 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         if (IsInvoking(nameof(StartAutoPlay)))
         {
             CancelInvoke(nameof(StartAutoPlay));
-            //UIService.Instance.ShowMessage("�Զ�ģʽ�ѹر�");
+            //UIService.Instance.ShowMessage("自动模式已关闭");
         }
         else
         {
-            //UIService.Instance.ShowMessage("�Զ�ģʽ�ѿ���");
+            //UIService.Instance.ShowMessage("自动模式已开启");
             InvokeRepeating(nameof(StartAutoPlay), 0f, 0.3f);
         }
     }
@@ -99,7 +101,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    public async Task InitGame(string paintData, int level)
+    public async Task InitGame(GridDataWrapper paintData, int level)
     {
         Debug.Log("gamePlay");
         await InitPaintBoard(paintData, level);
@@ -193,7 +195,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    private async Task InitPaintBoard(string paintData, int level)
+    private async Task InitPaintBoard(GridDataWrapper paintData, int level)
     {
         paintBoard.LoadGridData(paintData);
         if (GameManager.Instance.currMode.id != GameMode.Feibiao)
@@ -230,7 +232,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             }
             else
             {
-                Debug.Log("�������⴦���ؿ�");
+                Debug.Log("无需特殊处理关卡");
             }
         }
     }
@@ -335,7 +337,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
         else
         {
-            Debug.Log("��ǰ�ؿ�����Ҫ���䶴");
+            Debug.Log("当前关卡不需要补充洞");
         }
     }
 
@@ -549,6 +551,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
     }
 
+    /** 点击毛线圈*/
     private void OnTouchStart()
     {
         Vector2 touchLoc = Input.mousePosition;
@@ -558,20 +561,28 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             var onBoardObjs = curBoard.GetScrewComps();
             for (int l = 0; l < onBoardObjs.Count; l++)
             {
-                var curObj = onBoardObjs[l];
+                Rope curObj = onBoardObjs[l];
                 if (curObj.isLocked) continue;
 
                 var wp = curObj.sprite.GetComponent<PolygonCollider2D>().points;
-                if (wp != null && IsPointInPolygon(touchLoc, wp))
+                // 将多边形顶点转换到世界坐标系
+                Vector2[] worldPoints = new Vector2[wp.Length];
+                for (int i = 0; i < wp.Length; i++)
+                {
+                    worldPoints[i] = curObj.sprite.transform.TransformPoint(wp[i]);
+                }
+
+                // 检查点击位置是否在物体范围内
+                if (IsPointInPolygon(touchLoc, worldPoints))
                 {
                     if (!IsTouchenEnabled(curBoard, curObj))
                     {
                         curObj.Shake();
-                        //SoundManager.Instance.PlaySound("wufayidong");
                         return;
                     }
                     TouchOperateObj(curObj);
                     return;
+                    //curObj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
             }
         }
@@ -580,7 +591,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     private void TouchOperateObj(Rope comp)
     {
         targetMgr.OnTouchOperateObj(comp);
-        //EventManager.Instance.Dispatch("screw_remove", comp);
+        EventMng.dispatchEvent(new EventStruct(EventTypes.SCREW_REMOVE), comp);
         ///SoundManager.Instance.PlaySound("�������");
         //PlatformService.Instance.VibrateShort(false);
     }

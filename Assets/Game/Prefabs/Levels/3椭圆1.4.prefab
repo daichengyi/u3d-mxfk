@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5662154894068520072}
   - component: {fileID: 3625124834306062091}
   - component: {fileID: 1236220507293655928}
+  - component: {fileID: 8555004584459669814}
   m_Layer: 5
   m_Name: "3\u692D\u57061.4"
   m_TagString: Untagged
@@ -262,10 +263,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f9282f820f3642a6e32060d7a67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSpr: {fileID: 2589983351618648440}
+  boardSpr: {fileID: 1262788287694393722}
   holesNode: {fileID: 8929476744164609087}
   objsNode: {fileID: 4680608080274897157}
-  boardColor: {r: 1, g: 1, b: 1, a: 1}
+  layerIndex: 1
+  isLocked: 0
+--- !u!225 &8555004584459669814
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4553485535477821263}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4680608080274897157
 GameObject:
   m_ObjectHideFlags: 0

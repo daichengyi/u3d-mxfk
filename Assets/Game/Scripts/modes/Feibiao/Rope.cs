@@ -1,29 +1,30 @@
 ﻿using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
     public class Rope : RopeBase
     {
         private bool _isTouchEnabled = true;
+        [HideInInspector]
         public bool isLocked = false;
         private bool isMoving = false;
-
+        [SerializeField]
         private Sprite[] spriteFrames;
-
-        public GameObject sprite;
+        [SerializeField]
+        public Image sprite;
 
         // Use this for initialization
         void Start()
         {
             _isTouchEnabled = true;
             // 设置初始透明度为0
-            SpriteRenderer spriteRenderer = sprite.GetComponent<SpriteRenderer>();
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+            sprite.DOFade(0f, 0);
 
             // 使用DOTween实现淡入效果
-            spriteRenderer.DOFade(1f, 0.25f).SetDelay(0.45f);
+            sprite.DOFade(1f, 0.25f).SetDelay(0.45f);
         }
 
         public bool isTouchEnabled
@@ -39,8 +40,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public  void SetLock(bool value)
         {
             isLocked = value;
-            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, value ? 0f : 1f);
+            sprite.DOFade(value ? 0f : 1f, 0);
         }
 
         public void RemoveFromBoard()
@@ -48,8 +48,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             isTouchEnabled = false;
 
             Destroy(sprite.GetComponent<Rigidbody2D>());
-            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1f);
+            sprite.DOFade(1f, 0);
 
             sprite.transform.rotation = Quaternion.identity;
         }
@@ -58,7 +57,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         {
             base.SetType(type);
             this.type = type;
-            sprite.GetComponent<SpriteRenderer>().sprite = spriteFrames[type];
+            sprite.sprite = spriteFrames[type];
             sprite.transform.rotation = Quaternion.Euler(0, 0, -transform.parent.parent.rotation.eulerAngles.z);
             isMoving = false;
         }

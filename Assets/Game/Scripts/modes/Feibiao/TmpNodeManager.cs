@@ -53,8 +53,8 @@ public class TmpNodeManager : MonoBehaviour
     {
         if (index == -1) return null;
 
-        GameObject prefab = Instantiate(tmpPrefab);
-        prefab.transform.SetParent(tmpsNode.GetChild(index));
+        GameObject prefab = Instantiate(tmpPrefab, tmpsNode.GetChild(index));
+        //prefab.transform.SetParent(tmpsNode.GetChild(index));
 
         TmpRope tmpComp = prefab.GetComponent<TmpRope>();
         tmpComp.SetType(operateObj.type);
@@ -65,8 +65,8 @@ public class TmpNodeManager : MonoBehaviour
 
     public void PushToHideTmp(Rope operateObj)
     {
-        GameObject prefab = Instantiate(tmpPrefab);
-        prefab.transform.SetParent(hideTmpNode);
+        GameObject prefab = Instantiate(tmpPrefab, hideTmpNode);
+        //prefab.transform.SetParent(hideTmpNode);
         TmpRope tmpComp = prefab.GetComponent<TmpRope>();
         tmpComp.SetType(operateObj.type, false);
     }

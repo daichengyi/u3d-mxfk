@@ -1,17 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
     public class Board: MonoBehaviour
     {
-        private GameObject boardSpr;
-
+        [SerializeField]
+        private Image boardSpr;
+        [SerializeField]
         public GameObject holesNode;
-
+        [SerializeField]
         private GameObject objsNode;
-
+        [HideInInspector]
         public int layerIndex = 1;
+        [HideInInspector]
         public bool isLocked = false;
 
         private Color boardColor = Color.white;
@@ -26,13 +30,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public void SetBoardColor(Color value)
         {
             boardColor = value;
-            boardSpr.GetComponent<SpriteRenderer>().color = value;
+            boardSpr.color = value;
         }
 
-        public void SetLock(bool value, float opacity = 255f)
+        public void SetLock(bool value, float opacity = 1f)
         {
-            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, opacity / 255f);
+            GetComponent<CanvasGroup>().alpha = opacity;
 
             Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
             if (opacity == 0)
@@ -60,17 +63,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
             isLocked = value;
             if (value)
             {
-                renderer.color = Color.gray;
-                boardSpr.GetComponent<SpriteRenderer>().color = Color.gray;
-                boardSpr.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.04f);
+                GetComponent<Image>().color = Color.gray;
+                boardSpr.color = Color.gray;
+                boardSpr.DOFade(0.1f, 0.1f);
             }
             else
             {
-                boardSpr.GetComponent<SpriteRenderer>().color = boardColor;
-                // 使用 DOTween 或其他动画系统替代 cc.tintTo
-                // TODO: 实现颜色渐变动画
-                boardSpr.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-                // TODO: 实现透明度渐变动画
+                // 边框
+                GetComponent<Image>().color = Color.white;
+
+                //里边
+                boardSpr.color = boardColor;
+                boardSpr.DOFade(0f, 0.0f);
+                boardSpr.DOFade(0.7f,0.5f);
             }
 
             var comps = GetScrewComps();
@@ -91,14 +96,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
         }
 
         public void Init(GameObject objPrefab)
-        {
-            List<Transform> holes = new List<Transform>(holesNode.transform.GetComponentsInChildren<Transform>());
+        { 
+            List<Transform> holes = new List<Transform>();
+            for (int i = 0; i < holesNode.transform.childCount; i++)
+            {
+                holes.Add(holesNode.transform.GetChild(i));
+            }
             holes.Sort((a, b) => b.position.y.CompareTo(a.position.y));
 
             foreach (var hole in holes)
             {
-                GameObject objNode = Instantiate(objPrefab, hole.position, Quaternion.identity);
-                objNode.transform.SetParent(objsNode.transform);
+                GameObject objNode = Instantiate(objPrefab, hole.position, Quaternion.identity, objsNode.transform);
 
                 Rope screwComp = objNode.GetComponent<Rope>();
                 Rigidbody2D rigidBody = screwComp.sprite.GetComponent<Rigidbody2D>();

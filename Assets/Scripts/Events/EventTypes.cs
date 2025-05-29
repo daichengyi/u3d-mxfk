@@ -16,6 +16,8 @@ namespace Assets.Scripts.Events
 
 
         public const string BTN_REMOVE_BOARD = "btn_remove_board";
+
+        public const string SCREW_REMOVE = "screw_remove";
     }
 
     //end class

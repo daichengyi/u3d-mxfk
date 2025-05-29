@@ -3,12 +3,14 @@ using Assets.Scripts.config;
 using Assets.Scripts.data;
 using Assets.Scripts.Events;
 using DG.Tweening;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
@@ -32,6 +34,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         // Use this for initialization
         void Start()
         {
+            Debug.Log("feibiao - start -------------");
             //Canvas canvas = GetComponent<Canvas>();
             //canvas.fitHeight = UserService.Instance.IsIPAD;
             //canvas.fitWidth = !UserService.Instance.IsIPAD;
@@ -140,7 +143,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                         }
                     });
 
-                    EventManager.Instance.AddListener("screw_remove", EmitXinshouyindao);
+                    EventMng.addEventListener(EventTypes.SCREW_REMOVE, EmitXinshouyindao);
 
                     xinshouyindaoComp.Str = new string[]
                     {
@@ -461,33 +464,20 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public async Task LoadLevel(int rlevel)
         {
-            string resId = LevelMgr.GetPrefabName(rlevel);
-            Debug.Log($"loadLevel {rlevel} {resId}");
+            //string resId = LevelMgr.GetPrefabName(rlevel);
+            //Debug.Log($"loadLevel {rlevel} {resId}");
             //UIService.Instance.ShowLoading();
             try
             {
-                var handler1 = ResourceManager.LoadAsset<GameObject>($"Assets/prefabs/levels/lv_{resId}");
-                while (!handler1.IsDone)
-                {
-                    await Task.Yield();
-                }
-                GameObject prefab = handler1.Result;
-
-
-                var handler2 = ResourceManager.LoadAsset<TextAsset>("Assets/json/lv_" + LevelMgr.GetPaintOrder(rlevel));
-                while (!handler2.IsDone)
-                {
-                    await Task.Yield();
-                }
-                TextAsset data = handler2.Result;
-
-                GameObject prefabNode = Instantiate(prefab);
-                prefabNode.transform.localPosition = Vector3.zero;
+                GameObject prefab = await ResourceManager.AsyncLoadRes<GameObject>($"Game/Levels/prefabs/lv_{rlevel}.prefab");
+                TextAsset data = await ResourceManager.AsyncLoadRes<TextAsset>($"Game/Levels/json/lv_{rlevel}.json");
 
                 GamePlay gameplay = GetComponent<GamePlay>();
-                prefabNode.transform.SetParent(gameplay.levelRoot);
+                GameObject prefabNode = Instantiate(prefab, gameplay.levelRoot);
+
                 gameplay.boardLayer = prefabNode.transform;
-                gameplay.InitGame(data.text, rlevel);
+                GridDataWrapper gridData = JsonConvert.DeserializeObject<GridDataWrapper>(data.text);
+                gameplay.InitGame(gridData, rlevel);
 
                 nowGuanqiaNode = prefabNode;
                 gameUILayer.InitFeibiao(this);
@@ -509,6 +499,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             finally
             {
                 //UIService.Instance.HideLoading();
+                UIManager.Instance.HideLoading();
             }
         }
 

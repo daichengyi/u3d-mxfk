@@ -72,6 +72,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     GameObject segment = RopeSegmentManager.Instance.GetSegment(type);
                     segment.transform.SetParent(transform);
+                    //segment.transform.localPosition = Vector3.zero;
                     segments.Add(segment);
                 }
             }
@@ -205,6 +206,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void DestroyByReset()
         {
+            Debug.Log("移除 ropeTexture========");
             foreach (GameObject segment in segments)
             {
                 if (segment != null)
@@ -212,7 +214,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     RopeSegmentManager.Instance.PutSegment(type, segment);
                 }
             }
-            segments.Clear();
+            //segments.Clear();
+            gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
 

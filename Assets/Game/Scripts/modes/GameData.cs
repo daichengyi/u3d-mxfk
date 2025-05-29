@@ -24,7 +24,7 @@ namespace Assets.Game.Scripts.modes
         public LocalFbData GetFeibiaoData()
         {
             LocalFbData localFbData = new LocalFbData();
-            localFbData.level = 0;
+            localFbData.level = 1;
             localFbData.selectedPainting = 0;
             return localFbData;
         }
@@ -44,6 +44,11 @@ namespace Assets.Game.Scripts.modes
         public void SetMianfeidaojuData(LocalFdjData data)
         {
 
+        }
+
+        public int GetSelectedBgSkin()
+        {
+            return 1;
         }
     }
 }

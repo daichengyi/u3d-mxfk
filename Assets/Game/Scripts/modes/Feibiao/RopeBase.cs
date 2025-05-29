@@ -5,7 +5,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
 {
     public class RopeBase : MonoBehaviour
     {
-        public new int type;
+        [HideInInspector]
+        public int type;
 
         public virtual void RemoveFromBoard() { }
 

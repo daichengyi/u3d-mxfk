@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.common;
-using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,10 +19,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public int state { get; set; }
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             type = -1;
-            ///SetSkin(UserService.Instance.GetSelectedBgSkin());
+            SetSkin(GameData.Instance.GetSelectedBgSkin());
             //EventManager.Instance.AddListener("onEventChangeSkinBg", SetSkin);
         }
 
@@ -53,18 +53,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 }
                 canvasGroup.alpha = startOpacity;
 
-                /*LeanTween.alphaCanvas(canvasGroup, endOpacity, 0.2f)
-                    .setDelay((target.childCount - i) * 0.1f);*/
+                DOVirtual.DelayedCall((target.childCount - i) * 0.1f, () => {
+                    canvasGroup.DOFade(endOpacity, 0.2f);
+                });
             }
         }
 
-        public async void InitWithType(int type)
+        public async void InitWithType(int tp)
         {
             targetCount = 3;
-            type = type;
+            type = tp;
             state = (int)TargetState.Loading;
 
-            /*for (int index = 0; index < holeNode.childCount; index++)
+            for (int index = 0; index < holeNode.childCount; index++)
             {
                 Transform hole = holeNode.GetChild(index);
                 hole.gameObject.SetActive(false);
@@ -73,33 +74,28 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     Transform child = hole.GetChild(i);
                     Image childSprite = child.GetComponent<Image>();
-                    Sprite spriteFrame = await ResourceLoader.Instance.Load<Sprite>(
-                        "Feibiao",
-                        $"images/order/{type + 1}-3"
+                    Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(
+                        $"Res/order/{type + 1}-3.png"
                     );
                     childSprite.sprite = spriteFrame;
-                    CanvasGroup canvasGroup = child.GetComponent<CanvasGroup>();
-                    if (canvasGroup == null)
+
+                    childSprite.DOFade(0, 0);
+                    DOVirtual.DelayedCall(i * 0.1f, () =>
                     {
-                        canvasGroup = child.gameObject.AddComponent<CanvasGroup>();
-                    }
-                    canvasGroup.alpha = 0;
-                    LeanTween.alphaCanvas(canvasGroup, 1f, 0.2f)
-                        .setDelay(i * 0.1f);
+                        childSprite.DOFade(1, 0.2f);
+                    });
                 }
             }
 
-            Sprite mainSprite = await ResourceLoader.Instance.Load<Sprite>(
-                "Feibiao",
-                $"images/order/{type + 1}"
+            Sprite mainSprite = await ResourceManager.AsyncLoadRes<Sprite>(
+                $"Res/order/{type + 1}.png"
             );
             sprite.sprite = mainSprite;
 
-            Sprite capSprite = await ResourceLoader.Instance.Load<Sprite>(
-                "Feibiao",
-                $"images/order/{type + 1}-2"
+            Sprite capSprite = await ResourceManager.AsyncLoadRes<Sprite>(
+                $"Res/order/{type + 1}-2.png"
             );
-            capSpr.sprite = capSprite;*/
+            capSpr.sprite = capSprite;
         }
 
         public void ShowOne(int index)
@@ -170,6 +166,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 $"images/item/{index}-1"
             );
             shadow.sprite = spriteFrame;*/
+            string path = $"Res/targetItem/{index}-1.png";
+            Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
+            shadow.sprite = spriteFrame;
         }
     }
 }

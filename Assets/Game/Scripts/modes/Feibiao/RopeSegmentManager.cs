@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
@@ -28,37 +27,30 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 segmentPools[type] = new Queue<GameObject>();
             }
-
+           
             var pool = segmentPools[type];
 
             if (pool.Count <= 0)
             {
                 GameObject segment = new GameObject("RopeSegment");
-                SpriteRenderer sprite = segment.AddComponent<SpriteRenderer>();
+                Image sprite = segment.AddComponent<Image>();
+
+                segment.layer = LayerMask.NameToLayer("UI");
 
                 // 异步加载精灵
-                LoadSegmentSprite(type, sprite);
+                string path = $"Res/segment/{type + 1}.png";
+                 ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
+                {
+                    sprite.sprite = spriteFrame;
+                    sprite.rectTransform.sizeDelta = new Vector2(spriteFrame.rect.width, spriteFrame.rect.height);
+                });
 
-                pool.Enqueue(segment);
+                return segment;
             }
 
             GameObject ropeSegment = pool.Dequeue();
             ropeSegment.SetActive(true);
             return ropeSegment;
-        }
-
-        private async void LoadSegmentSprite(int type, SpriteRenderer sprite)
-        {
-            string path = $"Assets/Res/segment/{type + 1}";
-            var handler =  ResourceManager.LoadAsset<Sprite>(path);
-            while (!handler.IsDone)
-            {
-                await Task.Yield();
-            }
-            if (handler.Status == AsyncOperationStatus.Succeeded)
-            {
-                sprite.sprite = handler.Result;
-            }
         }
 
         public void PutSegment(int type, GameObject segment)
@@ -79,7 +71,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     GameObject segment = segmentPools[type].Dequeue();
                     if (segment != null)
                     {
-                        UnityEngine.Object.Destroy(segment);
+                        Object.Destroy(segment);
                     }
                 }
                 segmentPools.Remove(type);
@@ -95,7 +87,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     GameObject segment = pool.Dequeue();
                     if(segment != null)
                     {
-                        UnityEngine.Object.Destroy(segment);
+                        Object.Destroy(segment);
                     }
                 }
             }

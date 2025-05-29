@@ -312,4 +312,40 @@ public class ResourceManager
 
         return releasedCount;
     }
+
+    /// <summary>
+    /// 异步加载资源
+    /// </summary>
+    /// <param name="viewName">预制体名称</param>
+    /// <param name="callback">回调函数</param>
+    /// <returns>预制体</returns>
+    public static async Task<T> AsyncLoadRes<T>(string path, System.Action<T> callback = null)
+    {
+        try
+        {
+            string fullPath = "Assets/" + path;
+            var handle = ResourceManager.LoadAsset<T>(fullPath);
+            while (!handle.IsDone)
+            {
+                await Task.Yield();
+            }
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                var result = handle.Result;
+                callback?.Invoke(result);
+                return result;
+            }
+            else
+            {
+                Debug.LogError($"加载资源失败: {path}, 状态: {handle.Status}");
+                return default(T);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"加载资源时发生异常: {path}, 错误: {ex.Message}\n{ex.StackTrace}");
+            return default(T);
+        }
+    }
 }
