@@ -38,8 +38,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
             sprite.DOFade(1, 0.2f).SetDelay(time);    
         }
 
-        public void RemoveFromBoard() { }
-
         public override void MoveStart(Action func)
         {
             base.MoveStart(func);

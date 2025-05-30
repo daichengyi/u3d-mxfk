@@ -2,9 +2,9 @@
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.Events;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -93,14 +93,15 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    public async Task InitGame(GridDataWrapper paintData, int level)
+    public IEnumerator InitGame(GridDataWrapper paintData, int level)
     {
         Debug.Log("gamePlay");
-        await InitPaintBoard(paintData, level);
+        yield return StartCoroutine(InitPaintBoard(paintData, level));
         CheckBoards();
-        await InitBoards();
+        yield return StartCoroutine(InitBoards());
+        List<Board> data = boards;
         RefreshBoardLockState();
-        await InitLevelConfig(level);
+        yield return StartCoroutine(InitLevelConfig(level));
     }
 
     private void ShowBlockLayer(EventStruct evt)
@@ -148,8 +149,9 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         return colorArr;
     }
 
-    private async Task InitLevelConfig(int level)
+    private IEnumerator InitLevelConfig(int level)
     {
+        yield return new WaitForSeconds(0.01f);
         var colorArr = GetColorConfig(level);
         var colorsConfig = new List<int>();
         var targetConfig = new List<int>();
@@ -187,13 +189,13 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    private async Task InitPaintBoard(GridDataWrapper paintData, int level)
+    private IEnumerator InitPaintBoard(GridDataWrapper paintData, int level)
     {
         paintBoard.LoadGridData(paintData);
         if (GameManager.Instance.currMode.id != GameMode.Feibiao)
         {
             paintBoard.FixHistory(120);
-            return;
+            yield return new WaitForSeconds(0.01f);
         }
         ///if (!LevelMgr.IsABTest()) return;
 
@@ -333,45 +335,52 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    private async Task InitBoards()
+    private IEnumerator InitBoards()
     {
-        boards.Clear();
-        var color1 = new List<string>(COLORS);
-        color1 = ShuffleList(color1);
-        var tmpColors = color1.Concat(color1).Concat(color1).ToList();
+        boards = new List<Board>();
 
-        for (int index = 0; index < boardLayer.childCount; index++)
+        List<string> color1 = new List<string>(COLORS);
+        ShuffleList(color1);
+        List<string> tmpColors = new List<string>();
+        tmpColors.AddRange(color1);
+        tmpColors.AddRange(color1);
+        tmpColors.AddRange(color1);
+
+        for (int index = 0; index < boardLayer.transform.childCount; index++)
         {
-            var boardNodeLayer = boardLayer.GetChild(index);
-            var children = new List<Transform>();
+            Transform boardNodeLayer = boardLayer.transform.GetChild(index);
+            // 按y坐标排序子节点
+            List<Transform> children = new List<Transform>();
             for (int i = 0; i < boardNodeLayer.childCount; i++)
             {
                 children.Add(boardNodeLayer.GetChild(i));
             }
             children.Sort((a, b) => b.position.y.CompareTo(a.position.y));
 
-            await Task.Delay(10);
+            // 使用协程实现延时
+            yield return new WaitForSeconds(0.01f);
 
-            foreach (var boardNode in children)
+            for (int j = 0; j < boardNodeLayer.childCount; j++)
             {
-                var rigidBody = boardNode.GetComponent<Rigidbody2D>();
+                Transform boardNode = boardNodeLayer.GetChild(j);
+                Rigidbody2D rigidBody = boardNode.GetComponent<Rigidbody2D>();
                 rigidBody.simulated = true;
                 rigidBody.angularDrag = 2;
 
-                var boardComp = boardNode.GetComponent<Board>();
-                var physicsPolygonCollider = boardNode.GetComponent<PolygonCollider2D>();
-                var polygonCollider = boardNode.GetComponent<PolygonCollider2D>();
+                Board boardComp = boardNode.GetComponent<Board>();
+                PolygonCollider2D physicsPolygonCollider = boardNode.GetComponent<PolygonCollider2D>();
+                PolygonCollider2D polygonCollider = boardNode.GetComponent<PolygonCollider2D>();
                 boardComp.layerIndex = index + 1;
                 boardNode.gameObject.layer = LayerMask.NameToLayer("Default");
 
+                // 设置碰撞器
                 physicsPolygonCollider.points = polygonCollider.points;
                 boardComp.Init(objPrefab);
 
+                // 设置颜色
                 Color color;
-                if (ColorUtility.TryParseHtmlString(tmpColors[index % tmpColors.Count], out color))
-                {
-                    boardComp.SetBoardColor(color);
-                }
+                ColorUtility.TryParseHtmlString(tmpColors[index % tmpColors.Count], out color);
+                boardComp.SetBoardColor(color);
 
                 boards.Add(boardComp);
             }
@@ -494,8 +503,9 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
     private bool IsTouchenEnabled(Board senderBoard, Rope obj)
     {
-        foreach (var curBoard in boards)
+        for (int i = 0; i < boards.Count; i++)
         {
+            Board curBoard = boards[i];
             if (curBoard.isLocked) continue;
             if (curBoard == senderBoard) continue;
             if (curBoard.layerIndex <= senderBoard.layerIndex) continue;
@@ -506,9 +516,10 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
     private bool IsCollided(Transform a, Board b)
     {
-        var ap = a.GetComponent<PolygonCollider2D>().points;
-        var bp = b.transform.GetComponent<PolygonCollider2D>().points;
-        return IsPolygonColliding(ap, bp);
+        PolygonCollider2D ap = a.GetComponent<PolygonCollider2D>();
+        PolygonCollider2D bp = b.transform.GetComponent<PolygonCollider2D>();
+        bool isTouching = ap.bounds.Intersects(bp.bounds);
+        return isTouching;
     }
 
     private void OnBlockLayerTouchStart()
@@ -549,11 +560,11 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         Vector2 touchLoc = Input.mousePosition;
         for (int bi = boards.Count - 1; bi >= 0; bi--)
         {
-            var curBoard = boards[bi];
+            Board curBoard = boards[bi];
             var onBoardObjs = curBoard.GetScrewComps();
-            for (int l = 0; l < onBoardObjs.Count; l++)
+            for (int j = 0; j < onBoardObjs.Count; j++)
             {
-                Rope curObj = onBoardObjs[l];
+                Rope curObj = onBoardObjs[j];
                 if (curObj.isLocked) continue;
 
                 var wp = curObj.sprite.GetComponent<PolygonCollider2D>().points;
@@ -567,6 +578,8 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 // 检查点击位置是否在物体范围内
                 if (IsPointInPolygon(touchLoc, worldPoints))
                 {
+                    Transform trans = curBoard.transform.parent;
+                    Debug.Log("板子层数===="+ trans);
                     if (!IsTouchenEnabled(curBoard, curObj))
                     {
                         curObj.Shake();
