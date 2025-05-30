@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,13 +22,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        public GameObject GetSegment(int type)
+        public  GameObject GetSegment(int type)
         {
             if (!segmentPools.ContainsKey(type))
             {
                 segmentPools[type] = new Queue<GameObject>();
             }
-           
+
             var pool = segmentPools[type];
 
             if (pool.Count <= 0)
@@ -40,11 +41,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 // 异步加载精灵
                 image.gameObject.SetActive(false);
                 string path = $"Res/segment/{type + 1}.png";
-                 ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
+                ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
                 {
                     image.sprite = spriteFrame;
                     image.SetNativeSize();
-                    //sprite.rectTransform.sizeDelta = new Vector2(spriteFrame.rect.width, spriteFrame.rect.height);
                     image.gameObject.SetActive(true);
                 });
 
@@ -88,7 +88,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 while (pool.Count > 0)
                 {
                     GameObject segment = pool.Dequeue();
-                    if(segment != null)
+                    if (segment != null)
                     {
                         Object.Destroy(segment);
                     }
