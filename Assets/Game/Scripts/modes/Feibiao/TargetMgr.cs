@@ -117,8 +117,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
         float offsetTime = 0.05f;
         for (int i = 0; i < points.Length; i++)
         {
-            DOVirtual.DelayedCall(i * offsetTime, () =>
+                float time = i * offsetTime;
+            DOVirtual.DelayedCall(time, () =>
             {
+                Debug.Log("handleRopeAnimation======" + time);
                 ropeTexture.MoveToTarget(points[i].x, points[i].y, offsetTime);
             });
         }
@@ -159,8 +161,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
         ropeController.amplitude = amplitude;
         ropeController.UpdateEndPoint(0, 0);
 
-        Vector3 startLocal = ConvertToNodeSpaceAR(startNode, ropeNode.transform.parent);
-        ropeNode.transform.position = startLocal;
+            //Vector3 startLocal = ConvertToNodeSpaceAR(startNode, ropeNode.transform.parent);
+            //ropeNode.transform.position = startLocal;
+            ropeNode.transform.position = startNode.transform.position;
 
         return ropeController;
     }
@@ -174,35 +177,30 @@ namespace Assets.Game.Scripts.modes.Feibiao
     private void CheckTargetFinish(Target targetComp)
     {
         Debug.Log($"checkTargetFinish {targetComp.targetCount}");
-            if (targetComp.IsFinish())
+        if (targetComp.IsFinish())
+        {
+            Debug.Log("finish");
+            targets.Remove(targetComp);
+            RopeTexture ropeController = CreateRopeNode(targetComp.gameObject, targetComp.type);
+            bool isFinished = false;
+            var result = paintBoard.DrawWithColor(targetComp.type, (pos, isLast) =>
             {
-                Debug.Log("finish");
-                targets.Remove(targetComp);
-                RopeTexture ropeController = CreateRopeNode(targetComp.gameObject, targetComp.type);
-                var result = paintBoard.DrawWithColor(targetComp.type, (pos, isLast) =>
+                Vector3 tempPos = paintBoard.GetCellPosition(pos.x, pos.y);
+                Vector3 worldPos = paintBoard.gridContainer.TransformPoint(tempPos);
+                Vector3 ropePos = ropeController.transform.InverseTransformPoint(worldPos);
+                ropeController.MoveToTarget(ropePos.x, ropePos.y, 0.04f);
+                if (isLast)
                 {
-                    Vector3 tempPos = paintBoard.GetCellPosition(pos.x, pos.y);
-                    Vector3 worldPos = paintBoard.gridContainer.TransformPoint(tempPos);
-                    Vector3 ropePos = ropeController.transform.InverseTransformPoint(worldPos);
-                    ropeController.MoveToTarget(ropePos.x, ropePos.y, 0.04f);
-                    //SoundManager.Instance.PlayEffect($"merge_4", "Feibiao", false, 0.04f);
-                    //PlatformService.Instance.VibrateShort(false);
-                    if (isLast)
+                    ropeController.DestroyByReset();
+                    if (isFinished)
                     {
-                        ropeController.DestroyByReset();
-                        /*if (result.isFinished)
-                        {
-                            DOVirtual.DelayedCall(0.5f, () => feibiao.Pass());
-                        }*/
+                        DOVirtual.DelayedCall(0.5f, () => feibiao.Pass());
                     }
-                });
-                if (result.isFinished)
-                {
-                    DOVirtual.DelayedCall(0.5f, () => feibiao.Pass());
                 }
-                progressBar.sizeDelta = new Vector2(GetProgress(), progressBar.sizeDelta.y);
-                //progressBar.value = GetProgress();
-                progressLabel.text = $"{Mathf.Round(GetProgress() * 100)}%";
+            });
+            isFinished = result.isFinished;
+            progressBar.sizeDelta = new Vector2(GetProgress(), progressBar.sizeDelta.y);
+            progressLabel.text = $"{Mathf.Round(GetProgress() * 100)}%";
 
             targetComp.ShowFinishAnimation(result.duration, () =>
             {
@@ -214,7 +212,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
                         int nextData = GetNextTarget();
                         if (nextData >= 0)
                         {
-                            //SoundManager.Instance.PlaySound("镖靶更换2");
                             HandleTargetGeneration(targetComp.posIndex, nextData);
                         }
                         else
@@ -656,10 +653,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
     private void OperateObjAnimation(RopeBase operateObj, GameObject tmpNode, Action callback, float amplitude = 20)
     {
-            operateObj.gameObject.transform.DOKill();
-            RopeTexture ropeController = CreateRopeNode(operateObj.gameObject, operateObj.type, amplitude);
+        Debug.Log("operateObjAnimation amplitude ======" + amplitude);
+        operateObj.gameObject.transform.DOKill();
+        RopeTexture ropeController = CreateRopeNode(operateObj.gameObject, operateObj.type, amplitude);
 
-        Vector3 endLocal = ConvertToNodeSpaceAR(tmpNode, ropeController.transform);
+        Vector3 endLocal = tmpNode.transform.position;//ConvertToNodeSpaceAR(tmpNode, ropeController.transform);
         Vector3[] points = new Vector3[]
         {
             new Vector3(endLocal.x - 20, endLocal.y, 0),

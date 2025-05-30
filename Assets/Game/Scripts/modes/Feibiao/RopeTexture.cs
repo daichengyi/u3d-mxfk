@@ -47,6 +47,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         // Use this for initialization
         public void UpdateEndPoint(float x, float y)
         {
+            Debug.Log("UpdateEndPoint====");
+
             Vector2 endPos = new Vector2(x, y);
             float distance = endPos.magnitude;
             float effectiveSegmentLength = SEGMENT_SIZE - overlap + offsetY;
@@ -72,7 +74,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     GameObject segment = RopeSegmentManager.Instance.GetSegment(type);
                     segment.transform.SetParent(transform);
-                    //segment.transform.localPosition = Vector3.zero;
                     segments.Add(segment);
                 }
             }
@@ -207,7 +208,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public void DestroyByReset()
         {
             Debug.Log("移除 ropeTexture========");
-            foreach (GameObject segment in segments)
+            /*foreach (GameObject segment in segments)
             {
                 if (segment != null)
                 {
@@ -216,12 +217,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
             //segments.Clear();
             gameObject.transform.DetachChildren();
-            Destroy(gameObject);
-        }
-
-        private float EaseInOut(float t)
-        {
-            return t < 0.5f ? 2f * t * t : -1f + (4f - 2f * t) * t;
+            Destroy(gameObject);*/
         }
     }
 }
