@@ -2,7 +2,6 @@
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.Events;
-using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,7 +38,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     // Start is called before the first frame update
     void Awake()
     {
-        //Physics2D.gravity = new Vector2(0, -1600f);
+        Physics2D.gravity = new Vector2(0, -1600f);
 
         EventMng.addEventListener(EventTypes.BTN_REMOVE_BOARD, ShowBlockLayer);
 
@@ -52,13 +51,6 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         {
             //rigidBody.onCollisionEnter2D.AddListener(OnBeginContact);
         }
-    }
-
-    private void InitPhysics(Dictionary<string, object> config)
-    {
-        //Physics2D.simulationMode = true;
-        //Physics2D.defaultContactCaptureDepth = 1;
-        //Physics2D.defaultSolverIterations = 6;
     }
 
     public void OnPointerClick(PointerEventData eventData)

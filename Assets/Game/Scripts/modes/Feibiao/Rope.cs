@@ -15,6 +15,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private Sprite[] spriteFrames;
         [SerializeField]
         public Image sprite;
+        
+        [HideInInspector]
+        public HingeJoint2D hingeJoint;
 
         // Use this for initialization
         void Start()
@@ -43,9 +46,16 @@ namespace Assets.Game.Scripts.modes.Feibiao
             sprite.DOFade(value ? 0f : 1f, 0);
         }
 
-        public void RemoveFromBoard()
+        public override void RemoveFromBoard()
         {
+            base.RemoveFromBoard();
             isTouchEnabled = false;
+
+            if (hingeJoint != null)
+            {
+                Destroy(hingeJoint);
+                hingeJoint = null;
+            }
 
             Destroy(sprite.GetComponent<Rigidbody2D>());
             sprite.DOFade(1f, 0);

@@ -18,11 +18,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [HideInInspector]
         public bool isLocked = false;
 
+        [HideInInspector]
+        private Rigidbody2D rigidBody;
+        [HideInInspector]
+        private CanvasGroup canvasGroup;
+
         private Color boardColor = Color.white;
 
         void Start()
         {
-            Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+            canvasGroup = GetComponent<CanvasGroup>();
+            rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.bodyType = RigidbodyType2D.Static;
             gameObject.SetActive(false);
         }
@@ -35,9 +41,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void SetLock(bool value, float opacity = 1f)
         {
-            GetComponent<CanvasGroup>().alpha = opacity;
-
-            Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+            canvasGroup.alpha = opacity;
             if (opacity == 0)
             {
                 gameObject.SetActive(false);
@@ -87,12 +91,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void SetStaticBody()
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            rigidBody.bodyType = RigidbodyType2D.Static;
         }
 
         private void SetDynamicBody()
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            rigidBody.bodyType = RigidbodyType2D.Dynamic;
         }
 
         public void Init(GameObject objPrefab)
@@ -109,11 +113,16 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 GameObject objNode = Instantiate(objPrefab, hole.position, Quaternion.identity, objsNode.transform);
 
                 Rope screwComp = objNode.GetComponent<Rope>();
-                Rigidbody2D rigidBody = screwComp.sprite.GetComponent<Rigidbody2D>();
+                Rigidbody2D body = screwComp.sprite.GetComponent<Rigidbody2D>();
 
                 HingeJoint2D revoluteJoint = gameObject.AddComponent<HingeJoint2D>();
-                revoluteJoint.connectedBody = rigidBody;
-                revoluteJoint.anchor = new Vector2(objNode.transform.position.x, objNode.transform.position.y);
+                revoluteJoint.connectedBody = body;
+                // 将世界坐标转换为本地坐标
+                Vector2 localAnchor = transform.InverseTransformPoint(hole.position);
+                revoluteJoint.anchor = localAnchor;
+                
+                // 保存HingeJoint2D引用到Rope组件中
+                screwComp.hingeJoint = revoluteJoint;
             }
         }
 

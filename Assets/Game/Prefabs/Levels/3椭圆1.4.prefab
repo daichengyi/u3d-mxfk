@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f9282f820f3642a6e32060d7a67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 8555004584459669814}
   boardSpr: {fileID: 1262788287694393722}
   holesNode: {fileID: 8929476744164609087}
   objsNode: {fileID: 4680608080274897157}
