@@ -104,13 +104,16 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 }
             }
 
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(x, y, 0);
+
             for (int i = 0; i < len; i++)
             {
                 GameObject segment = segments[i];
                 float t = i / (float)(len - 1);
 
-                // 直接使用世界坐标计算目标位置
-                Vector3 targetPos = transform.position + new Vector3(t * x, t * y, 0);
+                // 直接在世界坐标系中插值计算位置
+                Vector3 targetPos = Vector3.Lerp(startPos, endPos, t);
                 originalPositions[i] = targetPos;
 
                 // 设置段落位置
@@ -120,7 +123,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 if (i < len - 1)
                 {
                     float nextT = (i + 1) / (float)(len - 1);
-                    Vector3 nextPos = transform.position + new Vector3(nextT * x, nextT * y, 0);
+                    Vector3 nextPos = Vector3.Lerp(startPos, endPos, nextT);
                     Vector3 direction = nextPos - targetPos;
                     float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 
@@ -194,7 +197,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public void DestroyByReset()
         {
             Debug.Log("移除 ropeTexture========");
-            /*foreach (GameObject segment in segments)
+            foreach (GameObject segment in segments)
             {
                 if (segment != null)
                 {
@@ -203,7 +206,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
             //segments.Clear();
             gameObject.transform.DetachChildren();
-            Destroy(gameObject);*/
+            Destroy(gameObject);
         }
     }
 }
