@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,7 @@ public class GridData
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
-    public class PaintBoard:MonoBehaviour
+    public class PaintBoard : MonoBehaviour
     {
         [SerializeField] public Transform gridContainer;
         [SerializeField] private Button previewButton;
@@ -230,18 +231,26 @@ namespace Assets.Game.Scripts.modes.Feibiao
             for (int i = 0; i < currentStepData.positions.Count; i++)
             {
                 float delay = i * 0.05f;
-                DOVirtual.DelayedCall(delay, () =>
-                {
-                    DrawStepPosition(currentStepData.positions[i], currentStepData.colorIndex);
-                });
+                StartCoroutine(DelayedDrawStep(delay, currentStepData.positions[i], currentStepData.colorIndex));
             }
 
-            float stepDuration = currentStepData.positions.Count * 0.05f;
-            DOVirtual.DelayedCall(stepDuration + playInterval, () =>
-            {
-                currentStep++;
-                PlayNextStep();
-            });
+            float stepDuration = currentStepData.positions.Count * 0.05f + playInterval;
+            StartCoroutine(DelayedNextStep(stepDuration));
+        }
+
+        private IEnumerator DelayedDrawStep(float time, Vector2Int pos, int colorIdx)
+        {
+            // 等待指定的时间
+            yield return new WaitForSeconds(time);
+            DrawStepPosition(pos, colorIdx);
+        }
+
+        private IEnumerator DelayedNextStep(float time)
+        {
+            // 等待指定的时间
+            yield return new WaitForSeconds(time);
+            currentStep++;
+            PlayNextStep();
         }
 
         public (float duration, bool isFinished) DrawWithColor(int colorIndex, Action<Vector2Int, bool> callback)
@@ -503,7 +512,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             float clampedTargetY = Mathf.Clamp(targetY, minY, maxY);
 
-            paintBoard.gameObject.transform.DOLocalMoveY( clampedTargetY, 0.2f)
+            paintBoard.gameObject.transform.DOLocalMoveY(clampedTargetY, 0.2f)
                 .SetEase(Ease.OutQuart);
         }
 

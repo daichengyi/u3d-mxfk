@@ -5,7 +5,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 {
     public class RopeTexture : MonoBehaviour
     {
-        public int type { get;  set; } = -1;
+        public int type { get; set; } = -1;
 
         [Tooltip("终点X坐标")]
         [SerializeField] private float endX = 0f;

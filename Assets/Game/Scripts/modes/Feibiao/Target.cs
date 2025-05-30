@@ -52,10 +52,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     canvasGroup = child.gameObject.AddComponent<CanvasGroup>();
                 }
                 canvasGroup.alpha = startOpacity;
-
-                DOVirtual.DelayedCall((target.childCount - i) * 0.1f, () => {
-                    canvasGroup.DOFade(endOpacity, 0.2f);
-                });
+                float delayTime = (target.childCount - i) * 0.1f;
+                canvasGroup.DOFade(endOpacity, 0.2f).SetDelay(delayTime);
             }
         }
 
@@ -82,10 +80,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     childSprite.gameObject.SetActive(true);
 
                     childSprite.DOFade(0, 0);
-                    DOVirtual.DelayedCall(i * 0.1f, () =>
-                    {
-                        childSprite.DOFade(1, 0.2f);
-                    });
+                    childSprite.DOFade(1, 0.2f).SetDelay(i * 0.1f);
                 }
             }
             sprite.gameObject.SetActive(false);
@@ -139,15 +134,15 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     canvasGroup.alpha = 1f;
 
                     bool isLast = count == children.Length * child.childCount - 1;
-                    /*LeanTween.alphaCanvas(canvasGroup, 0f, 0.2f)
-                        .setDelay(count * dt)
-                        .setOnComplete(() =>
+                    canvasGroup.DOFade(0f, 0.2f)
+                        .SetDelay(count * dt)
+                        .OnComplete(() =>
                         {
                             if (isLast)
                             {
                                 callback?.Invoke();
                             }
-                        });*/
+                        });
                     count++;
                 }
             }
@@ -166,11 +161,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public async void SetSkin(int index)
         {
-            /*Sprite spriteFrame = await ResourceLoader.Instance.Load<Sprite>(
-                "BgSkin",
-                $"images/item/{index}-1"
-            );
-            shadow.sprite = spriteFrame;*/
             shadow.gameObject.SetActive(false);
             string path = $"Res/targetItem/{index}-1.png";
             Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);

@@ -204,8 +204,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     Vector3 tempPos = paintBoard.GetCellPosition(pos.x, pos.y);
                     Vector3 worldPos = paintBoard.gridContainer.TransformPoint(tempPos);
-                    Vector3 ropePos = ropeController.transform.InverseTransformPoint(worldPos);
-                    ropeController.MoveToTarget(ropePos.x, ropePos.y, 0.04f);
+                    ropeController.MoveToTarget(worldPos.x, worldPos.y, 0.04f);
                     //SoundManager.Instance.PlayEffect($"merge_4", "Feibiao", false, 0.04f);
                     //PlatformService.Instance.VibrateShort(false);
                     if (isLast)
@@ -690,10 +689,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
             };
 
             HandleRopeAnimation(points, ropeController);
-
-            imageTest.transform.position = endPos;
-
-            Debug.Log("endPos=======" + endPos);
 
             operateObj.RemoveFromBoard();
             operateObj.transform.position = ropeController.transform.position;
