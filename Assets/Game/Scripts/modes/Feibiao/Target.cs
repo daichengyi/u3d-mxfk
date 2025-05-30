@@ -74,10 +74,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     Transform child = hole.GetChild(i);
                     Image childSprite = child.GetComponent<Image>();
+                    childSprite.gameObject.SetActive(false);
                     Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(
                         $"Res/order/{type + 1}-3.png"
                     );
                     childSprite.sprite = spriteFrame;
+                    childSprite.gameObject.SetActive(true);
 
                     childSprite.DOFade(0, 0);
                     DOVirtual.DelayedCall(i * 0.1f, () =>
@@ -86,16 +88,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     });
                 }
             }
-
+            sprite.gameObject.SetActive(false);
             Sprite mainSprite = await ResourceManager.AsyncLoadRes<Sprite>(
                 $"Res/order/{type + 1}.png"
             );
             sprite.sprite = mainSprite;
+            sprite.gameObject.SetActive(true);
 
+            capSpr.gameObject.SetActive(false);
             Sprite capSprite = await ResourceManager.AsyncLoadRes<Sprite>(
                 $"Res/order/{type + 1}-2.png"
             );
             capSpr.sprite = capSprite;
+            capSpr.gameObject.SetActive(true);
         }
 
         public void ShowOne(int index)
@@ -166,9 +171,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 $"images/item/{index}-1"
             );
             shadow.sprite = spriteFrame;*/
+            shadow.gameObject.SetActive(false);
             string path = $"Res/targetItem/{index}-1.png";
             Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
             shadow.sprite = spriteFrame;
+            shadow.gameObject.SetActive(true);
         }
     }
 }

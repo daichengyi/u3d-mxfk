@@ -33,16 +33,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (pool.Count <= 0)
             {
                 GameObject segment = new GameObject("RopeSegment");
-                Image sprite = segment.AddComponent<Image>();
+                Image image = segment.AddComponent<Image>();
 
                 segment.layer = LayerMask.NameToLayer("UI");
 
                 // 异步加载精灵
+                image.gameObject.SetActive(false);
                 string path = $"Res/segment/{type + 1}.png";
                  ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
                 {
-                    sprite.sprite = spriteFrame;
-                    sprite.rectTransform.sizeDelta = new Vector2(spriteFrame.rect.width, spriteFrame.rect.height);
+                    image.sprite = spriteFrame;
+                    image.SetNativeSize();
+                    //sprite.rectTransform.sizeDelta = new Vector2(spriteFrame.rect.width, spriteFrame.rect.height);
+                    image.gameObject.SetActive(true);
                 });
 
                 return segment;

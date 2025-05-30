@@ -28,28 +28,26 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [Tooltip("波浪数量")]
         [SerializeField] private float waveCount = 1f;
 
-        private readonly float SEGMENT_SIZE = 32f;
-        private readonly float TWO_PI = Mathf.PI * 2f;
+        private readonly float SEGMENT_SIZE = 32;
+        private readonly float TWO_PI = Mathf.PI * 2;
         private List<GameObject> segments = new List<GameObject>();
-        private List<Vector2> originalPositions = new List<Vector2>();
+        private List<Vector3> originalPositions = new List<Vector3>();
         private int segmentCount = 0;
-        private float time = 0f;
+        private float time = 0;
         private List<float> lastAngles = new List<float>();
-        private List<Vector2> lastPositions = new List<Vector2>();
+        private List<Vector3> lastPositions = new List<Vector3>();
         private readonly float SMOOTH_SPEED = 0.3f;
         private bool isMoving = false;
-        private float moveStartX = 0f;
-        private float moveStartY = 0f;
-        private float moveTargetX = 0f;
-        private float moveTargetY = 0f;
-        private float moveTime = 0f;
-        private float moveElapsed = 0f;
+        private float moveStartX = 0;
+        private float moveStartY = 0;
+        private float moveTargetX = 0;
+        private float moveTargetY = 0;
+        private float moveTime = 0;
+        private float moveElapsed = 0;
         // Use this for initialization
         public void UpdateEndPoint(float x, float y)
         {
-            Debug.Log("UpdateEndPoint====");
-
-            Vector2 endPos = new Vector2(x, y);
+            Vector3 endPos = new Vector3(x, y, 0);
             float distance = endPos.magnitude;
             float effectiveSegmentLength = SEGMENT_SIZE - overlap + offsetY;
 
@@ -83,10 +81,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     GameObject segment = segments[segments.Count - 1];
                     segments.RemoveAt(segments.Count - 1);
-                    if (segment != null)
-                    {
-                        RopeSegmentManager.Instance.PutSegment(type, segment);
-                    }
+                    RopeSegmentManager.Instance.PutSegment(type, segment);
                 }
             }
             segmentCount = newCount;
@@ -98,14 +93,14 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             if (originalPositions.Count != len)
             {
-                originalPositions.Clear();
-                lastAngles.Clear();
-                lastPositions.Clear();
+                originalPositions = new List<Vector3>(len);
+                lastAngles = new List<float>(len);
+                lastPositions = new List<Vector3>(len);
                 for (int i = 0; i < len; i++)
                 {
-                    originalPositions.Add(Vector2.zero);
-                    lastPositions.Add(Vector2.zero);
-                    lastAngles.Add(0f);
+                    originalPositions.Add(Vector3.zero);
+                    lastPositions.Add(Vector3.zero);
+                    lastAngles.Add(0);
                 }
             }
 
@@ -114,31 +109,28 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 GameObject segment = segments[i];
                 float t = i / (float)(len - 1);
 
-                // 计算目标位置
-                float targetX = t * x;
-                float targetY = t * y;
-
-                // 更新原始位置
-                originalPositions[i] = new Vector2(targetX, targetY);
+                // 直接使用世界坐标计算目标位置
+                Vector3 targetPos = transform.position + new Vector3(t * x, t * y, 0);
+                originalPositions[i] = targetPos;
 
                 // 设置段落位置
-                segment.transform.localPosition = new Vector3(targetX, targetY, 0f);
+                segment.transform.position = targetPos;
 
                 // 计算角度
                 if (i < len - 1)
                 {
                     float nextT = (i + 1) / (float)(len - 1);
-                    float dx = nextT * x - segment.transform.localPosition.x;
-                    float dy = nextT * y - segment.transform.localPosition.y;
-                    float newAngle = (Mathf.Atan2(dy, dx) * Mathf.Rad2Deg) - 90f;
+                    Vector3 nextPos = transform.position + new Vector3(nextT * x, nextT * y, 0);
+                    Vector3 direction = nextPos - targetPos;
+                    float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 
                     // 平滑过渡角度
                     lastAngles[i] = Mathf.Lerp(lastAngles[i], newAngle, SMOOTH_SPEED);
-                    segment.transform.localRotation = Quaternion.Euler(0f, 0f, lastAngles[i]);
+                    segment.transform.rotation = Quaternion.Euler(0, 0, lastAngles[i]);
                 }
                 else
                 {
-                    segment.transform.localRotation = Quaternion.Euler(0f, 0f, lastAngles[i - 1]);
+                    segment.transform.rotation = Quaternion.Euler(0, 0, lastAngles[i - 1]);
                 }
             }
         }
@@ -151,17 +143,15 @@ namespace Assets.Game.Scripts.modes.Feibiao
             moveTargetX = newEndX;
             moveTargetY = newEndY;
             moveTime = time;
-            moveElapsed = 0f;
+            moveElapsed = 0;
         }
 
         private void Update()
         {
-            float dt = Time.deltaTime;
-
             // 处理移动逻辑
             if (isMoving)
             {
-                moveElapsed += dt;
+                moveElapsed += Time.deltaTime;
                 if (moveElapsed >= moveTime)
                 {
                     endX = moveTargetX;
@@ -178,7 +168,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
 
             // 处理摆动效果
-            time += dt;
+            time += Time.deltaTime;
             int len = segments.Count;
             if (len == 0) return;
 
@@ -192,16 +182,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
                 float t = i / (float)(len - 1);
                 float wavePhase = basePhase + t * waveStep;
-                Vector2 originalPos = originalPositions[i];
+                Vector3 originalPos = originalPositions[i];
 
                 float swingAmount = Mathf.Sin(wavePhase) * amplitude * Mathf.Sin(t * Mathf.PI);
 
-                // 在原始位置基础上添加摆动效果
-                segment.transform.localPosition = new Vector3(
-                    originalPos.x + swingAmount,
-                    originalPos.y,
-                    0f
-                );
+                // 直接使用世界坐标更新位置
+                segment.transform.position = originalPos + new Vector3(swingAmount, 0, 0);
             }
         }
 

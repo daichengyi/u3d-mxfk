@@ -123,8 +123,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 cellNode = new GameObject("Cell");
                 Image image = cellNode.AddComponent<Image>();
+                cellNode.layer = LayerMask.NameToLayer("UI");
                 image.sprite = filledSprites[colorIndex];
                 cellNode.transform.SetParent(gridContainer);
+                //image.rectTransform.sizeDelta = new Vector2(filledSprites[colorIndex].rect.width, filledSprites[colorIndex].rect.height);
+                image.SetNativeSize();
 
                 float padding = 0;
                 cellNode.transform.localScale = new Vector3(
