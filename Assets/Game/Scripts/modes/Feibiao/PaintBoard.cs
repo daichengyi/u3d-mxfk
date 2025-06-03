@@ -20,7 +20,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 {
     public class PaintBoard : MonoBehaviour
     {
-        [SerializeField] public Transform gridContainer;
+        [SerializeField] public RectTransform gridContainer;
         [SerializeField] private Button previewButton;
         [SerializeField] private Sprite[] filledSprites;
         [SerializeField] private Button nextStepButton;
@@ -57,14 +57,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
             float gridWidth = cols * cellSize;
             float gridHeight = rows * cellSize;
 
-            float x = -gridWidth / 2;
-            float y = -gridHeight / 2;
-
-            gridContainer.localPosition = new Vector3(x, y, 0);
+            // 设置网格容器的位置（相对于锚点）
+            gridContainer.localPosition = new Vector3(-gridWidth / 2, -gridHeight / 2, 0);
 
             if (parentNode == null) return;
 
-            RectTransform parentRect = parentNode.GetComponent<RectTransform>();
+            RectTransform parentRect = parentNode;
             float nodeHeight = Screen.height / 2 - parentNode.localPosition.y - 50;
 
             // 考虑安全区域
@@ -74,7 +72,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 nodeHeight = gridHeight;
             }
-            Debug.Log("nodeHeight: " + nodeHeight);
+
+            // 设置父节点高度，保持锚点居中
             parentRect.sizeDelta = new Vector2(parentRect.sizeDelta.x, nodeHeight);
         }
 
@@ -127,7 +126,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 cellNode.layer = LayerMask.NameToLayer("UI");
                 image.sprite = filledSprites[colorIndex];
                 cellNode.transform.SetParent(gridContainer);
-                //image.rectTransform.sizeDelta = new Vector2(filledSprites[colorIndex].rect.width, filledSprites[colorIndex].rect.height);
                 image.SetNativeSize();
 
                 float padding = 0;
@@ -425,15 +423,45 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             float maskHeight = maskNode.rect.height;
             float gridHeight = rows * cellSize;
-
-            float minY = maskHeight - gridHeight / 2;
-            float maxY = gridHeight / 2;
-
-            minY = Mathf.Min(minY, maxY);
             var paintBoard = gridContainer.parent;
+            if (paintBoard == null) return;
+
+            // 获取 RectTransform 组件
+            RectTransform paintBoardRect = paintBoard as RectTransform;
+            if (paintBoardRect == null) return;
+
+            // 计算网格的上下边界（相对于锚点）
+            float gridTop = gridHeight / 2;    // 网格顶部到锚点的距离
+            float gridBottom = -gridHeight / 2; // 网格底部到锚点的距离
+
+            // 计算遮罩的上下边界（相对于锚点）
+            float maskTop = maskHeight / 2;     // 遮罩顶部到锚点的距离
+            float maskBottom = -maskHeight / 2; // 遮罩底部到锚点的距离
+
+            // 计算需要移动的距离
+            float targetY = 0;
+
+            // 如果网格高度大于遮罩高度，居中显示
+            if (gridHeight > maskHeight)
+            {
+                targetY = 0; // 保持锚点对齐
+            }
+            else
+            {
+                // 如果网格底部超出遮罩底部，向上移动
+                if (gridBottom < maskBottom)
+                {
+                    targetY = maskBottom - gridBottom;
+                }
+                // 如果网格顶部超出遮罩顶部，向下移动
+                else if (gridTop > maskTop)
+                {
+                    targetY = maskTop - gridTop;
+                }
+            }
             if (paintBoard != null)
             {
-                paintBoard.localPosition = new Vector3(0, minY, 0);
+                paintBoard.localPosition = new Vector3(0, targetY, 0);
             }
         }
 
@@ -502,15 +530,21 @@ namespace Assets.Game.Scripts.modes.Feibiao
             var paintBoard = gridContainer.parent;
             if (paintBoard == null) return;
 
-            float minY = maskHeight - gridHeight / 2;
-            float maxY = gridHeight / 2;
+            RectTransform paintBoardRect = paintBoard as RectTransform;
+            if (paintBoardRect == null) return;
 
+            // 计算遮罩的上下边界（相对于锚点）
+            float maskTop = gridContainer.rect.width/2 - maskHeight / 2;
+            float maskBottom = -(gridContainer.rect.height / 2-maskHeight / 2);
+
+            // 计算目标单元格的位置（相对于锚点）
             float cellY = y * cellSize - gridHeight / 2;
-            float minGridY = -minY;
-            float offsetY = cellY - minGridY;
-            float targetY = minY - offsetY + maskHeight / 2;
 
-            float clampedTargetY = Mathf.Clamp(targetY, minY, maxY);
+            // 计算目标位置，确保单元格在遮罩中心
+            float targetY = -cellY + maskHeight / 2;
+
+            // 限制滚动范围
+            float clampedTargetY = Mathf.Clamp(targetY, maskBottom, maskTop);
 
             paintBoard.gameObject.transform.DOLocalMoveY(clampedTargetY, 0.2f)
                 .SetEase(Ease.OutQuart);
@@ -525,13 +559,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
             var paintBoard = gridContainer.parent;
             if (paintBoard == null) return true;
 
-            float minY = maskHeight - gridHeight / 2;
-            float maxY = gridHeight / 2;
+            RectTransform paintBoardRect = paintBoard as RectTransform;
+            if (paintBoardRect == null) return true;
 
+            // 计算单元格的位置（相对于锚点）
             float cellY = y * cellSize - gridHeight / 2;
-            float cellToMaskY = cellY + paintBoard.localPosition.y;
 
-            return cellToMaskY >= 0 && cellToMaskY <= maskHeight;
+            // 计算单元格相对于遮罩的位置
+            float cellToMaskY = cellY + paintBoardRect.localPosition.y;
+
+            // 检查是否在遮罩范围内
+            return cellToMaskY >= -maskHeight / 2 && cellToMaskY <= maskHeight / 2;
         }
 
         public List<GridData> GetOperateSteps()
