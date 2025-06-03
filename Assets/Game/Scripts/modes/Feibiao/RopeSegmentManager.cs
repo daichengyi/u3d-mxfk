@@ -22,7 +22,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        public  GameObject GetSegment(int type)
+        public  async Task<GameObject> GetSegment(int type)
         {
             if (!segmentPools.ContainsKey(type))
             {
@@ -41,7 +41,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 // 异步加载精灵
                 image.gameObject.SetActive(false);
                 string path = $"Res/segment/{type + 1}.png";
-                ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
+                await ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
                 {
                     image.sprite = spriteFrame;
                     image.SetNativeSize();

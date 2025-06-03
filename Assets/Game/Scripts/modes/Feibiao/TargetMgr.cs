@@ -39,7 +39,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [HideInInspector] public int totalTargetCount = 0;
         private List<Vector3> targetPos = new List<Vector3>();
         private GamePlay gamePlay;
-        private Coroutine currentAnimationCoroutine;
 
         private void Start()
         {
@@ -121,31 +120,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void HandleRopeAnimation(Vector3[] points, RopeTexture ropeTexture)
         {
-            // 如果已经有动画在运行，先停止它
-            if (currentAnimationCoroutine != null)
-            {
-                StopCoroutine(currentAnimationCoroutine);
-            }
-
-            // 启动新的动画协程
-            currentAnimationCoroutine = StartCoroutine(AnimateRopePoints(points, ropeTexture));
-        }
-
-        private IEnumerator AnimateRopePoints(Vector3[] points, RopeTexture ropeTexture)
-        {
             float offsetTime = 0.05f;
-
             for (int i = 0; i < points.Length; i++)
             {
-                // 等待指定的时间
-                yield return new WaitForSeconds(offsetTime);
-
+                float dTime = i * offsetTime;
+                Vector2 tmpPoint = points[i];
                 // 执行移动
-                ropeTexture.MoveToTarget(points[i].x, points[i].y, offsetTime);
+                ropeTexture.transform.DOScaleZ(1,0).SetDelay(dTime).OnComplete(() =>
+                {
+                    ropeTexture.MoveToTarget(tmpPoint.x, tmpPoint.y, offsetTime);
+                });
             }
-
-            // 动画完成后清除协程引用
-            currentAnimationCoroutine = null;
         }
 
         private Target FindMatchingTarget(RopeBase obj, bool checkReadyState = true)
@@ -589,11 +574,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Target comp = FindMatchingTarget(params_);
             if (comp == null)
             {
-                PushObjToTemp(params_);
+                PushObjToTemp(params_);//临时区
             }
             else
             {
-                FillOrder(params_, comp);
+                FillOrder(params_, comp);//指定区
             }
         }
 

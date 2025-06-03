@@ -59,7 +59,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             Destroy(sprite.GetComponent<Rigidbody2D>());
             sprite.DOFade(1f, 0);
-
             sprite.transform.rotation = Quaternion.identity;
         }
 

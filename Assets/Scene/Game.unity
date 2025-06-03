@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 4374078}
   - component: {fileID: 4374080}
   - component: {fileID: 4374079}
-  m_Layer: 5
+  - component: {fileID: 4374082}
+  m_Layer: 26
   m_Name: boardBaffle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1550}
+  m_AnchoredPosition: {x: 0, y: -1500}
   m_SizeDelta: {x: 3000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &4374079
@@ -232,6 +233,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3000, y: 100}
   m_EdgeRadius: 0
+--- !u!222 &4374082
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374077}
+  m_CullTransparentMesh: 1
 --- !u!1 &28286648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517690587}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 

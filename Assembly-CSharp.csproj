@@ -69,6 +69,7 @@
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeTexture.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\PaintBoard.cs" />
+    <Compile Include="Assets\Game\Scripts\modes\Feibiao\Collider2DListener.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\GamePlay.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeBase.cs" />
     <Compile Include="Assets\Game\Scripts\GameModeJson.cs" />

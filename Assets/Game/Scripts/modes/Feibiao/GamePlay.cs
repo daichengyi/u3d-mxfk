@@ -46,11 +46,12 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
         //GetComponent<Button>().onClick.AddListener();
 
-        var rigidBody = boardBaffle.GetComponent<Rigidbody2D>();
+        /*var rigidBody = boardBaffle.GetComponent<Rigidbody2D>();
         if (rigidBody != null)
         {
-            //rigidBody.onCollisionEnter2D.AddListener(OnBeginContact);
-        }
+            rigidBody.onCollisionEnter2D.AddListener(OnBeginContact);
+        }*/
+        boardBaffle.gameObject.AddComponent<Collider2DListener>().addListener(OnBeginContact);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -514,12 +515,14 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         return true;
     }
 
+    /** 判断多边形相交*/
     private bool IsCollided(Transform a, Board b)
     {
         PolygonCollider2D ap = a.GetComponent<PolygonCollider2D>();
         PolygonCollider2D bp = b.transform.GetComponent<PolygonCollider2D>();
-        bool isTouching = ap.bounds.Intersects(bp.bounds);
-        return isTouching;
+        float distance = Physics2D.Distance(ap, bp).distance;
+        bool isClose = distance < 0.01f;
+        return isClose;
     }
 
     private void OnBlockLayerTouchStart()
@@ -587,7 +590,6 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                     }
                     TouchOperateObj(curObj);
                     return;
-                    //curObj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
             }
         }
@@ -601,7 +603,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         //PlatformService.Instance.VibrateShort(false);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnBeginContact(Collision2D collision)
     {
         var otherCollider = collision.collider;
         otherCollider.enabled = false;

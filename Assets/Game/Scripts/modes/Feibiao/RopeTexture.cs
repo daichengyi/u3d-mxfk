@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
@@ -63,14 +64,14 @@ namespace Assets.Game.Scripts.modes.Feibiao
             UpdateRopeSegments(x, y);
         }
 
-        private void UpdateSegmentCount(int newCount)
+        private async void UpdateSegmentCount(int newCount)
         {
             int diff = newCount - segmentCount;
             if (diff > 0)
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    GameObject segment = RopeSegmentManager.Instance.GetSegment(type);
+                    GameObject segment = await RopeSegmentManager.Instance.GetSegment(type);
                     segment.transform.SetParent(transform);
                     segments.Add(segment);
                 }
@@ -80,8 +81,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 for (int i = 0; i < -diff; i++)
                 {
                     GameObject segment = segments[segments.Count - 1];
-                    segments.RemoveAt(segments.Count - 1);
-                    RopeSegmentManager.Instance.PutSegment(type, segment);
+                    if (segment)
+                    {
+                        segments.RemoveAt(segments.Count - 1);
+                        RopeSegmentManager.Instance.PutSegment(type, segment);
+                    }
                 }
             }
             segmentCount = newCount;
@@ -93,62 +97,60 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             if (originalPositions.Count != len)
             {
-                originalPositions = new List<Vector3>(len);
-                lastAngles = new List<float>(len);
-                lastPositions = new List<Vector3>(len);
+                originalPositions.Clear();
+                lastAngles.Clear();
+                lastPositions.Clear();
                 for (int i = 0; i < len; i++)
                 {
-                    originalPositions.Add(Vector3.zero);
-                    lastPositions.Add(Vector3.zero);
-                    lastAngles.Add(0);
+                    originalPositions.Add(Vector2.zero);
+                    lastPositions.Add(Vector2.zero);
+                    lastAngles.Add(0f);
                 }
             }
 
-            Vector3 startPos = transform.position;
-            Vector3 endPos = new Vector3(x, y, 0);
-
+            // 计算目标点在世界坐标系中的位置
             for (int i = 0; i < len; i++)
             {
                 GameObject segment = segments[i];
                 float t = i / (float)(len - 1);
 
-                // 直接在世界坐标系中插值计算位置
-                Vector3 targetPos = Vector3.Lerp(startPos, endPos, t);
-                originalPositions[i] = targetPos;
+                // 计算目标位置
+                float targetX = t * x;
+                float targetY = t * y;
+
+                originalPositions[i] = new Vector2(targetX, targetY);
 
                 // 设置段落位置
-                segment.transform.position = targetPos;
+                segment.transform.localPosition = new Vector2(targetX, targetY);
 
-                // 计算角度
                 if (i < len - 1)
                 {
                     float nextT = (i + 1) / (float)(len - 1);
-                    Vector3 nextPos = Vector3.Lerp(startPos, endPos, nextT);
-                    Vector3 direction = nextPos - targetPos;
-                    float newAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                    float dx = nextT * x - targetX;
+                    float dy = nextT * y - targetY;
+                    float newAngle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg - 90f;
 
-                    // 平滑过渡角度
                     lastAngles[i] = Mathf.Lerp(lastAngles[i], newAngle, SMOOTH_SPEED);
-                    segment.transform.rotation = Quaternion.Euler(0, 0, lastAngles[i]);
+                    segment.transform.rotation = Quaternion.Euler(0f, 0f, lastAngles[i]);
                 }
                 else
                 {
-                    segment.transform.rotation = Quaternion.Euler(0, 0, lastAngles[i - 1]);
+                    segment.transform.rotation = Quaternion.Euler(0f, 0f, lastAngles[i - 1]);
                 }
             }
         }
 
         public void MoveToTarget(float newEndX, float newEndY, float time)
         {
+            Vector3 tmpEnd = transform.InverseTransformPoint(new Vector3(newEndX,newEndY));
             isMoving = true;
             moveStartX = endX;
             moveStartY = endY;
-            moveTargetX = newEndX;
-            moveTargetY = newEndY;
+            moveTargetX = tmpEnd.x;
+            moveTargetY = tmpEnd.y;
             moveTime = time;
             moveElapsed = 0;
         }
-
         private void Update()
         {
             // 处理移动逻辑
@@ -190,13 +192,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 float swingAmount = Mathf.Sin(wavePhase) * amplitude * Mathf.Sin(t * Mathf.PI);
 
                 // 直接使用世界坐标更新位置
-                segment.transform.position = originalPos + new Vector3(swingAmount, 0, 0);
+                segment.transform.localPosition = originalPos + new Vector3(swingAmount, 0, 0);
             }
         }
 
         public void DestroyByReset()
         {
-            Debug.Log("移除 ropeTexture========");
             foreach (GameObject segment in segments)
             {
                 if (segment != null)
