@@ -31,7 +31,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
             sprite.gameObject.SetActive(false);
             string path = $"Res/tmp/{type + 1}.png";
             Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
-
             sprite.sprite = spriteFrame;
             sprite.gameObject.SetActive(true);
             sprite.DOFade(0, 0);

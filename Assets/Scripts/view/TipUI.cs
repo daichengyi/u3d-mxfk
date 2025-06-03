@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -26,6 +24,7 @@ public class TipUI : BaseView
         {
             transform.gameObject.SetActive(false);
         });
+
     }
 
     // Update is called once per frame

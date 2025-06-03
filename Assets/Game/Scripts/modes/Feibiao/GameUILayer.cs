@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.common;
-using Spine.Unity;
+using Assets.Scripts.Events;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -134,6 +134,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (sender.name == "btn_clear_tmp" && !gameScene.targetMgr.CanClear())
             {
                 //sers().uiSrv.ShowMessage("无需使用道具");
+                UIManager.Instance.ShowMsg("无需使用道具");
                 return;
             }
 
@@ -143,11 +144,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 prop_name = obj[sender.name]
             };
 
-            //mgrs().soundMgr.PlaySound("click");
+            SoundManager.Ins.PlaySfx("click");
 
             if (freeNumber > 0)
             {
+                
                 //EventManager.Instance.Emit(sender.name);
+                EventMng.dispatchEvent(new EventStruct(sender.name),null);
                 foreach (var node in mianfeiNode)
                 {
                     node.SetActive(false);
@@ -158,34 +161,40 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 return;
             }
 
-            /*gameScene.LoadAndShowVideoAd(data, () =>
+            AdManager.Ins.ShowAd(0, (bool isSuc) =>
             {
-                EventManager.Instance.Emit(sender.name);
-            });*/
+                EventMng.dispatchEvent(new EventStruct(sender.name), null);
+            });
         }
 
         public void OnPintu()
         {
-            //mgrs().soundMgr.PlayBtnSound();
+            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("Collection", "CollectionPage");
         }
 
         public void OnSkin()
         {
-            //mgrs().soundMgr.PlayBtnSound();
+            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("decorateDoll", "decorate-doll-page");
         }
 
         public void OnBgSkin()
         {
-            //mgrs().soundMgr.PlayBtnSound();
+            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("BgSkin", "BgSkinPage");
         }
 
         public void OnGameClub()
         {
-            //mgrs().soundMgr.PlayBtnSound();
+            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("JoinGameClub", "JoinGameClubPage");
+        }
+
+        public void OnSetBtn()
+        {
+            SoundManager.Ins.PlaySfx("click");
+            //sers().uiSrv.showSettingPage(mgrs().gameMgr.currMode.id);
         }
     }
 

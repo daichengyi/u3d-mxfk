@@ -13,7 +13,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void Start()
         {
-            EventMng.addEventListener("screw_remove", (EventStruct es) =>
+            EventMng.addEventListener(EventTypes.SCREW_REMOVE, (EventStruct es) =>
             {
                 var targetNode = es.target;
                 Transform targetTransform = targetNode as Transform;
@@ -30,6 +30,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
             });
         }
 
+        /// <summary>
+        /// 敲玻璃动画
+        /// </summary>
+        /// <param name="targetNode"></param>
         public void PlayHammerEffect(Transform targetNode)
         {
             Vector3 worldPos = targetNode.parent.TransformPoint(targetNode.localPosition);
@@ -42,17 +46,21 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Destroy(node, 0.7f);
         }
 
+        /// <summary>
+        /// 难度飙升
+        /// </summary>
+        /// <param name="level"></param>
         public void ShowLevelupEffect(int level)
         {
             if (GameManager.Instance.currMode.id != GameMode.Feibiao)
             {
-                //UIService.Instance.ShowMessage("特殊关卡难度较大,请谨慎操作");
+                UIManager.Instance.ShowMsg("特殊关卡难度较大,请谨慎操作");
                 return;
             }
 
             if (level == 0) return;
 
-            //SoundManager.Instance.PlaySound("ding");
+            SoundManager.Ins.PlaySfx("ding");
             Transform spineNode = transform.Find("nandubiaosheng");
             if (spineNode == null) return;
 

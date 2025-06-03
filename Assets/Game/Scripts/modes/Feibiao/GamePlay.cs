@@ -43,15 +43,15 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         EventMng.addEventListener(EventTypes.BTN_REMOVE_BOARD, ShowBlockLayer);
 
         gameUILayer.Init(this);
-        blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
+        //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
         //GetComponent<Button>().onClick.AddListener();
 
-        /*var rigidBody = boardBaffle.GetComponent<Rigidbody2D>();
-        if (rigidBody != null)
-        {
-            rigidBody.onCollisionEnter2D.AddListener(OnBeginContact);
-        }*/
         boardBaffle.gameObject.AddComponent<Collider2DListener>().addListener(OnBeginContact);
+    }
+
+    private void OnDestroy()
+    {
+        EventMng.removeEventListener(EventTypes.BTN_REMOVE_BOARD, ShowBlockLayer);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -108,7 +108,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     private void ShowBlockLayer(EventStruct evt)
     {
         blockLayer.SetActive(true);
-        //sers().uiSrv.showMessage('��ѡ��һ���������');
+        UIManager.Instance.ShowMsg("请选择一块板子敲碎");
     }
     private List<List<int>> GetColorConfig(int level)
     {
@@ -525,7 +525,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         return isClose;
     }
 
-    private void OnBlockLayerTouchStart()
+    public void OnBlockLayerTouchStart()
     {
         Debug.Log("touch block layer");
         Vector2 touchLoc = Input.mousePosition;
@@ -537,24 +537,30 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             if (board.isLocked) continue;
 
             var wp = board.transform.GetComponent<PolygonCollider2D>().points;
-            if (IsPointInPolygon(touchLoc, wp))
+            // 将多边形顶点转换到世界坐标系
+            Vector2[] worldPoints = new Vector2[wp.Length];
+            for (int i = 0; i < wp.Length; i++)
+            {
+                worldPoints[i] = board.transform.TransformPoint(wp[i]);
+            }
+            if (IsPointInPolygon(touchLoc, worldPoints))
             {
                 effectLayer.PlayHammerEffect(board.transform);
-                blockLayer.GetComponent<Button>().onClick.RemoveListener(OnBlockLayerTouchStart);
+                //blockLayer.GetComponent<Button>().onClick.RemoveListener(OnBlockLayerTouchStart);
 
                 Invoke(nameof(ResetBlockLayer), 0.5f);
-                //EventManager.Instance.Dispatch("remove_board", board);
-                //SoundManager.Instance.PlaySound("������");
+                EventMng.dispatchEvent(new EventStruct(EventTypes.REMOVE_BOARD), board);
+                SoundManager.Ins.PlaySfx("板子碎");
                 return;
             }
         }
-        //UIService.Instance.ShowMessage("��ѡ��һ���������");
+        UIManager.Instance.ShowMsg("请选择一块板子敲碎");
     }
 
     private void ResetBlockLayer()
     {
         blockLayer.SetActive(false);
-        blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
+        //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
     }
 
     /** 点击毛线圈*/
@@ -599,7 +605,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     {
         targetMgr.OnTouchOperateObj(comp);
         EventMng.dispatchEvent(new EventStruct(EventTypes.SCREW_REMOVE), comp);
-        ///SoundManager.Instance.PlaySound("�������");
+        SoundManager.Ins.PlaySfx("点击飞镖");
         //PlatformService.Instance.VibrateShort(false);
     }
 

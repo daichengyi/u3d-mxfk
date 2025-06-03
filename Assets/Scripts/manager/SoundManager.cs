@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using ZhiSe;
 
 public class SoundManager : MonoBehaviour
 {
@@ -95,7 +94,7 @@ public class SoundManager : MonoBehaviour
 
     public async void PlayMusic(string path, float volume = 1f)
     {
-        var clip = await LoadAssetAsync<AudioClip>(path, AUDIO_PATH);
+       var clip = await LoadAssetAsync<AudioClip>(path, AUDIO_PATH);
         if (clip != null)
         {
             MusicSounds.clip = clip;
@@ -107,7 +106,6 @@ public class SoundManager : MonoBehaviour
     public async void PlaySfx(string path, float volume = 1f)
     {
         if (!IsSfx) return;
-
         try
         {
             AudioSource sound = null;
@@ -138,7 +136,8 @@ public class SoundManager : MonoBehaviour
             if (sound != null)
             {
                 sound.volume = volume;
-                sound.Play();
+                //sound.Play();
+                sound.PlayOneShot(sound.clip);
             }
         }
         catch (Exception e)

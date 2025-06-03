@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.common;
+using Assets.Scripts.Events;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
             type = -1;
             SetSkin(GameData.Instance.GetSelectedBgSkin());
             //EventManager.Instance.AddListener("onEventChangeSkinBg", SetSkin);
+            EventMng.addEventListener(EventTypes.CHANGE_SKIN_BG, SetSkinHandler);
+        }
+
+        private void SetSkinHandler(EventStruct evt)
+        {
+
+        }
+
+        private void OnDestroy()
+        {
+            EventMng.removeEventListener(EventTypes.CHANGE_SKIN_BG, SetSkinHandler);
         }
 
         public Transform Sub()

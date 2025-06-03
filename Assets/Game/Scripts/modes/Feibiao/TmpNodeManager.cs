@@ -1,5 +1,6 @@
 using Assets.Game.Scripts.modes.Feibiao;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class TmpNodeManager : MonoBehaviour
@@ -54,8 +55,6 @@ public class TmpNodeManager : MonoBehaviour
         if (index == -1) return null;
 
         GameObject prefab = Instantiate(tmpPrefab, tmpsNode.GetChild(index));
-        //prefab.transform.SetParent(tmpsNode.GetChild(index));
-
         TmpRope tmpComp = prefab.GetComponent<TmpRope>();
         tmpComp.SetType(operateObj.type);
         tmpContents[index] = tmpComp;
@@ -66,7 +65,6 @@ public class TmpNodeManager : MonoBehaviour
     public void PushToHideTmp(Rope operateObj)
     {
         GameObject prefab = Instantiate(tmpPrefab, hideTmpNode);
-        //prefab.transform.SetParent(hideTmpNode);
         TmpRope tmpComp = prefab.GetComponent<TmpRope>();
         tmpComp.SetType(operateObj.type, false);
     }
@@ -75,19 +73,19 @@ public class TmpNodeManager : MonoBehaviour
     {
         if (activeSlotCount >= MAX_TMP)
         {
-            //UIService.Instance.ShowMessage("无法添加更多槽位");
+            UIManager.Instance.ShowMsg("无法添加更多槽位");
             return;
         }
 
         tmpsNode.GetChild(activeSlotCount).gameObject.SetActive(true);
         activeSlotCount++;
-        tmpsNode.GetComponent<LayoutGroup>().SetLayoutHorizontal();
-        tmpsNode.GetComponent<LayoutGroup>().SetLayoutVertical();
 
-        shadowNode.sizeDelta = new Vector2(tmpsNode.GetComponent<RectTransform>().sizeDelta.x + 100, shadowNode.sizeDelta.y);
-        leftNode.anchoredPosition = new Vector2(-tmpsNode.GetComponent<RectTransform>().sizeDelta.x / 2 - 15, leftNode.anchoredPosition.y);
-        rightNode.anchoredPosition = new Vector2(tmpsNode.GetComponent<RectTransform>().sizeDelta.x / 2 + 15, rightNode.anchoredPosition.y);
-        //SoundManager.Instance.PlaySound("jiesuo");
+        float width = tmpsNode.GetComponent < RectTransform >().rect.width;
+        shadowNode.sizeDelta = new Vector2(width + 100, shadowNode.sizeDelta.y);
+        leftNode.localPosition = new Vector2(-shadowNode.sizeDelta.x / 2+5, 0);
+        rightNode.localPosition = new Vector2(shadowNode.sizeDelta.x / 2, 0);
+
+        SoundManager.Ins.PlaySfx("jiesuo");
     }
 
     public void ClearTmp(System.Action onComplete = null)

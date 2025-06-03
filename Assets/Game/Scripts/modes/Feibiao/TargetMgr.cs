@@ -2,7 +2,6 @@
 using Assets.Scripts.Events;
 using DG.Tweening;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -42,13 +41,21 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void Start()
         {
-            /*EventManager.Instance.AddListener("btn_add_tmp", OnUnlockTmp);
-            EventManager.Instance.AddListener("remove_board", OnRemoveBoard);
-            EventManager.Instance.AddListener("btn_clear_tmp", OnClearTmp);
-            EventManager.Instance.AddListener("unlock_2", OnUnlock);
-            EventManager.Instance.AddListener("unlock_1", OnUnlock);*/
+            EventMng.addEventListener(EventTypes.BTN_ADD_TMP, OnUnlockTmp);
+            EventMng.addEventListener(EventTypes.REMOVE_BOARD, OnRemoveBoard);
+            EventMng.addEventListener(EventTypes.BTN_CLEAR_TMP, OnClearTmp);
+            EventMng.addEventListener(EventTypes.UNLOCK_2, OnUnlock);
+            EventMng.addEventListener(EventTypes.UNLOCK_1, OnUnlock);
             progressBar.sizeDelta = new Vector2(17f, 0);
             feibiao = transform.parent.GetComponent<Feibiao>();
+        }
+        private void OnDestroy()
+        {
+            EventMng.removeEventListener(EventTypes.BTN_ADD_TMP, OnUnlockTmp);
+            EventMng.removeEventListener(EventTypes.REMOVE_BOARD, OnRemoveBoard);
+            EventMng.removeEventListener(EventTypes.BTN_CLEAR_TMP, OnClearTmp);
+            EventMng.removeEventListener(EventTypes.UNLOCK_2, OnUnlock);
+            EventMng.removeEventListener(EventTypes.UNLOCK_1, OnUnlock);
         }
 
         public void SetData(List<int> newData, GamePlay newGamePlay)
@@ -190,8 +197,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     Vector3 tempPos = paintBoard.GetCellPosition(pos.x, pos.y);
                     Vector3 worldPos = paintBoard.gridContainer.TransformPoint(tempPos);
                     ropeController.MoveToTarget(worldPos.x, worldPos.y, 0.04f);
-                    //SoundManager.Instance.PlayEffect($"merge_4", "Feibiao", false, 0.04f);
-                    //PlatformService.Instance.VibrateShort(false);
+                    SoundManager.Ins.PlaySfx("merge_4");
+                    SoundManager.Ins.vibrate();
                     if (isLast)
                     {
                         ropeController.DestroyByReset();
@@ -215,7 +222,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                             int nextData = GetNextTarget();
                             if (nextData >= 0)
                             {
-                                ///SoundManager.Instance.PlaySound("镖靶更换2");
+                                SoundManager.Ins.PlaySfx("镖靶更换2");
                                 HandleTargetGeneration(targetComp.posIndex, nextData);
                             }
                             else
@@ -341,6 +348,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 }
             }
 
+            if(arr.Count == 0)
+            {
+                return -1;
+            }
             var result = FindMostFrequentElement(arr.ToArray());
             if (result.Length <= 0)
             {
@@ -587,7 +598,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             return unlockCount >= MAX_TARGET;
         }
 
-        public void OnUnlock()
+        private void OnUnlock(EventStruct evt)
         {
             Debug.Log("onUnlock");
             if (unlockCount >= MAX_TARGET)
@@ -612,18 +623,20 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 Debug.Log("所有目标已经出完");
             }
 
-            //SoundManager.Instance.PlaySound("jiesuo");
+            SoundManager.Ins.PlaySfx("jiesuo");
             unlockCount++;
         }
 
-        public void OnUnlockTmp()
+        private void OnUnlockTmp(EventStruct evt)
         {
             tmpNodeMgr.OnUnlockTmp();
         }
 
         private void OnRemoveBoard(EventStruct evt)
         {
-            var objsNode = (Transform)evt.target;
+            Board board = (Board)evt.target;
+            board.RemoveHingeJoint();
+            Transform objsNode = board.objsNode.transform;
             for (int i = objsNode.childCount - 1; i >= 0; i--)
             {
                 Transform element = objsNode.GetChild(i);
@@ -634,14 +647,14 @@ namespace Assets.Game.Scripts.modes.Feibiao
             CheckTemporarySlot();
         }
 
-        public void OnClearTmp()
+        private void OnClearTmp(EventStruct evt)
         {
             DOTween.To(() => 0, x => { }, 0, 0.5f).OnComplete(() =>
             {
                 tmpNodeMgr.ClearTmp(() =>
                 {
                     SetEasyCountMax();
-                    //SoundManager.Instance.PlaySound("dianji02");
+                    SoundManager.Ins.PlaySfx("dianji02");
                 });
             });
         }
@@ -682,7 +695,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             operateObj.MoveStart(() =>
             {
                 int randomNum = UnityEngine.Random.Range(1, 4);
-                //SoundManager.Instance.PlayEffect($"merge_{randomNum}", "Feibiao", false, 0.1f);
+                SoundManager.Ins.PlaySfx($"merge_{randomNum}");
                 ropeController.DestroyByReset();
                 operateObj.transform.SetParent(null);
                 callback?.Invoke();

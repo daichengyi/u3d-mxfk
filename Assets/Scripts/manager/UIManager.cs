@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Assets.Scripts.common;
 
 public class UIManager : MonoBehaviour
 {

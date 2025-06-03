@@ -38,7 +38,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //Canvas canvas = GetComponent<Canvas>();
             //canvas.fitHeight = UserService.Instance.IsIPAD;
             //canvas.fitWidth = !UserService.Instance.IsIPAD;
-            EventMng.addEventListener("btn_clear_tmp", ShowSaoba);
+            EventMng.addEventListener(EventTypes.BTN_CLEAR_TMP, ShowSaoba);
 
             //SoundManager.Instance.PlayMusic("bgm");
             SetLevel();
@@ -258,7 +258,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 gameProgress = GetProgress(),
                 paintNode = paintNode
             };
-            //SoundManager.Instance.PlaySound("shibai");
+            SoundManager.Ins.PlaySfx("shibai");
             //UIService.Instance.ShowOverPage(new OverPageData { pass = false, data = data });
         }
 
@@ -271,7 +271,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             Action showOverPageA = () =>
             {
-                SoundManager.Instance.PlaySound("succes");
+                 SoundManager.Ins.PlaySfx("succes");
                 UIService.Instance.ShowOverPage(new OverPageParams
                 {
                     Pass = true,
@@ -287,7 +287,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             Action showOverPageB = () =>
             {
-                SoundManager.Instance.PlaySound("succes");
+                 SoundManager.Ins.PlaySfx("succes");
                 UIService.Instance.ShowPage("Feibiao", "GameOverPage", new GameOverPageData
                 {
                     PaintNode = paintNode,
@@ -413,12 +413,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        public void SetBtn()
-        {
-            //SoundManager.Instance.PlayBtnSound();
-            //UIService.Instance.ShowSettingPage(GameManager.Instance.CurrentMode.Id);
-        }
-
         public void Addlianji()
         {
             lianjiNumber++;
@@ -451,7 +445,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Transform saoba = targetMgr.transform.Find("saoba");
             saoba.gameObject.SetActive(true);
             saoba.localPosition = new Vector3(50, 0, 0);
-            //SoundManager.Instance.PlaySound("saoba");
+            SoundManager.Ins.PlaySfx("saoba");
             saoba.gameObject.transform.DOLocalMoveX(50, 0.5f)
                 .OnComplete(() => saoba.gameObject.SetActive(false));
         }

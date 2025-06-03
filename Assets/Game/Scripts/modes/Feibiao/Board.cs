@@ -12,7 +12,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField]
         public GameObject holesNode;
         [SerializeField]
-        private GameObject objsNode;
+        public GameObject objsNode;
         [HideInInspector]
         public int layerIndex = 1;
         [HideInInspector]
@@ -47,7 +47,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 gameObject.SetActive(false);
                 if (rigidBody.bodyType != RigidbodyType2D.Static)
                 {
-                    Invoke("SetStaticBody", 0.1f);
+                    DOVirtual.DelayedCall(0.1f,() => {
+                        rigidBody.bodyType = RigidbodyType2D.Static;
+                    });
                 }
             }
             else
@@ -55,7 +57,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 gameObject.SetActive(true);
                 if (rigidBody.bodyType != RigidbodyType2D.Dynamic)
                 {
-                    Invoke("SetDynamicBody", 0.1f);
+                    DOVirtual.DelayedCall(0.1f, () => {
+                        rigidBody.bodyType = RigidbodyType2D.Dynamic;
+                    });
                 }
             }
 
@@ -87,16 +91,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 comp.SetLock(value);
             }
-        }
-
-        private void SetStaticBody()
-        {
-            rigidBody.bodyType = RigidbodyType2D.Static;
-        }
-
-        private void SetDynamicBody()
-        {
-            rigidBody.bodyType = RigidbodyType2D.Dynamic;
         }
 
         public void Init(GameObject objPrefab)
@@ -135,6 +129,18 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 tmp.Add(screwComp);
             }
             return tmp;
+        }
+
+        /// <summary>
+        /// 移除所有关节组件
+        /// </summary>
+        public void RemoveHingeJoint()
+        {
+            HingeJoint2D[] hjArr = GetComponents<HingeJoint2D>();
+            foreach (var item in hjArr)
+            {
+                Destroy(item);
+            }
         }
     }
 }
