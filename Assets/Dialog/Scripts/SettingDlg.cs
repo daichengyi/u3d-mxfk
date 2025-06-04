@@ -1,6 +1,7 @@
 using Assets.Game.Scripts;
 using Assets.Scripts.common;
 using Assets.Scripts.config;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class SettingDlg : UIBase
 
     [SerializeField] GameObject btnReset;
     [SerializeField] GameObject btnBack;
+
+
+    [SerializeField] TMP_InputField inputFieldLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,38 +31,51 @@ public class SettingDlg : UIBase
     }
 
     // Update is called once per frame
-    public void clickClose()
+    public void ClickClose()
     {
         Destroy(gameObject);
     }
 
-    public void clickMusic()
+    public void ClickMusic()
     {
         DataManager.Instance.SetData(ConstVal.Local_Music, tgMusic.isOn?1:0);
         SoundManager.Ins.IsMusic = tgMusic.isOn;
     }
 
-    public void clickSound()
+    public void ClickSound()
     {
         DataManager.Instance.SetData(ConstVal.Local_Sound, tgSound.isOn ? 1 : 0);
         SoundManager.Ins.IsSfx = tgSound.isOn;
     }
 
-    public void clickVibrator()
+    public void ClickVibrator()
     {
         DataManager.Instance.SetData(ConstVal.Local_Vibrator, tgVibrator.isOn ? 1 : 0);
         SoundManager.Ins.IsShake = tgVibrator.isOn;
     }
 
-    public void clickResetGame()
+    public void ClickResetGame()
     {
         GameManager.Instance.EnterMode(GameMode.Feibiao, true);
         Destroy(gameObject);
     }
 
-    public void clickBackHome()
+    public void ClickBackHome()
     {
         GameManager.Instance.BackHomePage();
         Destroy(gameObject);
     }
+
+    #region GM¹¦ÄÜ
+    public void ClickGM()
+    {
+        int level = int.Parse(inputFieldLevel.text);
+        if(level >= 0)
+        {
+            UserModel.Instance.level = level;
+            GameManager.Instance.EnterMode(GameMode.Feibiao);
+            Destroy(gameObject);
+        }
+    }
+    #endregion
 }

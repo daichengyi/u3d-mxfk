@@ -23,7 +23,7 @@ public class Load : MonoBehaviour
     //TODO  需要封装一个jsonManager
     public TextAsset[] jsonArr;
 
-    private string goToSceneName = "Start";
+    private string goToSceneName = "Home";
 
     public static LoginData loginData;
 

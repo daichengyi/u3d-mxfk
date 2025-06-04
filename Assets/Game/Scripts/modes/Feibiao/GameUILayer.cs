@@ -187,7 +187,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void OnSetBtn()
         {
-            //sers().uiSrv.showSettingPage(mgrs().gameMgr.currMode.id);
+            UIManager.Instance.OpenView(VIEW_NAME.SetttingDlg, VIEW_TYPE.dialog);
         }
     }
 

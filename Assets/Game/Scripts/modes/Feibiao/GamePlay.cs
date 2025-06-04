@@ -2,6 +2,7 @@
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.Events;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -547,19 +548,17 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 effectLayer.PlayHammerEffect(board.transform);
                 //blockLayer.GetComponent<Button>().onClick.RemoveListener(OnBlockLayerTouchStart);
 
-                Invoke(nameof(ResetBlockLayer), 0.5f);
-                EventMng.dispatchEvent(new EventStruct(EventTypes.REMOVE_BOARD), board);
-                SoundManager.Ins.PlaySfx("板子碎");
+                DOVirtual.DelayedCall(0.5f, () =>
+                {
+                    blockLayer.SetActive(false);
+                    //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
+                    EventMng.dispatchEvent(new EventStruct(EventTypes.REMOVE_BOARD), board);
+                    SoundManager.Ins.PlaySfx("板子碎");
+                });
                 return;
             }
         }
         UIManager.Instance.ShowMsg("请选择一块板子敲碎");
-    }
-
-    private void ResetBlockLayer()
-    {
-        blockLayer.SetActive(false);
-        //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
     }
 
     /** 点击毛线圈*/

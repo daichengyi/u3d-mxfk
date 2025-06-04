@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.common;
 using Assets.Scripts.Events;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 
@@ -43,7 +44,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             node.transform.SetParent(transform);
             node.transform.localPosition = local;
 
-            Destroy(node, 0.7f);
+            SkeletonGraphic ske = node.GetComponent<SkeletonGraphic>();
+            ske.AnimationState.Complete += (TrackEntry trackEntry) =>
+            {
+                Destroy(node, 0.7f);
+            };
         }
 
         /// <summary>

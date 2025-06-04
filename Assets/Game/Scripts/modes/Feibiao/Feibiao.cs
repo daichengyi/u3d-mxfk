@@ -258,6 +258,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             };
             SoundManager.Ins.PlaySfx("shibai");
             //UIService.Instance.ShowOverPage(new OverPageData { pass = false, data = data });
+            UIManager.Instance.OpenView(VIEW_NAME.FailDlg, VIEW_TYPE.dialog);
         }
 
         public void Pass()
@@ -265,9 +266,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Debug.Log("pass");
 
             //ReportAnalytics("game_level_pass");
-            /*UpdateData();
+            UpdateData();
 
-            Action showOverPageA = () =>
+            SoundManager.Ins.PlaySfx("succes");
+            UIManager.Instance.OpenView(VIEW_NAME.WinDlg,VIEW_TYPE.dialog);
+
+            /*Action showOverPageA = () =>
             {
                  SoundManager.Ins.PlaySfx("succes");
                 UIService.Instance.ShowOverPage(new OverPageParams
