@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  m_GroupName: Dialog
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 316afcd2518a0a44b8e3f370db0bf6dd
+  m_SerializeEntries:
+  - m_GUID: 4b503c65533cec9438615ff438219e15
+    m_Address: Assets/uiPrefab/SettingDlg.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bf2f02d096caece43b72503b4cad3a0f, type: 2}
+    - {fileID: 11400000, guid: de4f723a06cee424e8a1f0f7fc6132b5, type: 2}

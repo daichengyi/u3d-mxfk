@@ -83,13 +83,18 @@ namespace Assets.Game.Scripts
             Debug.Log($"进入模式耗时---{m_CurrMode.explain}");
         }
 
-        public async void BackHomePage()
+        public void BackHomePage()
         {
             m_CurrMode = null;
             //UIService.Instance.CloseCurrentScenePage();
-            //await SceneManager.LoadSceneAsync("home");
+            ResourceManager.LoadScene("Home");
             //UIService.Instance.HideLoading();
             Debug.Log("返回主页");
+        }
+
+        public bool IsInGame()
+        {
+            return m_CurrMode != null;
         }
     }
 }

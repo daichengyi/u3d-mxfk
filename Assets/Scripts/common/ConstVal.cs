@@ -1,10 +1,6 @@
-﻿
-
-using System.Collections.Generic;
-
-namespace Assets.Scripts.config
+﻿namespace Assets.Scripts.config
 {
-    class ConstVal
+    public class ConstVal
     {
         /** 自动回复体力时间间隔 60*5 */
         public const int POWER_RESUME_TIME = 900;
@@ -21,5 +17,19 @@ namespace Assets.Scripts.config
         /** 绳子拼图最大等级 */
         public const int ROPE_MAX_LEVEL = 1000;
 
+
+
+        //本地数据 key
+
+        //设置数据
+        public const string Local_Music = "local_music_switch";
+        public const string Local_Sound = "local_sound_switch";
+        public const string Local_Vibrator = "local_vibrator_switch";
+
+
+        //道具数据
+        public const string MianfeidaojuData = "MianfeidaojuData";
+
+        public const string FeibiaoData = "FeibiaoData";
     }
 }

@@ -105,12 +105,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
             node.transform.SetSiblingIndex(10 - index);
 
             Target targetComp = node.GetComponent<Target>();
-            targetComp.InitWithType(type);
+            targetComp.InitWithType(type, () =>
+            {
+                AnimateTargetEntry(node, position, targetComp);
+            });
             targetComp.posIndex = index;
 
             targets.Add(targetComp);
-
-            AnimateTargetEntry(node, position, targetComp);
         }
 
         private void AnimateTargetEntry(GameObject node, Vector3 position, Target targetComp)

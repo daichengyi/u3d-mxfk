@@ -38,7 +38,7 @@ public class ButtonScaleAnimation : MonoBehaviour, IPointerDownHandler
         {
             return;
         }
-        SoundManager.Ins.PlaySfx("btn");
+        SoundManager.Ins.PlaySfx("click");
         // 放大动画
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(transform.DOScale(scaleUp, animationDuration).SetEase(Ease.Linear));

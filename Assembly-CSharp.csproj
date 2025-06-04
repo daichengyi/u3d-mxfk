@@ -87,9 +87,9 @@
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\TargetMgr.cs" />
     <Compile Include="Assets\Scripts\manager\AdManager.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleUtils.cs" />
-    <Compile Include="Assets\Game\Scripts\modes\GameData.cs" />
     <Compile Include="Assets\Scripts\common\WxUserInfoButton.cs" />
     <Compile Include="Assets\Scripts\common\ButtonScaleAnimation.cs" />
+    <Compile Include="Assets\Dialog\Scripts\SettingDlg.cs" />
     <Compile Include="Assets\Scripts\Events\EventTypes.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\LevelsConfig.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleAudio.cs" />

@@ -2,145 +2,160 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.manager;
-using Newtonsoft.Json;
 using ZhiSe;
 
-public class UserModel:SingletonBase<UserModel>
+public class UserModel : SingletonBase<UserModel>
 {
-	// 是否是新用户
-	private bool _isNew = true;
-	private long _loginTime = 0;
-	// 当前金币	
-	private int _coin = 0;
-	public int coin
-	{
-		get { return _coin; }
-		set { _coin = value; SetUserData("coin", _coin); }
-	}
+    // 是否是新用户
+    private bool _isNew = true;
 
-	// 当前关卡
-	private int _levelId = 1;
-	public int levelId
-	{
-		get { return _levelId; }
-		set { _levelId = value; SetUserData("levelId", _levelId); }
-	}
-	// 用户ID
-	public string userId;
-	// 是否是测试号
-	public bool isTest = false;
-	public string version;
-	// 埋点数据
-	private Dictionary<string, object> buryDot = new();
+    private long _loginTime = 0;
 
-	public void InitData(Dictionary<string, object> ret)
-	{
-		string key;
-		string value;
-		foreach (var item in ret)
-		{
-			key = item.Key.ToString();
-			value = item.Value.ToString();
-			if (key.StartsWith("dot"))
-			{
-				string newKey = key.Replace("dot_", "");
-				if (newKey.StartsWith("levelId_"))
-				{
-					buryDot[newKey] = JsonConvert.DeserializeObject<Dictionary<string, object>>(value);
-				}
-			}
-			else if (key.StartsWith("user"))
-			{
-				if (key.Equals("user_isNew"))
-				{
-					_isNew = bool.Parse(value);
-				}
-				else if (key.Equals("user_loginTime"))
-				{
-					_loginTime = long.Parse(value);
-				}
-				else if (key.Equals("user_coin"))
-				{
-					_coin = int.Parse(value);
-				}
-				else if (key.Equals("user_levelId"))
-				{
-					_levelId = int.Parse(value);
-				}
-			}
-		}
-		long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-		long preTime = _loginTime;
-		_loginTime = currentTimestamp;
-		Dictionary<string, object> data = new Dictionary<string, object>();
-		bool isNewDay = _loginTime / 86400 > preTime / 86400;
-		if (_isNew)
-		{
-			_isNew = false;
-			data.Add("loginTime", _loginTime);
-			data.Add("isNew", _isNew);
-		}
-		else
-		{
-			data.Add("loginTime", _loginTime);
-		}
+    // 用户ID
+    public string userId;
 
-		if (isNewDay)
-		{
+    // 是否是测试号
+    public bool isTest = false;
 
-		}
-		SetUserData(data);
-	}
+    public string version;
 
-	private void SetUserData<T>(string key, T value)
-	{
+    /// <summary>
+    /// 玩家游戏数据
+    /// </summary>
+    // 当前金币	
+    private int _coin = 0;
+    public int coin
+    {
+        get { return _coin; }
+        set { _coin = value; SetUserData("coin", _coin); }
+    }
 
-		var hashData = new Hashtable();
-		key = "user_" + key;
-		Dictionary<string, object> data = new() {
-			{ key, value }
-		};
+    // 当前关卡
+    private int _level = 0;
+    public int level
+    {
+        get { return _level; }
+        set { _level = value; SetUserData("level", _level); }
+    }
 
-		hashData = new(){
-			{ key, value }
-		};
-		if (!GameData.isLocal)
-		{
-			Seeg.SetUserData(data);
-		}
-		DataManager.Instance.SetData(hashData);
-	}
+    // 选择的拼图
+    private int _selectedPainting = 0;
+    public int selectedPainting
+    {
+        get { return _selectedPainting; }
+        set { _selectedPainting = value; SetUserData("selectedPainting", _selectedPainting); }
+    }
 
-	private void SetUserData(Dictionary<string, object> keyValuePairs)
-	{
-		var data = new Dictionary<string, object>();
-		var hashData = new Hashtable();
-		foreach (var pair in keyValuePairs)
-		{
-			data["user_" + pair.Key] = pair.Value;
-			hashData["user_" + pair.Key] = pair.Value;
-		}
+    // 道具使用次数
+    private int _propNum = 1;
+    public int propNum
+    {
+        get { return _propNum; }
+        set { _propNum = value; SetUserData("propNum", _propNum); }
+    }
 
-		if (!GameData.isLocal)
-		{
-			Seeg.SetUserData(data);
-		}
-		DataManager.Instance.SetData(hashData);
-	}
+    // 皮肤ID
+    private int _skinID = 1;
+    public int skinID
+    {
+        get { return _skinID; }
+        set { _skinID = value; SetUserData("skinID", _skinID); }
+    }
 
-	private void SetDotData(Dictionary<string, object> keyValuePairs)
-	{
-		var data = new Dictionary<string, object>();
-		var hashData = new Hashtable();
-		foreach (var pair in keyValuePairs)
-		{
-			data["dot_" + pair.Key] = pair.Value;
-			hashData["dot_" + pair.Key] = pair.Value;
-		}
-		if (!GameData.isLocal)
-		{
-			Seeg.SetUserData(data);
-		}
-		DataManager.Instance.SetData(hashData);
-	}
+    public void InitData(Dictionary<string, object> ret)
+    {
+        string key;
+        string value;
+        foreach (var item in ret)
+        {
+            key = item.Key.ToString();
+            value = item.Value.ToString();
+            if (key.Equals("isNew"))
+            {
+                _isNew = bool.Parse(value);
+            }
+            else if (key.Equals("loginTime"))
+            {
+                _loginTime = long.Parse(value);
+            }
+            else if (key.Equals("coin"))
+            {
+                _coin = int.Parse(value);
+            }
+            else if (key.Equals("level"))
+            {
+                _level = int.Parse(value);
+            }
+            else if (key.Equals("selectedPainting"))
+            {
+                _selectedPainting = int.Parse(value);
+            }
+            else if (key.Equals("skinID"))
+            {
+                _skinID = int.Parse(value);
+            }
+        }
+
+        long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        long preTime = _loginTime;
+
+        _loginTime = currentTimestamp;
+
+        Dictionary<string, object> data = new Dictionary<string, object>();
+
+        bool isNewDay = _loginTime / 86400 > preTime / 86400;
+
+        if (_isNew)
+        {
+            _isNew = false;
+            data.Add("loginTime", _loginTime);
+            data.Add("isNew", _isNew);
+        }
+        else
+        {
+            data.Add("loginTime", _loginTime);
+        }
+
+        if (isNewDay)
+        {
+
+        }
+        SetUserData(data);
+    }
+
+    private void SetUserData<T>(string key, T value)
+    {
+
+        var hashData = new Hashtable();
+        Dictionary<string, object> data = new() {
+            { key, value }
+        };
+
+        hashData = new(){
+            { key, value }
+        };
+        if (!GameData.isLocal)
+        {
+            Seeg.SetUserData(data);
+        }
+        DataManager.Instance.SetData(hashData);
+    }
+
+    private void SetUserData(Dictionary<string, object> keyValuePairs)
+    {
+        var data = new Dictionary<string, object>();
+        var hashData = new Hashtable();
+        foreach (var pair in keyValuePairs)
+        {
+            data[pair.Key] = pair.Value;
+            hashData[pair.Key] = pair.Value;
+        }
+
+        if (!GameData.isLocal)
+        {
+            Seeg.SetUserData(data);
+        }
+        DataManager.Instance.SetData(hashData);
+    }
 }

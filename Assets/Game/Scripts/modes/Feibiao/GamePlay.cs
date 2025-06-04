@@ -8,7 +8,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
 
 

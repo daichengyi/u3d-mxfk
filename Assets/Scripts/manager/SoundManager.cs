@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.config;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -27,9 +28,9 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        IsSfx = true;
-        IsShake = true;
-        _isMusic = true;
+        IsSfx = DataManager.Instance.GetData(ConstVal.Local_Sound,1) == 1;
+        IsShake = DataManager.Instance.GetData(ConstVal.Local_Vibrator,1) == 1;
+        _isMusic = DataManager.Instance.GetData(ConstVal.Local_Music, 1) == 1;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -98,7 +99,7 @@ public class SoundManager : MonoBehaviour
         if (clip != null)
         {
             MusicSounds.clip = clip;
-            MusicSounds.volume = volume;
+            MusicSounds.volume = IsMusic ? volume : 0; 
             MusicSounds.Play();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.common;
 using Assets.Scripts.Events;
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         void Awake()
         {
             type = -1;
-            SetSkin(GameData.Instance.GetSelectedBgSkin());
+            SetSkin(UserModel.Instance.skinID);
             //EventManager.Instance.AddListener("onEventChangeSkinBg", SetSkin);
             EventMng.addEventListener(EventTypes.CHANGE_SKIN_BG, SetSkinHandler);
         }
@@ -69,7 +70,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        public async void InitWithType(int tp)
+        public async void InitWithType(int tp, Action callback)
         {
             targetCount = 3;
             type = tp;
@@ -79,35 +80,39 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 Transform hole = holeNode.GetChild(index);
                 hole.gameObject.SetActive(false);
-
                 for (int i = 0; i < hole.childCount; i++)
                 {
                     Transform child = hole.GetChild(i);
                     Image childSprite = child.GetComponent<Image>();
-                    childSprite.gameObject.SetActive(false);
-                    Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(
-                        $"Res/order/{type + 1}-3.png"
-                    );
-                    childSprite.sprite = spriteFrame;
-                    childSprite.gameObject.SetActive(true);
-
                     childSprite.DOFade(0, 0);
-                    childSprite.DOFade(1, 0.2f).SetDelay(i * 0.1f);
+                    childSprite.gameObject.SetActive(false);
+                    await ResourceManager.AsyncLoadRes<Sprite>(
+                        $"Res/order/{type + 1}-3.png", (spriteFrame) =>
+                        {
+                            childSprite.sprite = spriteFrame;
+                            childSprite.gameObject.SetActive(true);
+                            childSprite.DOFade(1, 0.2f).SetDelay(i * 0.1f);
+                        }
+                    );
                 }
             }
             sprite.gameObject.SetActive(false);
-            Sprite mainSprite = await ResourceManager.AsyncLoadRes<Sprite>(
-                $"Res/order/{type + 1}.png"
+            await ResourceManager.AsyncLoadRes<Sprite>(
+                $"Res/order/{type + 1}.png", (mainSprite) => {
+                    sprite.sprite = mainSprite;
+                    sprite.gameObject.SetActive(true);
+                }
             );
-            sprite.sprite = mainSprite;
-            sprite.gameObject.SetActive(true);
+            
 
             capSpr.gameObject.SetActive(false);
-            Sprite capSprite = await ResourceManager.AsyncLoadRes<Sprite>(
-                $"Res/order/{type + 1}-2.png"
+            await ResourceManager.AsyncLoadRes<Sprite>(
+                $"Res/order/{type + 1}-2.png", (capSprite) => {
+                    capSpr.sprite = capSprite;
+                    capSpr.gameObject.SetActive(true);
+                    callback?.Invoke();
+                }
             );
-            capSpr.sprite = capSprite;
-            capSpr.gameObject.SetActive(true);
         }
 
         public void ShowOne(int index)
@@ -120,7 +125,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             return targetCount == 0;
         }
 
-        public void ShowFinishAnimation(float delay, System.Action callback)
+        public void ShowFinishAnimation(float delay, Action callback)
         {
             Transform[] children = new Transform[holeNode.childCount];
             for (int i = 0; i < holeNode.childCount; i++)

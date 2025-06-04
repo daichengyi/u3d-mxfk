@@ -37,7 +37,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 return;
             }
 
-            int level = GameData.Instance.GetFeibiaoData().level;
+            int level = UserModel.Instance.level;
             /*DollConfig dollConfig = await DecorateDollMgr.Ins.GetMainPlayNextUnlockDollConfig(level);
             if (dollConfig == null)
             {
@@ -76,7 +76,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         {
             InitUI();
             gameScene = feibiao;
-            freeNumber = GameData.Instance.GetMianfeidaojuData().cishu;
+            freeNumber = UserModel.Instance.propNum;
             if (freeNumber > 0 && gameScene.level <= 1 && GameManager.Instance.currMode.id == GameMode.Feibiao)
             {
                 foreach (var node in mianfeiNode)
@@ -144,7 +144,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 prop_name = obj[sender.name]
             };
 
-            SoundManager.Ins.PlaySfx("click");
 
             if (freeNumber > 0)
             {
@@ -156,8 +155,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     node.SetActive(false);
                 }
                 freeNumber--;
-                LocalFdjData mianfeiData = new LocalFdjData { cishu = 0 };
-                GameData.Instance.SetMianfeidaojuData(mianfeiData);
+                UserModel.Instance.propNum = 0;
                 return;
             }
 
@@ -169,31 +167,26 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void OnPintu()
         {
-            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("Collection", "CollectionPage");
         }
 
         public void OnSkin()
         {
-            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("decorateDoll", "decorate-doll-page");
         }
 
         public void OnBgSkin()
         {
-            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("BgSkin", "BgSkinPage");
         }
 
         public void OnGameClub()
         {
-            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.ShowPage("JoinGameClub", "JoinGameClubPage");
         }
 
         public void OnSetBtn()
         {
-            SoundManager.Ins.PlaySfx("click");
             //sers().uiSrv.showSettingPage(mgrs().gameMgr.currMode.id);
         }
     }

@@ -12,14 +12,12 @@ public class HomeScene : MonoBehaviour
    
     public void onBtnGame()
     {
-        SoundManager.Ins.PlaySfx("click");
         UIManager.Instance.ShowLoading();
        GameManager.Instance.EnterMode(GameMode.Feibiao, true);
     }
 
     public void onBtnSet()
     {
-        SoundManager.Ins.PlaySfx("click");
-        UIManager.Instance.OpenView(VIEW_NAME.Set);
+        UIManager.Instance.OpenView(VIEW_NAME.SetttingDlg, VIEW_TYPE.dialog);
     }
 }

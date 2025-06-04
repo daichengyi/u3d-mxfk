@@ -40,7 +40,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //canvas.fitWidth = !UserService.Instance.IsIPAD;
             EventMng.addEventListener(EventTypes.BTN_CLEAR_TMP, ShowSaoba);
 
-            //SoundManager.Instance.PlayMusic("bgm");
+            SoundManager.Ins.PlayMusic("bgm");
             SetLevel();
             LoadLevel(level);
             string lvName = level < 1 ? "新手引导" : $"第 {level} 关";
@@ -89,8 +89,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     //level = fiveOneData.Level;
                     break;
                 default:
-                    var feibiaoData = GameData.Instance.GetFeibiaoData();
-                    level = feibiaoData.level;
+                    level = UserModel.Instance.level;
                     break;
             }
         }
@@ -225,8 +224,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     node.SetActive(false);
                 }
                 gameUILayer.freeNumber--;
-                var data = new LocalFdjData { cishu = 0 };
-                GameData.Instance.SetMianfeidaojuData(data);
+                UserModel.Instance.propNum = 0;
                 return;
             }
 
@@ -354,14 +352,17 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     //UserService.Instance.SetFiveOneThemeData(fiveOneData);
                     break;
                 default:
-                    var feibiaoData = GameData.Instance.GetFeibiaoData();
-                    feibiaoData.selectedPainting = feibiaoData.level;
-                    if (feibiaoData.selectedPainting > ConstVal.ROPE_MAX_LEVEL)
+                    int level = UserModel.Instance.level;
+                    if (level > ConstVal.ROPE_MAX_LEVEL)
                     {
-                        feibiaoData.selectedPainting = ConstVal.ROPE_MAX_LEVEL;
+                        UserModel.Instance.selectedPainting = ConstVal.ROPE_MAX_LEVEL;
                     }
-                    feibiaoData.level++;
-                    GameData.Instance.SetFeibiaoData(feibiaoData);
+                    else
+                    {
+                        UserModel.Instance.selectedPainting = level;
+                    }
+                    level++;
+                    UserModel.Instance.level = level;
                     //PlatformService.Instance.SetUserData(new UserData { Level = feibiaoData.Level });
 
                     /*int yarn = GetYarnReward();
@@ -460,7 +461,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         {
             //string resId = LevelMgr.GetPrefabName(rlevel);
             //Debug.Log($"loadLevel {rlevel} {resId}");
-            //UIService.Instance.ShowLoading();
+            UIManager.Instance.ShowLoading();
             try
             {
                 GameObject prefab = await ResourceManager.AsyncLoadRes<GameObject>($"Game/Levels/prefabs/lv_{rlevel}.prefab");
@@ -539,9 +540,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     //UserService.Instance.SetFiveOneThemeData(fiveOneData);
                     break;
                 default:
-                    var feibiaoData = GameData.Instance.GetFeibiaoData();
-                    feibiaoData.level = lv;
-                    GameData.Instance.SetFeibiaoData(feibiaoData);
+                    UserModel.Instance.level = lv;
                     break;
             }
             GameManager.Instance.EnterMode(GameManager.Instance.currMode.id);
