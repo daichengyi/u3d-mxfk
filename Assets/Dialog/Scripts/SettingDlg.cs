@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// <summary>
 /// …Ë÷√µØ¥∞
 /// </summary>
-public class SettingDlg : UIBase
+public class SettingDlg : BaseView
 {
     [SerializeField] Toggle tgMusic;
     [SerializeField] Toggle tgSound;
@@ -26,6 +26,10 @@ public class SettingDlg : UIBase
         tgSound.isOn = DataManager.Instance.GetData(ConstVal.Local_Sound, 1) == 1;
         tgVibrator.isOn = DataManager.Instance.GetData(ConstVal.Local_Vibrator, 1) == 1;
 
+        tgMusic.transform.GetChild(0).GetComponent<Image>().enabled = !tgMusic.isOn;
+        tgSound.transform.GetChild(0).GetComponent<Image>().enabled = !tgSound.isOn;
+        tgVibrator.transform.GetChild(0).GetComponent<Image>().enabled = !tgVibrator.isOn;
+
         btnReset.SetActive(GameManager.Instance.IsInGame());
         btnBack.SetActive(GameManager.Instance.IsInGame());
     }
@@ -38,18 +42,21 @@ public class SettingDlg : UIBase
 
     public void ClickMusic()
     {
+        tgMusic.transform.GetChild(0).GetComponent<Image>().enabled = !tgMusic.isOn;
         DataManager.Instance.SetData(ConstVal.Local_Music, tgMusic.isOn?1:0);
         SoundManager.Ins.IsMusic = tgMusic.isOn;
     }
 
     public void ClickSound()
     {
+        tgSound.transform.GetChild(0).GetComponent<Image>().enabled = !tgSound.isOn;
         DataManager.Instance.SetData(ConstVal.Local_Sound, tgSound.isOn ? 1 : 0);
         SoundManager.Ins.IsSfx = tgSound.isOn;
     }
 
     public void ClickVibrator()
     {
+        tgVibrator.transform.GetChild(0).GetComponent<Image>().enabled = !tgVibrator.isOn;
         DataManager.Instance.SetData(ConstVal.Local_Vibrator, tgVibrator.isOn ? 1 : 0);
         SoundManager.Ins.IsShake = tgVibrator.isOn;
     }

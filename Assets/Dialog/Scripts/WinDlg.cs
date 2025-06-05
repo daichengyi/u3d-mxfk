@@ -4,7 +4,7 @@ using Assets.Scripts.common;
 /// <summary>
 /// Ω·À„- §¿˚
 /// </summary>
-public class WinDlg : UIBase
+public class WinDlg : BaseView
 {
     // Start is called before the first frame update
     void Start()

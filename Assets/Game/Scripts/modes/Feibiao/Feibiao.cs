@@ -170,24 +170,25 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Debug.Log("over");
 
             bool can = targetMgr.CanUnlock();
-            /*fuhuoNode.transform.Find("content/tips1").gameObject.SetActive(!can);
-            fuhuoNode.transform.Find("content/tips2").gameObject.SetActive(can);
-
-            fuhuoNode.GetComponent<RectTransform>().ForceUpdateRectTransforms();
-
-            TextMeshProUGUI progressLabel = fuhuoNode.transform.Find("content/textLayout/progressLabel").GetComponent<TextMeshProUGUI>();
-            progressLabel.text = $"{Mathf.Floor(GetProgress() * 100):F0}%";
-
-            fuhuoNode.SetActive(true);
-            fuhuoNode.transform.localScale = Vector3.zero;
-            fuhuoNode.transform.DOScale(Vector3.one, 0.2f)
-                .SetDelay(1.5f)
-                .OnStart(() =>
+            var data = new ReviveVo { };
+            data.unlock = can;
+            data.pro = GetProgress();
+            data.action = (isRevive) =>
+            {
+                if (isRevive)
                 {
-                    //UIService.Instance.ShowMessage("槽位已满!");
-                });
-
-            //ReportAnalytics("game_level_failed", Mathf.Floor(GetProgress() * 100).ToString("F0"));*/
+                    Huode();
+                }
+                else
+                {
+                    Buxuyao();
+                }
+            };
+            DOVirtual.DelayedCall(1.5f, () =>
+            {
+                UIManager.Instance.OpenView(VIEW_NAME.ReviveDlg, VIEW_TYPE.dialog, false, null, data);
+            });
+            UIManager.Instance.ShowMsg("槽位已满!");
         }
 
         private float GetProgress()
@@ -197,27 +198,23 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void Buxuyao()
         {
-            //SoundManager.Instance.PlayBtnSound();
-            //fuhuoNode.SetActive(false);
             OverPage();
         }
 
         public void Huode()
         {
-            //SoundManager.Instance.PlayBtnSound();
             bool can = targetMgr.CanUnlock();
 
             if (gameUILayer.freeNumber > 0)
             {
                 if (!can)
                 {
-                    //EventManager.Instance.Dispatch("unlock_2");
+                    EventMng.dispatchEvent(new EventStruct(EventTypes.UNLOCK_2), null);
                 }
                 else
                 {
-                    //EventManager.Instance.Dispatch("btn_clear_tmp");
+                    EventMng.dispatchEvent(new EventStruct(EventTypes.BTN_CLEAR_TMP), null);
                 }
-                //fuhuoNode.SetActive(false);
 
                 foreach (var node in gameUILayer.mianfeiNode)
                 {
@@ -228,24 +225,20 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 return;
             }
 
-            /*var adData = new AdData
+            AdManager.Ins.ShowAd(0, (isSuc) =>
             {
-                GameName = GameManager.Instance.currMode.explain,
-                ropName = "复活"
-            };
-
-            LoadAndShowVideoAd(adData, () =>
-            {
-                if (!can)
+                if (isSuc)
                 {
-                    EventManager.Instance.Dispatch("unlock_2");
+                    if (!can)
+                    {
+                        EventMng.dispatchEvent(new EventStruct(EventTypes.UNLOCK_2), null);
+                    }
+                    else
+                    {
+                        EventMng.dispatchEvent(new EventStruct(EventTypes.BTN_CLEAR_TMP), null);
+                    }
                 }
-                else
-                {
-                    EventManager.Instance.Dispatch("btn_clear_tmp");
-                }
-                fuhuoNode.SetActive(false);
-            });*/
+            });
         }
 
         private void OverPage()
@@ -269,7 +262,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             UpdateData();
 
             SoundManager.Ins.PlaySfx("succes");
-            UIManager.Instance.OpenView(VIEW_NAME.WinDlg,VIEW_TYPE.dialog);
+            UIManager.Instance.OpenView(VIEW_NAME.WinDlg, VIEW_TYPE.dialog);
 
             /*Action showOverPageA = () =>
             {
