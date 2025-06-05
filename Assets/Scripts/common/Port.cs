@@ -15,8 +15,7 @@ internal struct Constant
 internal struct VIEW_NAME
 {
     public const string SetttingDlg = "SettingDlg";
-    public const string WinDlg = "WinDlg";
-    public const string FailDlg = "FailDlg";
+    public const string ResultDlg = "ResultDlg";
     public const string ReviveDlg = "ReviveDlg";
 
     public const string Tip = "TipUI";

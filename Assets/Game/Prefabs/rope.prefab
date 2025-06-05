@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 25984d9568daf4c4ab15d3bc757b0502, type: 3}
   - {fileID: 21300000, guid: e989af5d9fa781f4c9bd652ba95541a2, type: 3}
   sprite: {fileID: 2295773814437481132}
+  hingeJoint: {fileID: 0}
 --- !u!1 &5958653497611481364
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 89, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3932847475917512166

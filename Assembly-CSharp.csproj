@@ -69,6 +69,7 @@
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeTexture.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\PaintBoard.cs" />
+    <Compile Include="Assets\Dialog\Scripts\ResultDlg.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Collider2DListener.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\GamePlay.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeBase.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Assets\Scripts\manager\PlatformManager.cs" />
     <Compile Include="Assets\Scripts\data\OverPageData.cs" />
     <Compile Include="Assets\Scripts\manager\SingletonBase.cs" />
-    <Compile Include="Assets\Dialog\Scripts\WinDlg.cs" />
     <Compile Include="Assets\Scripts\common\Port.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Board.cs" />
@@ -149,6 +149,7 @@
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Game\Spines\打扫\dx.atlas.txt" />
+    <None Include="Assets\Game\Spines\shenglishibai\VICTORY.atlas.txt" />
     <None Include="Assets\Home\Spine\jiazai.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

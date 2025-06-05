@@ -247,11 +247,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 level = level,
                 gameProgress = GetProgress(),
-                paintNode = paintNode
+                paintNode = paintNode,
+                isWin = false,
             };
             SoundManager.Ins.PlaySfx("shibai");
-            //UIService.Instance.ShowOverPage(new OverPageData { pass = false, data = data });
-            UIManager.Instance.OpenView(VIEW_NAME.FailDlg, VIEW_TYPE.dialog);
+            UIManager.Instance.OpenView(VIEW_NAME.ResultDlg, VIEW_TYPE.dialog,false,null,data);
         }
 
         public void Pass()
@@ -261,8 +261,15 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //ReportAnalytics("game_level_pass");
             UpdateData();
 
+            var data = new OverPageData
+            {
+                isWin = true,
+                level = level,
+                gameProgress = 1,
+                paintNode = paintNode,
+            };
             SoundManager.Ins.PlaySfx("succes");
-            UIManager.Instance.OpenView(VIEW_NAME.WinDlg, VIEW_TYPE.dialog);
+            UIManager.Instance.OpenView(VIEW_NAME.ResultDlg, VIEW_TYPE.dialog, false, null, data);
 
             /*Action showOverPageA = () =>
             {

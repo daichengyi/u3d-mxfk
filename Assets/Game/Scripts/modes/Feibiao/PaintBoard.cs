@@ -26,7 +26,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField] private Button nextStepButton;
         [SerializeField] private Button lastStepButton;
         [SerializeField] private Button importButton;
-        [SerializeField] private RectTransform maskNode;
+        [SerializeField] public RectTransform maskNode;
         [SerializeField] private RectTransform parentNode;
         [SerializeField] private Button prevStepButton;
 
@@ -38,7 +38,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private int rows = 35;
         private int cols = 35;
 
-        private bool isAutoPlaying = false;
+        [HideInInspector]
+        public bool isAutoPlaying = false;
         private float playInterval = 0.01f;
 
         private readonly int COLORS_COUNT = 20;
@@ -130,8 +131,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
                 float padding = 0;
                 cellNode.transform.localScale = new Vector3(
-                    (cellSize - padding * 2) / image.sprite.bounds.size.x,
-                    (cellSize - padding * 2) / image.sprite.bounds.size.y,
+                    (cellSize - padding * 2) / image.sprite.rect.width,
+                    (cellSize - padding * 2) / image.sprite.rect.height,
                     1
                 );
 
@@ -159,7 +160,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        private void AutoPlayClick()
+        public void AutoPlayClick()
         {
             if (isAutoPlaying)
             {
@@ -301,7 +302,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        private void PlayNextStepManually()
+        public void PlayNextStepManually()
         {
             Debug.Log("playNextStepManually: " + currentStep);
             StopPlay();
@@ -323,7 +324,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        private void PlayPrevStepManually()
+        public void PlayPrevStepManually()
         {
             StopPlay();
 
@@ -345,7 +346,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        private void JumpToLastStep()
+        public void JumpToLastStep()
         {
             if (isAutoPlaying) return;
 
