@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Events\EventDispatcher.cs" />
     <Compile Include="Assets\Scripts\common\Enum.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Game\Scripts\modes\TestRote.cs" />
     <Compile Include="Assets\Lib\SeegExample\SeegTest.cs" />
     <Compile Include="Assets\Scripts\model\UserModel.cs" />
     <Compile Include="Assets\Scripts\manager\RankingManager.cs" />

@@ -178,11 +178,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public async void SetSkin(int index)
         {
-            shadow.gameObject.SetActive(false);
+            /*shadow.gameObject.SetActive(false);
             string path = $"Res/targetItem/{index}-1.png";
             Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
             shadow.sprite = spriteFrame;
-            shadow.gameObject.SetActive(true);
+            shadow.gameObject.SetActive(true);*/
         }
     }
 }

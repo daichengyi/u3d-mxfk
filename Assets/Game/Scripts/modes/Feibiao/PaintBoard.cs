@@ -63,7 +63,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (parentNode == null) return;
 
             RectTransform parentRect = parentNode;
-            float nodeHeight = Screen.height / 2 - parentNode.localPosition.y - 50;
+            float nodeHeight = Screen.height / 2 - parentNode.localPosition.y - 100;
 
             // 考虑安全区域
             Rect safeArea = Screen.safeArea;

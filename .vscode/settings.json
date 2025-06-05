@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "mxfk.sln"
+    "dotnet.defaultSolution": "mxfk.sln",
+    "dotnet.preferCSharpExtension": true
 }

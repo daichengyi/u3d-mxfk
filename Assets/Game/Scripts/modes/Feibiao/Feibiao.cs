@@ -43,7 +43,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             SoundManager.Ins.PlayMusic("bgm");
             SetLevel();
             LoadLevel(level);
-            string lvName = level < 1 ? "新手引导" : $"第 {level} 关";
+            string lvName = level < 1 ? "New Guide" : $"Level  {level}";
             levelText.text = lvName;
 
             /*if (Application.isEditor && Debug.isDebugBuild)

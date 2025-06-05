@@ -9,12 +9,14 @@ public class TmpNodeManager : MonoBehaviour
     [SerializeField] private Transform tmpsNode;
     [SerializeField] public Transform hideTmpNode;
     [SerializeField] private GameObject tmpPrefab;
-    [SerializeField] private RectTransform shadowNode;
-    [SerializeField] private RectTransform leftNode;
-    [SerializeField] private RectTransform rightNode;
+    //[SerializeField] private RectTransform shadowNode;
+    //[SerializeField] private RectTransform leftNode;
+    //[SerializeField] private RectTransform rightNode;
 
     private const int MAX_TMP = 7;
+    [HideInInspector]
     public TmpRope[] tmpContents = new TmpRope[MAX_TMP];
+    [HideInInspector]
     public int activeSlotCount = 5; // 默认前5个槽位激活
 
 
@@ -80,10 +82,11 @@ public class TmpNodeManager : MonoBehaviour
         tmpsNode.GetChild(activeSlotCount).gameObject.SetActive(true);
         activeSlotCount++;
 
-        float width = tmpsNode.GetComponent < RectTransform >().rect.width;
+        //改版后不需要计算
+        /*float width = tmpsNode.GetComponent < RectTransform >().rect.width;
         shadowNode.sizeDelta = new Vector2(width + 100, shadowNode.sizeDelta.y);
         leftNode.localPosition = new Vector2(-shadowNode.sizeDelta.x / 2+5, 0);
-        rightNode.localPosition = new Vector2(shadowNode.sizeDelta.x / 2, 0);
+        rightNode.localPosition = new Vector2(shadowNode.sizeDelta.x / 2, 0);*/
 
         SoundManager.Ins.PlaySfx("jiesuo");
     }
