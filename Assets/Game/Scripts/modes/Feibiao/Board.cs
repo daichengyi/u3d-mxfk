@@ -30,6 +30,15 @@ namespace Assets.Game.Scripts.modes.Feibiao
             canvasGroup = GetComponent<CanvasGroup>();
             rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.bodyType = RigidbodyType2D.Static;
+
+            // 创建新的物理材质
+            PhysicsMaterial2D material = new PhysicsMaterial2D();
+            material.friction = 0f; // 设置摩擦力大小（0-1之间）
+            material.bounciness = 0.2f; // 设置弹性
+
+            // 将物理材质应用到Rigidbody2D
+            rigidBody.sharedMaterial = material;
+
             gameObject.SetActive(false);
         }
 
