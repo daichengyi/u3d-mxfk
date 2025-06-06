@@ -2,8 +2,6 @@ using Assets.Game.Scripts;
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.data;
-using DG.Tweening;
-using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,8 +32,8 @@ public class ResultDlg : BaseView
 
         win.SetActive(resultVo.isWin);
         fail.SetActive(!resultVo.isWin);
-        
-        rectTransBg.sizeDelta = new Vector2(502, resultVo.isWin?580:550);
+
+        rectTransBg.sizeDelta = new Vector2(502, resultVo.isWin ? 580 : 550);
 
         textLevel.text = $"Level {resultVo.level}";
 
@@ -45,18 +43,17 @@ public class ResultDlg : BaseView
             textFailPro.text = $"{(resultVo.gameProgress * 100).ToString("F0")}%";
         }
         skeGraphic.initialSkinName = resultVo.isWin ? "shengli" : "shibai";
+        skeGraphic.Initialize(true);
 
-        DOVirtual.DelayedCall(1f, () => {
-            resultVo.paintNode.transform.SetParent(boradBg);
-            resultVo.paintNode.transform.localPosition = Vector3.zero;
-            resultVo.paintNode.transform.localScale = resultVo.paintNode.transform.localScale;
-            paintBoard = resultVo.paintNode.GetComponent<PaintBoard>();
-            if (resultVo.isWin)
-            {
-                paintBoard.JumpToLastStep();
-            }
-        });
-        
+        resultVo.paintNode.transform.SetParent(boradBg);
+        resultVo.paintNode.transform.localPosition = Vector3.zero;
+        resultVo.paintNode.transform.localScale = Vector3.one;
+        paintBoard = resultVo.paintNode.GetComponent<PaintBoard>();
+        paintBoard.maskNode = null;
+        if (resultVo.isWin)
+        {
+            paintBoard.JumpToLastStep();
+        }
     }
 
     // Update is called once per frame
@@ -67,20 +64,20 @@ public class ResultDlg : BaseView
     }
     public void clickLeft()
     {
-        btnPlay.SetActive(!paintBoard.isAutoPlaying);
         paintBoard.PlayPrevStepManually();
+        btnPlay.SetActive(!paintBoard.isAutoPlaying);
     }
 
     public void clickRight()
     {
-        btnPlay.SetActive(!paintBoard.isAutoPlaying);
         paintBoard.PlayNextStepManually();
+        btnPlay.SetActive(!paintBoard.isAutoPlaying);
     }
 
     public void clickPlay()
     {
-        btnPlay.SetActive(!paintBoard.isAutoPlaying);
         paintBoard.AutoPlayClick();
+        btnPlay.SetActive(!paintBoard.isAutoPlaying);
     }
 
 

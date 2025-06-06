@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.common;
+﻿using Assets.Game.Scripts.modes.Feibiao;
+using Assets.Scripts.common;
 using Assets.Scripts.manager;
 using System;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace Assets.Game.Scripts
 
         public async Task EnterMode(GameMode mode, bool showLoading = true)
         {
+            RopeSegmentManager.Instance.ClearAllPools();
             if (showLoading)
             {
                 //UIService.Instance.ShowLoading();

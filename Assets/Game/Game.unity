@@ -3659,6 +3659,7 @@ MonoBehaviour:
   maskNode: {fileID: 517690588}
   parentNode: {fileID: 28286649}
   prevStepButton: {fileID: 0}
+  isAutoPlaying: 0
 --- !u!1 &1484725316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4683,7 +4684,7 @@ MonoBehaviour:
   m_text: "\u5269\u4E0B\u4E00\u4E2A\u69FD\u4F4D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4f14666121b6ab4dbffa83298cf0010, type: 2}
-  m_sharedMaterial: {fileID: -8097939869009662852, guid: c4f14666121b6ab4dbffa83298cf0010, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 299f2fba0747c99489119768f4454d6e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
