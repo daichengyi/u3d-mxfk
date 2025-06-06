@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
@@ -26,11 +27,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField] private GameObject ropePrefab;
         [SerializeField] private TmpNodeManager tmpNodeMgr;
         [SerializeField] private PaintBoard paintBoard;
-        [SerializeField] private RectTransform progressBar;
+        [SerializeField] private Image progressBar;
         [SerializeField] private TextMeshProUGUI progressLabel;
         [SerializeField] private TextMeshProUGUI slotNotEnoughLabel;
-
-        [SerializeField] private GameObject imageTest;
 
         private Feibiao feibiao;
         private List<int> data = new List<int>();
@@ -46,7 +45,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             EventMng.addEventListener(EventTypes.BTN_CLEAR_TMP, OnClearTmp);
             EventMng.addEventListener(EventTypes.UNLOCK_2, OnUnlock);
             EventMng.addEventListener(EventTypes.UNLOCK_1, OnUnlock);
-            progressBar.sizeDelta = new Vector2(17f, 0);
+            progressBar.fillAmount = 0;
             feibiao = transform.parent.GetComponent<Feibiao>();
         }
         private void OnDestroy()
@@ -210,7 +209,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     }
                 });
                 isFinished = result.isFinished;
-                progressBar.sizeDelta = new Vector2(GetProgress(), progressBar.sizeDelta.y);
+                progressBar.fillAmount = GetProgress();
                 progressLabel.text = $"{Mathf.Round(GetProgress() * 100)}%";
 
                 targetComp.ShowFinishAnimation(result.duration, () =>
