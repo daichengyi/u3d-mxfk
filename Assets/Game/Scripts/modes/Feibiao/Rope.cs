@@ -67,7 +67,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             base.SetType(type);
             this.type = type;
             sprite.sprite = spriteFrames[type];
-            sprite.transform.rotation = Quaternion.Euler(0, 0, -transform.parent.parent.rotation.eulerAngles.z);
+            //sprite.transform.rotation = Quaternion.Euler(0, 0, -transform.parent.parent.rotation.eulerAngles.z);
             isMoving = false;
         }
 
@@ -98,7 +98,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         public void Shake()
         {
-            float oldAngle = -transform.parent.parent.rotation.eulerAngles.z;
+            float oldAngle = sprite.transform.rotation.eulerAngles.z;// -transform.parent.parent.rotation.eulerAngles.z;
 
             Sequence shakeSequence = DOTween.Sequence();
             shakeSequence.Append(sprite.transform.DORotate(new Vector3(0, 0, -10), 0.05f))

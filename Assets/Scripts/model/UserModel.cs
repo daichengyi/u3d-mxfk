@@ -35,7 +35,14 @@ public class UserModel : SingletonBase<UserModel>
     public int level
     {
         get { return _level; }
-        set { _level = value; SetUserData("level", _level); }
+        set { 
+            _level = value; 
+            if(_level > 2)
+            {
+                _level = 2;
+            }
+            SetUserData("level", _level); 
+        }
     }
 
     // 选择的拼图

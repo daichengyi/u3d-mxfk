@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.common;
+using Assets.Scripts.data;
 using Assets.Scripts.Events;
 using DG.Tweening;
 using System;
@@ -210,7 +211,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 });
                 isFinished = result.isFinished;
                 progressBar.fillAmount = GetProgress();
-                progressLabel.text = $"{Mathf.Round(GetProgress() * 100)}%";
+                progressLabel.text = $"{(GetProgress() * 100).ToString("F0")}%";
 
                 targetComp.ShowFinishAnimation(result.duration, () =>
                 {
