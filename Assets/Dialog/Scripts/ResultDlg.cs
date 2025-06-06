@@ -2,6 +2,7 @@ using Assets.Game.Scripts;
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.data;
+using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
