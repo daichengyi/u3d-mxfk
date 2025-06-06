@@ -135,7 +135,6 @@
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\Game\Spines\加载动画\ding.atlas.txt" />
     <None Include="Assets\Lib\unity-json\Newtonsoft.Json.dll" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -150,7 +149,7 @@
     <None Include="Assets\Lib\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Game\Spines\打扫\dx.atlas.txt" />
     <None Include="Assets\Game\Spines\shenglishibai\VICTORY.atlas.txt" />
-    <None Include="Assets\Home\Spine\jiazai.atlas.txt" />
+    <None Include="Assets\Home\Spine\加载动画\jiazai.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

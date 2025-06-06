@@ -41,7 +41,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 // 异步加载精灵
                 image.gameObject.SetActive(false);
                 string path = $"Res/segment/{type + 1}.png";
-                await ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
+                ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) =>
                 {
                     image.sprite = spriteFrame;
                     image.SetNativeSize();

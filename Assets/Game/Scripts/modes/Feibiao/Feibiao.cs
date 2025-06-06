@@ -111,12 +111,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        private IEnumerator LoadingLevel()
+        private async Task LoadingLevel()
         {
             //ReportAnalytics("game_enter");
             effectLayer.ShowLevelupEffect(level);
 
-            yield return null; // 等待一帧
+            await Task.Delay(10); // 等待一帧
             /*if (level == 0)
             {
                 xinshouyindao = Instantiate(xinshouyindaoPrefab);
@@ -481,26 +481,22 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 nowGuanqiaNode = prefabNode;
                 gameUILayer.InitFeibiao(this);
 
-                SceneManager.sceneLoaded += (scene, mode) =>
+                /*SceneManager.sceneLoaded += (scene, mode) =>
                 {
                     Debug.Log("EVENT_BEFORE_SCENE_LAUNCH");
-                    if (prefab != null)
-                    {
-                        Destroy(prefab);
-                    }
+                    Destroy(prefab);
                     Resources.UnloadAsset(data);
-                };
+                };*/
 
-                StartCoroutine(LoadingLevel());
+                LoadingLevel();
             }
             catch (Exception err)
             {
                 Debug.LogError($"loadLevel error {err}");
-                //UIService.Instance.ShowMessage("关卡加载失败,请稍后再试");
+                UIManager.Instance.ShowMsg("关卡加载失败,请稍后再试");
             }
             finally
             {
-                //UIService.Instance.HideLoading();
                 UIManager.Instance.HideLoading();
             }
         }

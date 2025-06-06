@@ -47,7 +47,7 @@ namespace Assets.Game.Scripts
             RopeSegmentManager.Instance.ClearAllPools();
             if (showLoading)
             {
-                //UIService.Instance.ShowLoading();
+                UIManager.Instance.ShowLoading();
             }
 
             var currMode = GameModeJson.GetMode(mode);
@@ -61,9 +61,8 @@ namespace Assets.Game.Scripts
                 try
                 {
                     /*currMode.bundle = await AssetBundle.LoadFromFileAsync(currMode.bundleName);
-                    await SceneManager.LoadSceneAsync(currMode.sceneName);
-                    await GoToNeedEnterMode();*/
-                    ResourceManager.LoadScene("Game");
+                    await SceneManager.LoadSceneAsync(currMode.sceneName);*/
+                    await GoToNeedEnterMode();
                 }
                 catch (Exception e)
                 {
@@ -79,9 +78,10 @@ namespace Assets.Game.Scripts
 
         private async Task GoToNeedEnterMode()
         {
-           // UIService.Instance.CloseCurrentScenePage();
+            // UIService.Instance.CloseCurrentScenePage();
             //await SceneManager.LoadSceneAsync(m_CurrMode.sceneName);
-            //UIService.Instance.HideLoading();
+            ResourceManager.LoadScene(m_CurrMode.sceneName);
+            UIManager.Instance.HideLoading();
             Debug.Log($"进入模式耗时---{m_CurrMode.explain}");
         }
 
@@ -90,7 +90,7 @@ namespace Assets.Game.Scripts
             m_CurrMode = null;
             //UIService.Instance.CloseCurrentScenePage();
             ResourceManager.LoadScene("Home");
-            //UIService.Instance.HideLoading();
+            UIManager.Instance.HideLoading();
             Debug.Log("返回主页");
         }
 

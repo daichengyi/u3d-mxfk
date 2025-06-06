@@ -6,7 +6,7 @@ public class HomeScene : MonoBehaviour
 {
     void Start()
     {
-        // UIManager.Instance.HideLoading();
+        UIManager.Instance.HideLoading();
         SoundManager.Ins.PlayMusic("bgm");
     }
    

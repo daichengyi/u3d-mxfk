@@ -18,7 +18,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.Feibiao,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "毛线主玩法",
                 videoCnt = 0
@@ -26,7 +26,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.NewYear,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "新年主题",
                 videoCnt = 0
@@ -34,7 +34,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.ShengXiao,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "生肖主题",
                 videoCnt = 0
@@ -42,7 +42,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.NeZha,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "哪吒主题",
                 videoCnt = 0
@@ -77,7 +77,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.NvShen,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "女神主题",
                 videoCnt = 0
@@ -85,7 +85,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.Spring,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "踏春主题",
                 videoCnt = 0
@@ -102,7 +102,7 @@ namespace Assets.Game.Scripts
             new GameModeProperty
             {
                 id = GameMode.FiveOne,
-                sceneName = "Feibiao",
+                sceneName = "Game",
                 bundleName = "Feibiao",
                 explain = "五一主题",
                 videoCnt = 0
