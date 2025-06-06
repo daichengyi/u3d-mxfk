@@ -133,8 +133,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             if (sender.name == "btn_clear_tmp" && !gameScene.targetMgr.CanClear())
             {
-                //sers().uiSrv.ShowMessage("无需使用道具");
-                UIManager.Instance.ShowMsg("无需使用道具");
+                UIManager.Instance.ShowMsg("No items required");
                 return;
             }
 

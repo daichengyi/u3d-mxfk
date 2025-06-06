@@ -16,9 +16,11 @@ public class SettingDlg : BaseView
 
     [SerializeField] GameObject btnReset;
     [SerializeField] GameObject btnBack;
-
+    [SerializeField] GameObject gmNode;
 
     [SerializeField] TMP_InputField inputFieldLevel;
+
+    private int clickCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class SettingDlg : BaseView
 
         btnReset.SetActive(GameManager.Instance.IsInGame());
         btnBack.SetActive(GameManager.Instance.IsInGame());
+
+        gmNode.SetActive(Application.isEditor);
     }
 
     // Update is called once per frame
@@ -74,6 +78,15 @@ public class SettingDlg : BaseView
     }
 
     #region GM¹¦ÄÜ
+
+    public void ClickTitle()
+    {
+        clickCount++;
+        if(clickCount > 10)
+        {
+            gmNode.SetActive(true);
+        }
+    }
     public void ClickGM()
     {
         int level = int.Parse(inputFieldLevel.text);

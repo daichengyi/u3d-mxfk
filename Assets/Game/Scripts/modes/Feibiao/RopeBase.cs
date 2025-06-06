@@ -13,5 +13,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public virtual  void SetType(int type, bool isAnimated = true) { }
 
         public virtual void MoveStart(Action onComplete) { }
+
+        public virtual void Dispose() { }
     }
 }

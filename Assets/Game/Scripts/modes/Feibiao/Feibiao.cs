@@ -188,7 +188,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 UIManager.Instance.OpenView(VIEW_NAME.ReviveDlg, VIEW_TYPE.dialog, false, null, data);
             });
-            UIManager.Instance.ShowMsg("槽位已满!");
+            UIManager.Instance.ShowMsg("Slot is full!");
         }
 
         private float GetProgress()
@@ -493,7 +493,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             catch (Exception err)
             {
                 Debug.LogError($"loadLevel error {err}");
-                UIManager.Instance.ShowMsg("关卡加载失败,请稍后再试");
+                UIManager.Instance.ShowMsg("level load fail");
             }
             finally
             {

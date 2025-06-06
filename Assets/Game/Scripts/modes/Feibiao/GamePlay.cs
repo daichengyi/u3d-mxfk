@@ -65,11 +65,11 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         if (IsInvoking(nameof(StartAutoPlay)))
         {
             CancelInvoke(nameof(StartAutoPlay));
-            UIManager.Instance.ShowMsg("自动模式已关闭");
+            UIManager.Instance.ShowMsg("Auto Mode disabled");
         }
         else
         {
-            UIManager.Instance.ShowMsg("自动模式已开启");
+            UIManager.Instance.ShowMsg("Auto Mode enabled");
             InvokeRepeating(nameof(StartAutoPlay), 0f, 0.3f);
         }
     }
@@ -109,7 +109,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     private void ShowBlockLayer(EventStruct evt)
     {
         blockLayer.SetActive(true);
-        UIManager.Instance.ShowMsg("请选择一块板子敲碎");
+        UIManager.Instance.ShowMsg("Please select a panel to smash");
     }
     private List<List<int>> GetColorConfig(int level)
     {
@@ -557,7 +557,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 return;
             }
         }
-        UIManager.Instance.ShowMsg("请选择一块板子敲碎");
+        UIManager.Instance.ShowMsg("Please select a panel to smash");
     }
 
     /** 点击毛线圈*/

@@ -579,7 +579,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         {
             if (IsTmpFull())
             {
-                UIManager.Instance.ShowMsg("槽位已满,无法继续放入");
+                UIManager.Instance.ShowMsg("The slot is full and cannot place any more");
                 return;
             }
             Target comp = FindMatchingTarget(params_);
@@ -697,8 +697,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 int randomNum = UnityEngine.Random.Range(1, 4);
                 SoundManager.Ins.PlaySfx($"merge_{randomNum}");
                 ropeController.DestroyByReset();
-                operateObj.transform.SetParent(null);
+                //operateObj.transform.SetParent(null);
                 callback?.Invoke();
+                operateObj.Dispose();
             });
         }
 

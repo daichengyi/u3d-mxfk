@@ -14,21 +14,28 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void Start()
         {
-            EventMng.addEventListener(EventTypes.SCREW_REMOVE, (EventStruct es) =>
-            {
-                var targetNode = es.target;
-                Transform targetTransform = targetNode as Transform;
-                if (targetTransform == null) return;
+            EventMng.addEventListener(EventTypes.SCREW_REMOVE, playTouchEff);
+        }
 
-                Vector3 worldPos = targetTransform.parent.TransformPoint(targetTransform.localPosition);
-                Vector3 local = transform.InverseTransformPoint(worldPos);
+        private void OnDestroy()
+        {
+            EventMng.removeEventListener(EventTypes.SCREW_REMOVE, playTouchEff);
+        }
 
-                GameObject eff = Instantiate(touchScrewPrefab);
-                eff.transform.SetParent(transform);
-                eff.transform.localPosition = local;
+        private void playTouchEff(EventStruct es)
+        {
+            var targetNode = es.target;
+            Transform targetTransform = targetNode as Transform;
+            if (targetTransform == null) return;
 
-                Destroy(eff, 0.25f);
-            });
+            Vector3 worldPos = targetTransform.parent.TransformPoint(targetTransform.localPosition);
+            Vector3 local = transform.InverseTransformPoint(worldPos);
+
+            GameObject eff = Instantiate(touchScrewPrefab);
+            eff.transform.SetParent(transform);
+            eff.transform.localPosition = local;
+
+            Destroy(eff, 0.25f);
         }
 
         /// <summary>
@@ -59,7 +66,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         {
             if (GameManager.Instance.currMode.id != GameMode.Feibiao)
             {
-                UIManager.Instance.ShowMsg("特殊关卡难度较大,请谨慎操作");
+                UIManager.Instance.ShowMsg("Special stages are challenging. Proceed with caution");
                 return;
             }
 

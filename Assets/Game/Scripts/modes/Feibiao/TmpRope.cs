@@ -67,5 +67,12 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 transform.GetChild(0).Rotate(0, 0, 0);
             }
         }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            transform.SetParent(null);
+            Destroy(gameObject);
+        }
     }
 }

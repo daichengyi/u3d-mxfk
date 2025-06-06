@@ -15,7 +15,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private Sprite[] spriteFrames;
         [SerializeField]
         public Image sprite;
-        
+
         [HideInInspector]
         public HingeJoint2D hingeJoint;
 
@@ -40,7 +40,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
         }
 
-        public  void SetLock(bool value)
+        public void SetLock(bool value)
         {
             isLocked = value;
             sprite.DOFade(value ? 0f : 1f, 0);
@@ -106,6 +106,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
                         .Append(sprite.transform.DORotate(new Vector3(0, 0, -oldAngle), 0.05f));
 
             shakeSequence.Play();
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            transform.SetParent(null);
+            Destroy(gameObject);
         }
     }
 }

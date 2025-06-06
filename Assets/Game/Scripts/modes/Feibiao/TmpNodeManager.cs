@@ -75,7 +75,7 @@ public class TmpNodeManager : MonoBehaviour
     {
         if (activeSlotCount >= MAX_TMP)
         {
-            UIManager.Instance.ShowMsg("无法添加更多槽位");
+            UIManager.Instance.ShowMsg("Unable to add more slots");
             return;
         }
 
