@@ -251,7 +251,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 isWin = false,
             };
             SoundManager.Ins.PlaySfx("shibai");
-            UIManager.Instance.OpenView(VIEW_NAME.ResultDlg, VIEW_TYPE.dialog,false,null,data);
+            UIManager.Instance.OpenView(VIEW_NAME.ResultDlg, VIEW_TYPE.dialog, false, null, data);
         }
 
         public void Pass()
@@ -484,7 +484,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 SceneManager.sceneLoaded += (scene, mode) =>
                 {
                     Debug.Log("EVENT_BEFORE_SCENE_LAUNCH");
-                    Destroy(prefab);
+                    if (prefab != null)
+                    {
+                        Destroy(prefab);
+                    }
                     Resources.UnloadAsset(data);
                 };
 

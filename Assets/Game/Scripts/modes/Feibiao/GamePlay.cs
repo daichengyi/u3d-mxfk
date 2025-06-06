@@ -601,7 +601,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     private void TouchOperateObj(Rope comp)
     {
         targetMgr.OnTouchOperateObj(comp);
-        EventMng.dispatchEvent(new EventStruct(EventTypes.SCREW_REMOVE), comp);
+        EventMng.dispatchEvent(new EventStruct(EventTypes.SCREW_REMOVE), comp.transform);
         SoundManager.Ins.PlaySfx("点击飞镖");
         //PlatformService.Instance.VibrateShort(false);
     }
