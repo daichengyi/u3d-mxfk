@@ -6,6 +6,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,7 +39,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     // Start is called before the first frame update
     void Awake()
     {
-        Physics2D.gravity = new Vector2(0, -1600f);
+        Physics2D.gravity = new Vector2(0, -500f);
 
         EventMng.addEventListener(EventTypes.BTN_REMOVE_BOARD, ShowBlockLayer);
 
@@ -64,11 +65,11 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         if (IsInvoking(nameof(StartAutoPlay)))
         {
             CancelInvoke(nameof(StartAutoPlay));
-            //UIService.Instance.ShowMessage("自动模式已关闭");
+            UIManager.Instance.ShowMsg("自动模式已关闭");
         }
         else
         {
-            //UIService.Instance.ShowMessage("自动模式已开启");
+            UIManager.Instance.ShowMsg("自动模式已开启");
             InvokeRepeating(nameof(StartAutoPlay), 0f, 0.3f);
         }
     }
@@ -94,15 +95,15 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    public IEnumerator InitGame(GridDataWrapper paintData, int level)
+    public async Task InitGame(GridDataWrapper paintData, int level)
     {
         Debug.Log("gamePlay");
-        yield return StartCoroutine(InitPaintBoard(paintData, level));
+        InitPaintBoard(paintData, level);
         CheckBoards();
-        yield return StartCoroutine(InitBoards());
+        await Task.WhenAny(InitBoards());
         List<Board> data = boards;
         RefreshBoardLockState();
-        yield return StartCoroutine(InitLevelConfig(level));
+        InitLevelConfig(level);
     }
 
     private void ShowBlockLayer(EventStruct evt)
@@ -150,9 +151,8 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         return colorArr;
     }
 
-    private IEnumerator InitLevelConfig(int level)
+    private void InitLevelConfig(int level)
     {
-        yield return new WaitForSeconds(0.01f);
         var colorArr = GetColorConfig(level);
         var colorsConfig = new List<int>();
         var targetConfig = new List<int>();
@@ -190,13 +190,13 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    private IEnumerator InitPaintBoard(GridDataWrapper paintData, int level)
+    private void InitPaintBoard(GridDataWrapper paintData, int level)
     {
         paintBoard.LoadGridData(paintData);
         if (GameManager.Instance.currMode.id != GameMode.Feibiao)
         {
             paintBoard.FixHistory(120);
-            yield return new WaitForSeconds(0.01f);
+           return;
         }
         ///if (!LevelMgr.IsABTest()) return;
 
@@ -206,7 +206,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             {
                 levelText.color = Color.red;
                 bossFlag.SetActive(true);
-                Debug.Log("���⴦���ؿ�");
+                Debug.Log("特殊处理关卡");
 
                 if (level <= 15)
                 {
@@ -260,7 +260,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
             int needToAdd = requiredHoles - holesCount;
             var availableBoards = new List<Transform>();
-            int startLayer = 4;
+            int startLayer = 4;// 第5层（索引从0开始）
             int endLayer = boardLayer.childCount - 3;
 
             for (int i = startLayer; i < endLayer; i++)
@@ -336,7 +336,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         }
     }
 
-    private IEnumerator InitBoards()
+    private async Task InitBoards()
     {
         boards = new List<Board>();
 
@@ -358,8 +358,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             }
             children.Sort((a, b) => b.position.y.CompareTo(a.position.y));
 
-            // 使用协程实现延时
-            yield return new WaitForSeconds(0.01f);
+            await Task.Delay(index * 10);
 
             for (int j = 0; j < boardNodeLayer.childCount; j++)
             {
@@ -367,15 +366,16 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 Rigidbody2D rigidBody = boardNode.GetComponent<Rigidbody2D>();
                 rigidBody.simulated = true;
                 rigidBody.angularDrag = 2;
+                rigidBody.gravityScale = 2;
 
                 Board boardComp = boardNode.GetComponent<Board>();
-                PolygonCollider2D physicsPolygonCollider = boardNode.GetComponent<PolygonCollider2D>();
-                PolygonCollider2D polygonCollider = boardNode.GetComponent<PolygonCollider2D>();
+                //PolygonCollider2D physicsPolygonCollider = boardNode.GetComponent<PolygonCollider2D>();
+                //PolygonCollider2D polygonCollider = boardNode.GetComponent<PolygonCollider2D>();
                 boardComp.layerIndex = index + 1;
-                boardNode.gameObject.layer = LayerMask.NameToLayer("Default");
+                boardNode.gameObject.layer = LayerMask.NameToLayer("UI");
 
                 // 设置碰撞器
-                physicsPolygonCollider.points = polygonCollider.points;
+                //physicsPolygonCollider.points = polygonCollider.points;
                 boardComp.Init(objPrefab);
 
                 // 设置颜色
@@ -402,14 +402,13 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             if (boardNodeLayer.childCount > 0)
             {
                 var boardNode = boardNodeLayer.GetChild(0);
-                int groupIndex = groupArr.IndexOf(boardNode.gameObject.layer.ToString());
+                int groupIndex = groupArr.IndexOf(LayerMask.LayerToName(boardNode.gameObject.layer));
                 if (groupIndex >= 0)
                 {
                     groupArr.RemoveAt(groupIndex);
                 }
             }
         }
-
         int count = 0;
         for (int index = boardLayer.childCount - 1; index >= 0; index--)
         {
@@ -439,9 +438,9 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                         groupArr.RemoveAt(0);
                     }
 
-                    if (boardNode.gameObject.layer == LayerMask.NameToLayer("Default") && groupArr.Count > 0)
+                    if (boardNode.gameObject.layer == LayerMask.NameToLayer("UI") && groupArr.Count > 0)
                     {
-                        var collider = boardNode.GetComponent<Collider2D>();
+                        PolygonCollider2D collider = boardNode.GetComponent<PolygonCollider2D>();
                         collider.enabled = false;
                         boardNode.gameObject.layer = LayerMask.NameToLayer(group);
                         collider.enabled = true;

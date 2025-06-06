@@ -476,7 +476,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
                 gameplay.boardLayer = prefabNode.transform;
                 GridDataWrapper gridData = JsonConvert.DeserializeObject<GridDataWrapper>(data.text);
-                StartCoroutine(gameplay.InitGame(gridData, rlevel));
+                gameplay.InitGame(gridData, rlevel);
 
                 nowGuanqiaNode = prefabNode;
                 gameUILayer.InitFeibiao(this);
