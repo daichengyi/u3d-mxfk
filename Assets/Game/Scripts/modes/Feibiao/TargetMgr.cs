@@ -223,7 +223,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                             int nextData = GetNextTarget();
                             if (nextData >= 0)
                             {
-                                SoundManager.Ins.PlaySfx("镖靶更换2");
+                                SoundManager.Ins.PlaySfx("biaobagenghuan2");
                                 HandleTargetGeneration(targetComp.posIndex, nextData);
                             }
                             else

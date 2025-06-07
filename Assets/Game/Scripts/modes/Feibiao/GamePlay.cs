@@ -338,6 +338,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
     private async Task InitBoards()
     {
+        Debug.Log("InitBoards===============");
         boards = new List<Board>();
 
         List<string> color1 = new List<string>(COLORS);
@@ -358,7 +359,12 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
             }
             children.Sort((a, b) => b.position.y.CompareTo(a.position.y));
 
-            await Task.Delay(index * 10);
+            //await Task.Delay(index * 10);
+            var t = Time.frameCount;
+            while(Time.frameCount - t < 10)
+            {
+                await Task.Yield();
+            }
 
             for (int j = 0; j < boardNodeLayer.childCount; j++)
             {
@@ -552,7 +558,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                     blockLayer.SetActive(false);
                     //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
                     EventMng.dispatchEvent(new EventStruct(EventTypes.REMOVE_BOARD), board);
-                    SoundManager.Ins.PlaySfx("板子碎");
+                    SoundManager.Ins.PlaySfx("banzisui");
                 });
                 return;
             }
@@ -602,7 +608,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     {
         targetMgr.OnTouchOperateObj(comp);
         EventMng.dispatchEvent(new EventStruct(EventTypes.SCREW_REMOVE), comp.transform);
-        SoundManager.Ins.PlaySfx("点击飞镖");
+        SoundManager.Ins.PlaySfx("dianjifeibiao");
         //PlatformService.Instance.VibrateShort(false);
     }
 

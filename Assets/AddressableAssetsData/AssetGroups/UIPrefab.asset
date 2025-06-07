@@ -21,10 +21,12 @@ MonoBehaviour:
     m_Address: Assets/uiPrefab/TipUI.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb45b67488f3a1946a52a7415eb62554
     m_Address: Assets/uiPrefab/LoadWindow.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}
   m_SchemaSet:

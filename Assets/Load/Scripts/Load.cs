@@ -145,7 +145,7 @@ public class Load : MonoBehaviour
                 }
 
                 JObject gameConfig = (JObject)config["game"];
-                ConfigManager.Ins.LoadAllConfig(gameConfig);
+                //ConfigManager.Ins.LoadAllConfig(gameConfig);
                 getLogin();
                 _ = LoadScene(goToSceneName);
             },

@@ -21,6 +21,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
     public class PaintBoard : MonoBehaviour
     {
         [SerializeField] public RectTransform gridContainer;
+        [SerializeField] public RectTransform bottom;
         [SerializeField] private Button previewButton;
         [SerializeField] private Sprite[] filledSprites;
         [SerializeField] private Button nextStepButton;
@@ -64,15 +65,20 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (parentNode == null) return;
 
             RectTransform parentRect = parentNode;
-            float nodeHeight = Screen.height / 2 - parentNode.localPosition.y - 100;
+            //float nodeHeight = Screen.height / 2 - parentNode.localPosition.y -50;
+            float nodeHeight = Screen.height - bottom.position.y - 100;
+            Debug.Log($"bottom==={bottom.position.y}");
 
             // 考虑安全区域
             Rect safeArea = Screen.safeArea;
             nodeHeight = nodeHeight - (Screen.height - safeArea.height - safeArea.y);
+            Debug.Log($"nodeHeight==={nodeHeight},gridHeight==={gridHeight},parentNode.localPosition.y={parentNode.localPosition.y}");
+
             if (nodeHeight > gridHeight)
             {
                 nodeHeight = gridHeight;
             }
+            Debug.Log($"safeArea===safeArea.h={safeArea.height},safeArea.y==={safeArea.y},Screen.height=={Screen.height}");
 
             // 设置父节点高度，保持锚点居中
             parentRect.sizeDelta = new Vector2(parentRect.sizeDelta.x, nodeHeight);
@@ -515,8 +521,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private void ImportJson()
         {
             // 在Unity中，我们需要使用文件对话框
-            string path = EditorUtility.OpenFilePanel("选择JSON文件", "", "json");
-            if (string.IsNullOrEmpty(path)) return;
+            //string path = EditorUtility.OpenFilePanel("选择JSON文件", "", "json");
+            //if (string.IsNullOrEmpty(path)) return;
 
             //string jsonData = File.ReadAllText(path);
             //LoadGridData(jsonData);
@@ -611,11 +617,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             // 保存为PNG
             byte[] bytes = tex.EncodeToPNG();
-            string path = EditorUtility.SaveFilePanel("保存PNG", "", "grid.png", "png");
+            /*string path = EditorUtility.SaveFilePanel("保存PNG", "", "grid.png", "png");
             if (!string.IsNullOrEmpty(path))
             {
                 File.WriteAllBytes(path, bytes);
-            }
+            }*/
 
             // 清理
             DestroyImmediate(cameraObj);

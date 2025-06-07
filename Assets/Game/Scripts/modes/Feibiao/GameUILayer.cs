@@ -184,7 +184,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //sers().uiSrv.ShowPage("JoinGameClub", "JoinGameClubPage");
         }
 
-        public void OnSetBtn()
+        public async void OnSetBtn()
         {
             UIManager.Instance.OpenView(VIEW_NAME.SetttingDlg, VIEW_TYPE.dialog);
         }

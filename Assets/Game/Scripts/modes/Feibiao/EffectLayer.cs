@@ -76,8 +76,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
             Transform spineNode = transform.Find("nandubiaosheng");
             if (spineNode == null) return;
 
-            SkeletonAnimation spine = spineNode.GetComponent<SkeletonAnimation>();
-            if (spine == null) return;
+            SkeletonGraphic skeGraphic = spineNode.GetComponent<SkeletonGraphic>();
+            if (skeGraphic == null) return;
 
             spineNode.gameObject.SetActive(true);
 
@@ -91,7 +91,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 animationName = "animation4";
             }
 
-            spine.AnimationState.SetAnimation(0, animationName, false);
+            skeGraphic.AnimationState.SetAnimation(0, animationName, false);
             Invoke(nameof(HideSpine), 1.25f);
         }
 

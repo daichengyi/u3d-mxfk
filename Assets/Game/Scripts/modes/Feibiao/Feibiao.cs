@@ -6,14 +6,28 @@ using DG.Tweening;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
+using static Spine.Unity.Examples.SpineboyFootplanter;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
+
+    public class TransformInfo
+    {
+        public string Path { get; set; }
+        public Vector3 Position { get; set; }
+        public Vector3 Scale { get; set; }
+        public bool IsActive { get; set; }
+
+        public Image Sprite { get; set; }
+    }
+
     public class Feibiao : MonoBehaviour
     {
         [SerializeField] public TargetMgr targetMgr;
@@ -116,7 +130,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //ReportAnalytics("game_enter");
             effectLayer.ShowLevelupEffect(level);
 
-            await Task.Delay(10); // 等待一帧
+            var t = Time.frameCount;
+            while (Time.frameCount - t < 10)
+            {
+                await Task.Yield();
+            }
             /*if (level == 0)
             {
                 xinshouyindao = Instantiate(xinshouyindaoPrefab);
@@ -464,7 +482,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public async Task LoadLevel(int rlevel)
         {
             //string resId = LevelMgr.GetPrefabName(rlevel);
-            //Debug.Log($"loadLevel {rlevel} {resId}");
+            Debug.Log($"loadLevel {rlevel}");
             UIManager.Instance.ShowLoading();
             try
             {
@@ -473,6 +491,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
                 GamePlay gameplay = GetComponent<GamePlay>();
                 GameObject prefabNode = Instantiate(prefab, gameplay.levelRoot);
+
+                /*(var allInfo = GetAllTransformInfo(prefab.transform);
+                foreach (var info in allInfo)
+                {
+                    Debug.Log($"Path: {info.Path}\n" +
+                             $"Position: {info.Position}\n" +
+                             $"Scale: {info.Scale}\n" +
+                             $"IsActive: {info.IsActive}\n" +
+                              $"Sprite: {info.Sprite}\n" +
+                             "-------------------");
+                }*/
+
+
 
                 gameplay.boardLayer = prefabNode.transform;
                 GridDataWrapper gridData = JsonConvert.DeserializeObject<GridDataWrapper>(data.text);
@@ -498,6 +529,34 @@ namespace Assets.Game.Scripts.modes.Feibiao
             finally
             {
                 UIManager.Instance.HideLoading();
+            }
+        }
+
+        public List<TransformInfo> GetAllTransformInfo(Transform root)
+        {
+            List<TransformInfo> result = new List<TransformInfo>();
+            GetAllTransformInfoRecursive(root, "", result);
+            return result;
+        }
+
+        private void GetAllTransformInfoRecursive(Transform current, string currentPath, List<TransformInfo> result)
+        {
+            // 添加当前节点信息
+            result.Add(new TransformInfo
+            {
+                Path = currentPath,
+                Position = current.localPosition,
+                Scale = current.localScale,
+                IsActive = current.gameObject.activeSelf,
+                Sprite = current.GetComponent<Image>(),
+            });
+
+            // 递归处理所有子节点
+            for (int i = 0; i < current.childCount; i++)
+            {
+                Transform child = current.GetChild(i);
+                string childPath = string.IsNullOrEmpty(currentPath) ? child.name : $"{currentPath}/{child.name}";
+                GetAllTransformInfoRecursive(child, childPath, result);
             }
         }
 

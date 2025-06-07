@@ -38,7 +38,6 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             // 将物理材质应用到Rigidbody2D
             rigidBody.sharedMaterial = material;
-
             gameObject.SetActive(false);
         }
 

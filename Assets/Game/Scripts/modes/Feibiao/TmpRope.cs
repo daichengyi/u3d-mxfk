@@ -33,9 +33,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
             sprite.transform.DOScale(Vector3.zero,0f);
             sprite.gameObject.SetActive(false);
             string path = $"Res/tmp/{type + 1}.png";
-            Sprite spriteFrame = await ResourceManager.AsyncLoadRes<Sprite>(path);
-            sprite.sprite = spriteFrame;
-            sprite.gameObject.SetActive(true);
+            await ResourceManager.AsyncLoadRes<Sprite>(path, (spriteFrame) => {
+                sprite.sprite = spriteFrame;
+                sprite.gameObject.SetActive(true);
+            });
             //sprite.DOFade(0, 0);
             //sprite.DOFade(1, 0.2f).SetDelay(time);    
             sprite.transform.DOScale(Vector3.one, 0.5f);
@@ -55,7 +56,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (rotateTime <= 0) return;
             rotateTime -= Time.deltaTime;
             // 计算每帧旋转角度
-            float angle = 360f * Time.deltaTime;
+            float angle = 720f * Time.deltaTime;
              angle = -angle;
 
             // 执行旋转

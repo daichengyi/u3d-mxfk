@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6497457562266286762}
   - component: {fileID: 8924944570227299045}
+  - component: {fileID: 3621937907064141237}
   m_Layer: 5
   m_Name: order
   m_TagString: Untagged
@@ -56,6 +57,14 @@ MonoBehaviour:
   capSpr: {fileID: 763052036881125098}
   holeNode: {fileID: 4651080206393517419}
   shadow: {fileID: 0}
+--- !u!222 &3621937907064141237
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546445917087592213}
+  m_CullTransparentMesh: 1
 --- !u!1 &789856185185395730
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4651080206393517419}
   - component: {fileID: 1743593646873556047}
+  - component: {fileID: 8615126461140397112}
   m_Layer: 5
   m_Name: holeNode
   m_TagString: Untagged
@@ -121,6 +131,14 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!222 &8615126461140397112
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789856185185395730}
+  m_CullTransparentMesh: 1
 --- !u!1 &987448669629196149
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6376801557123236022}
   - component: {fileID: 5953449450153801234}
+  - component: {fileID: 3751924005870170603}
   m_Layer: 5
   m_Name: rope
   m_TagString: Untagged
@@ -186,6 +205,14 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!222 &3751924005870170603
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987448669629196149}
+  m_CullTransparentMesh: 1
 --- !u!1 &1327316972159272968
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799241992759189415}
   - component: {fileID: 962628581790093043}
+  - component: {fileID: 3287346904232039782}
   m_Layer: 5
   m_Name: rope
   m_TagString: Untagged
@@ -251,6 +279,14 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!222 &3287346904232039782
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327316972159272968}
+  m_CullTransparentMesh: 1
 --- !u!1 &1519329572654384784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1574016812941342070}
   - component: {fileID: 6037778182603009262}
+  - component: {fileID: 3834828945076687016}
   m_Layer: 5
   m_Name: rope
   m_TagString: Untagged
@@ -1216,3 +1253,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!222 &3834828945076687016
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409274051464038666}
+  m_CullTransparentMesh: 1

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Assets.Scripts.common;
+using UnityEngine.AddressableAssets;
 
 public class UIManager : MonoBehaviour
 {
