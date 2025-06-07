@@ -3,7 +3,6 @@ using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.Events;
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

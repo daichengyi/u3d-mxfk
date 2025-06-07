@@ -2,8 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +22,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
     {
         [SerializeField] public RectTransform gridContainer;
         [SerializeField] public RectTransform bottom;
+        [SerializeField] private RectTransform top;
         [SerializeField] private Button previewButton;
         [SerializeField] private Sprite[] filledSprites;
         [SerializeField] private Button nextStepButton;
@@ -65,23 +66,19 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (parentNode == null) return;
 
             RectTransform parentRect = parentNode;
-            //float nodeHeight = Screen.height / 2 - parentNode.localPosition.y -50;
-            float nodeHeight = Screen.height - bottom.position.y - 100;
-            Debug.Log($"bottom==={bottom.position.y}");
 
-            // 考虑安全区域
-            Rect safeArea = Screen.safeArea;
-            nodeHeight = nodeHeight - (Screen.height - safeArea.height - safeArea.y);
-            Debug.Log($"nodeHeight==={nodeHeight},gridHeight==={gridHeight},parentNode.localPosition.y={parentNode.localPosition.y}");
+            Vector3 tpos = transform.InverseTransformPoint(top.position);
+            Vector3 bpos = transform.InverseTransformPoint(bottom.position);
 
-            if (nodeHeight > gridHeight)
-            {
-                nodeHeight = gridHeight;
-            }
-            Debug.Log($"safeArea===safeArea.h={safeArea.height},safeArea.y==={safeArea.y},Screen.height=={Screen.height}");
+            Debug.Log($"tpos={tpos},bpos:{bpos}");
+            // 计算基础可用高度
+            float availableHeight = tpos.y - bpos.y - 40;//Screen.height - bottom.position.y - 100;
+
+            // 确保高度不超过网格高度
+            float finalHeight = Mathf.Min(availableHeight, gridHeight);
 
             // 设置父节点高度，保持锚点居中
-            parentRect.sizeDelta = new Vector2(parentRect.sizeDelta.x, nodeHeight);
+            parentRect.sizeDelta = new Vector2(parentRect.sizeDelta.x, finalHeight);
         }
 
         private void RedrawToStep(int step)
@@ -541,8 +538,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
             if (paintBoardRect == null) return;
 
             // 计算遮罩的上下边界（相对于锚点）
-            float maskTop = gridContainer.rect.width/2 - maskHeight / 2;
-            float maskBottom = -(gridContainer.rect.height / 2-maskHeight / 2);
+            float maskTop = gridContainer.rect.width / 2 - maskHeight / 2;
+            float maskBottom = -(gridContainer.rect.height / 2 - maskHeight / 2);
 
             // 计算目标单元格的位置（相对于锚点）
             float cellY = y * cellSize - gridHeight / 2;

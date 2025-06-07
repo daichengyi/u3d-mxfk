@@ -3580,6 +3580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridContainer: {fileID: 1122821677}
   bottom: {fileID: 947164722}
+  top: {fileID: 1954257689}
   previewButton: {fileID: 0}
   filledSprites:
   - {fileID: 21300000, guid: 3fdc68acfd8d93443a61bd096c9fac81, type: 3}
