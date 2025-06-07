@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.config;
 using Assets.Scripts.manager;
 using ZhiSe;
 
@@ -37,9 +38,9 @@ public class UserModel : SingletonBase<UserModel>
         get { return _level; }
         set { 
             _level = value; 
-            if(_level > 2)
+            if(_level > ConstVal.ROPE_MAX_LEVEL)
             {
-                _level = 2;
+                _level = ConstVal.ROPE_MAX_LEVEL;
             }
             SetUserData("level", _level); 
         }

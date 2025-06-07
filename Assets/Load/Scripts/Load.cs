@@ -203,6 +203,7 @@ public class Load : MonoBehaviour
 
     async Task PreloadAssetAsync()
     {
+        await ResourceManager.PreloadLevels();
         await Task.CompletedTask;
     }
 

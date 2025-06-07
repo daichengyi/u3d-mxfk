@@ -19,6 +19,9 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [HideInInspector]
         public HingeJoint2D hingeJoint;
 
+        [SerializeField]
+        private CanvasGroup canvasGroup;
+
         // Use this for initialization
         void Start()
         {
@@ -43,7 +46,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public void SetLock(bool value)
         {
             isLocked = value;
-            sprite.DOFade(value ? 0f : 1f, 0);
+            canvasGroup.alpha = isLocked ? 0f : 1f;
         }
 
         public override void RemoveFromBoard()
@@ -58,7 +61,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             }
 
             Destroy(sprite.GetComponent<Rigidbody2D>());
-            sprite.DOFade(1f, 0);
+            canvasGroup.alpha = 1;
             sprite.transform.rotation = Quaternion.identity;
         }
 

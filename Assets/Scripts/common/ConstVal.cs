@@ -15,7 +15,7 @@
         public const int INFINITY_POWER_VIDEO_CNT = 5;
 
         /** 绳子拼图最大等级 */
-        public const int ROPE_MAX_LEVEL = 1000;
+        public const int ROPE_MAX_LEVEL = 3;
 
 
 
@@ -26,10 +26,5 @@
         public const string Local_Sound = "local_sound_switch";
         public const string Local_Vibrator = "local_vibrator_switch";
 
-
-        //道具数据
-        public const string MianfeidaojuData = "MianfeidaojuData";
-
-        public const string FeibiaoData = "FeibiaoData";
     }
 }

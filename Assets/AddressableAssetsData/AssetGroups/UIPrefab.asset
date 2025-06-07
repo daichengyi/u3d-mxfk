@@ -20,12 +20,14 @@ MonoBehaviour:
   - m_GUID: fa12ae13c5fe29e4c8a3a7b819d92f1a
     m_Address: Assets/uiPrefab/TipUI.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb45b67488f3a1946a52a7415eb62554
     m_Address: Assets/uiPrefab/LoadWindow.prefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}

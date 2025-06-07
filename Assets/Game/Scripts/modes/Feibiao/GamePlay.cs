@@ -360,7 +360,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
             //await Task.Delay(index * 10);
             var t = Time.frameCount;
-            while(Time.frameCount - t < 10)
+            while(Time.frameCount - t < 2)
             {
                 await Task.Yield();
             }

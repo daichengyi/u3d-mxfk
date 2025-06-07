@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6073877069987249821}
   - component: {fileID: 4834758553086618653}
+  - component: {fileID: 4986469453332179415}
   m_Layer: 5
   m_Name: rope
   m_TagString: Untagged
@@ -64,6 +65,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e989af5d9fa781f4c9bd652ba95541a2, type: 3}
   sprite: {fileID: 2295773814437481132}
   hingeJoint: {fileID: 0}
+  canvasGroup: {fileID: 4986469453332179415}
+--- !u!225 &4986469453332179415
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055864485465042250}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5958653497611481364
 GameObject:
   m_ObjectHideFlags: 0

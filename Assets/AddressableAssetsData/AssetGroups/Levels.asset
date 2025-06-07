@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 0388e4f4f6994f842ba628bbd487e3f9
     m_Address: Assets/Game/Levels
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - levels
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8a500b0be1ac4c443b3119f0c9ca4ccb, type: 2}

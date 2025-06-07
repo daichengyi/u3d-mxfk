@@ -42,6 +42,8 @@ namespace Assets.Game.Scripts
         private GameModeProperty m_CurrMode;
         public GameModeProperty currMode => m_CurrMode;
 
+        public int maxLevel;
+
         public async Task EnterMode(GameMode mode, bool showLoading = true)
         {
             RopeSegmentManager.Instance.ClearAllPools();

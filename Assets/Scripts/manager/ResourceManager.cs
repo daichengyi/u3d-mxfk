@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 public class ResourceManager
 {
@@ -346,6 +347,83 @@ public class ResourceManager
         {
             Debug.LogError($"加载资源时发生异常: {path}, 错误: {ex.Message}\n{ex.StackTrace}");
             return default(T);
+        }
+    }
+
+    public static async Task<int> PreloadLevels()
+    {
+        // 获取所有资源位置
+        var locationsHandle = Addressables.LoadResourceLocationsAsync("levels");
+        await locationsHandle.Task;
+
+        if (locationsHandle.Status != AsyncOperationStatus.Succeeded)
+        {
+            Debug.LogError("无法获取资源位置");
+            return 0;
+        }
+        else
+        {
+            return locationsHandle.Result.Count / 2;
+        }
+    }
+
+    /// <summary>
+    /// 预加载文件夹中的所有预制件
+    /// </summary>
+    public static async Task<bool> PreloadFolderAsync()
+    {
+        try
+        {
+            // 获取所有资源位置
+            var locationsHandle = Addressables.LoadResourceLocationsAsync("levels");
+            await locationsHandle.Task;
+
+            if (locationsHandle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError("无法获取资源位置");
+                return false;
+            }
+
+            var locations = locationsHandle.Result;
+
+            // 按类型分组加载
+            var groups = locations.GroupBy(l => l.ResourceType);
+            foreach (var group in groups)
+            {
+                string typeName = group.Key.Name;
+
+                foreach (var location in group)
+                {
+                    string address = location.PrimaryKey;
+                    var handle = Addressables.LoadAssetAsync<object>(address);
+
+                    // 等待加载完成
+                    await handle.Task;
+
+                    if (handle.Status == AsyncOperationStatus.Succeeded)
+                    {
+
+                        Debug.Log($"资源加载成功: {address}");
+                    }
+                    else
+                    {
+                        Debug.LogError($"资源加载失败: {address}");
+                    }
+
+                    // 释放句柄
+                    //Addressables.Release(handle);
+                    //Debug.LogError($"释放句柄:====");
+                }
+            }
+
+            // 释放位置句柄
+            //Addressables.Release(locationsHandle);
+            return true;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"预加载过程中发生错误: {e.Message}");
+            return false;
         }
     }
 }
