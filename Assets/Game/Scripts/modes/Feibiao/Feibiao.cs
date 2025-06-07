@@ -58,6 +58,10 @@ namespace Assets.Game.Scripts.modes.Feibiao
             //UserService.Instance.SetLastEnterScene("MainPlay");
         }
 
+        private void OnDestroy()
+        {
+            EventMng.removeEventListener(EventTypes.BTN_CLEAR_TMP, ShowSaoba);
+        }
         private void SetLevel()
         {
             GameMode modeID = GameManager.Instance.currMode.id;
@@ -212,11 +216,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 if (!can)
                 {
-                    EventMng.dispatchEvent(new EventStruct(EventTypes.UNLOCK_2), null);
+                    EventMng.dispatchEvent( (EventTypes.UNLOCK_2));
                 }
                 else
                 {
-                    EventMng.dispatchEvent(new EventStruct(EventTypes.BTN_CLEAR_TMP), null);
+                    EventMng.dispatchEvent( (EventTypes.BTN_CLEAR_TMP));
                 }
 
                 foreach (var node in gameUILayer.mianfeiNode)
@@ -234,11 +238,11 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 {
                     if (!can)
                     {
-                        EventMng.dispatchEvent(new EventStruct(EventTypes.UNLOCK_2), null);
+                        EventMng.dispatchEvent( (EventTypes.UNLOCK_2));
                     }
                     else
                     {
-                        EventMng.dispatchEvent(new EventStruct(EventTypes.BTN_CLEAR_TMP), null);
+                        EventMng.dispatchEvent((EventTypes.BTN_CLEAR_TMP));
                     }
                 }
             });

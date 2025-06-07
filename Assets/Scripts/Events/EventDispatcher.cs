@@ -36,10 +36,11 @@ namespace Assets.Scripts.Events
         }
 
         /// 发送事件
-        public void dispatchEvent(EventStruct evt, object gameObject)
+        public void dispatchEvent(string evtType, object gameObject=null)
         {
             //if (evt == null) return;
             //if (evt.eventType == null) return;
+            EventStruct evt = new EventStruct(evtType);
             if (eventListenerDict.ContainsKey(evt.eventType) == false)
             {
                 Debug.Log("dispatchEvent 事件" + evt.eventType);

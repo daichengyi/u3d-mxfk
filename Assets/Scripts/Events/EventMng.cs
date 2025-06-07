@@ -22,9 +22,9 @@ namespace Assets.Scripts.Events
             dispatcher.addEventListener(eventType, callback);
         }
 
-        public static void dispatchEvent(EventStruct evt, object gameObject)
+        public static void dispatchEvent(string evtType, object gameObject= null)
         {
-            dispatcher.dispatchEvent(evt, gameObject);
+            dispatcher.dispatchEvent(evtType, gameObject);
         }
 
         public static void removeEventListener(string eventType, EventListener.EventListenerDelegate callback = null)

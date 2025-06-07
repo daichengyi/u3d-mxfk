@@ -148,7 +148,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             {
                 
                 //EventManager.Instance.Emit(sender.name);
-                EventMng.dispatchEvent(new EventStruct(sender.name),null);
+                EventMng.dispatchEvent( (sender.name));
                 foreach (var node in mianfeiNode)
                 {
                     node.SetActive(false);
@@ -160,7 +160,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             AdManager.Ins.ShowAd(0, (bool isSuc) =>
             {
-                EventMng.dispatchEvent(new EventStruct(sender.name), null);
+                EventMng.dispatchEvent( (sender.name));
             });
         }
 
