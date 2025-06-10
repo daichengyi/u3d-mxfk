@@ -1,36 +1,62 @@
 using Assets.Game.Scripts;
 using Assets.Scripts.common;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class HomeScene : MonoBehaviour
 {
+    [SerializeField] Transform conetnt;
+    [SerializeField] Transform bottom;
 
-    private Dictionary<string, GameObject> _preloadedPrefabs = new Dictionary<string, GameObject>();
-    private Dictionary<string, AsyncOperationHandle<GameObject>> _loadingHandles = new Dictionary<string, AsyncOperationHandle<GameObject>>();
-    private Dictionary<string, List<string>> _folderContents = new Dictionary<string, List<string>>();
+    private int curIndex = 1;
 
     void Start()
     {
         UIManager.Instance.HideLoading();
         SoundManager.Ins.PlayMusic("bgm");
+
+        loadCollection();
+    }
+
+    private async void loadCollection()
+    {
+        await ResourceManager.AsyncLoadRes<GameObject>("uiPrefab/CollectionView.prefab", (prefab) =>
+        {
+            GameObject go = Instantiate(prefab);
+            go.transform.SetParent(conetnt.GetChild(0));
+            go.transform.localPosition = Vector3.zero;
+        });
     }
 
     public void onBtnGame()
     {
         UIManager.Instance.ShowLoading();
-       GameManager.Instance.EnterMode(GameMode.Feibiao, true);
+        GameManager.Instance.EnterMode(GameMode.Feibiao, true);
     }
 
     public void onBtnSet()
     {
-        Addressables.LoadAssetAsync<object>("Assets/Game/Levels/json/lv_0.json");
-        Addressables.LoadAssetAsync<object>("Assets/Game/Levels/prefabs/lv_0.prefab");
-        //UIManager.Instance.OpenView(VIEW_NAME.SetttingDlg, VIEW_TYPE.dialog);
+        UIManager.Instance.OpenView(VIEW_NAME.SetttingDlg, VIEW_TYPE.dialog);
+    }
+
+    public void clickBottom(GameObject node)
+    {
+        int index = node.transform.GetSiblingIndex();
+
+        if (index == curIndex) return;
+
+        if (index == 2)
+        {
+            UIManager.Instance.ShowMsg("Stay tuned");
+            return;
+        }
+
+        bottom.GetChild(curIndex).Find("Select").gameObject.SetActive(false);
+        conetnt.GetChild(curIndex).gameObject.SetActive(false);
+
+        Transform select = node.transform.Find("Select");
+        select.gameObject.SetActive(true);
+        conetnt.GetChild(index).gameObject.SetActive(true);
+
+        curIndex = index;
     }
 }

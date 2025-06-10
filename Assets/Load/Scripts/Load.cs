@@ -1,14 +1,11 @@
-using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using ZhiSe;
-using UnityEngine.Networking;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using TMPro;
 #if PF_WX
 using WeChatWASM;
 #elif PF_TT
@@ -19,6 +16,10 @@ public class Load : MonoBehaviour
 {
     // Start is called before the first frame update
     public Image img_rato;
+
+    [SerializeField] RectTransform proBall;
+
+    [SerializeField] TextMeshProUGUI textPro;
 
     //TODO  需要封装一个jsonManager
     public TextAsset[] jsonArr;
@@ -224,6 +225,8 @@ public class Load : MonoBehaviour
         curProgress = 1f;
         maxCurProgess = 1f;
         img_rato.fillAmount = 1;
+        proBall.anchoredPosition = new Vector3(479,0);
+        textPro.text = "100%";
         SoundManager.Ins.PlayMusic("bgm");
         _ = UIManager.Instance.PreloadView();
         gameObject.SetActive(false);
@@ -236,8 +239,12 @@ public class Load : MonoBehaviour
     float maxCurProgess = 0.5f;
     void Update()
     {
+        if(curProgress >= 1) return;
         curProgress += Time.deltaTime * 0.001f * 150;
         curProgress = Math.Min(curProgress, maxCurProgess);
         img_rato.fillAmount = curProgress;
+
+        proBall.anchoredPosition = new Vector3(479 * curProgress, 0);
+        textPro.text = $"{(curProgress * 100).ToString("F0")}%";
     }
 }

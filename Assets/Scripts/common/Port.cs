@@ -18,6 +18,8 @@ internal struct VIEW_NAME
     public const string ResultDlg = "ResultDlg";
     public const string ReviveDlg = "ReviveDlg";
 
+    public const string CollectionView = "CollectionView";
+
     public const string Tip = "TipUI";
     public const string LoadWindow = "LoadWindow";
 }

@@ -69,9 +69,11 @@
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeTexture.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\PaintBoard.cs" />
+    <Compile Include="Assets\Home\Scripts\collection\CollectionItem.cs" />
     <Compile Include="Assets\Dialog\Scripts\ResultDlg.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Collider2DListener.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\GamePlay.cs" />
+    <Compile Include="Assets\Scripts\common\ScrollList\ScrollList.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeBase.cs" />
     <Compile Include="Assets\Game\Scripts\GameModeJson.cs" />
     <Compile Include="Assets\Scripts\common\UIBase.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Assets\Scripts\common\ButtonScaleAnimation.cs" />
     <Compile Include="Assets\Dialog\Scripts\SettingDlg.cs" />
     <Compile Include="Assets\Scripts\Events\EventTypes.cs" />
+    <Compile Include="Assets\Home\Scripts\collection\CollectionView.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\LevelsConfig.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\TmpRope.cs" />
@@ -99,11 +102,14 @@
     <Compile Include="Assets\Scripts\data\OverPageData.cs" />
     <Compile Include="Assets\Scripts\manager\SingletonBase.cs" />
     <Compile Include="Assets\Scripts\common\Port.cs" />
+    <Compile Include="Assets\Scripts\common\DOTweenAnim.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Board.cs" />
     <Compile Include="Assets\Dialog\Scripts\ReviveDlg.cs" />
+    <Compile Include="Assets\Scripts\common\ScrollList\ScrollListElement.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\GameUILayer.cs" />
     <Compile Include="Assets\Scripts\manager\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\common\ScrollList\ScrollListInspector.cs" />
     <Compile Include="Assets\Scripts\manager\TextMeshUI.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\TmpNodeManager.cs" />
     <Compile Include="Assets\Scripts\manager\ResourceManager.cs" />
@@ -115,8 +121,10 @@
     <Compile Include="Assets\Scripts\manager\PoolManager.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\EffectLayer.cs" />
     <Compile Include="Assets\Scripts\data\ReviveVo.cs" />
+    <Compile Include="Assets\Scripts\common\ScrollList\ScrollListData.cs" />
     <Compile Include="Assets\Game\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\manager\DataManager.cs" />
+    <Compile Include="Assets\Home\Scripts\collection\CollectionItemData.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeSegmentManager.cs" />
     <Compile Include="Assets\Scripts\manager\ConfigManager.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Feibiao.cs" />
@@ -131,8 +139,10 @@
     <None Include="Assets\Game\Spines\点击\touch.atlas.txt" />
     <None Include="Assets\Game\Spines\难度提升\bs.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Home\Spine\主界面小人待机动画\hua.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Common\Shader\ImageGray.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Lib\unity-json\Newtonsoft.Json.dll" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />

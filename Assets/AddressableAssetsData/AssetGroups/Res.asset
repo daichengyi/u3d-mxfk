@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 3b336d503332130469e6566726cec4dd
   m_SerializeEntries:
   - m_GUID: e0ccd804aef8ff44cb3fa57d249ce1fd
-    m_Address: Assets/Res/levelIcon
+    m_Address: Assets/Res/collection
     m_ReadOnly: 0
     m_SerializedLabels:
     - default

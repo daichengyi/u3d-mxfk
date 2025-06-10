@@ -27,6 +27,9 @@ namespace Assets.Scripts.Events
 
         /** 毛线桩皮肤*/
         public const string CHANGE_SKIN_BG = "change_skin_bg";
+
+        /** 选择图集*/
+        public const string SELECT_COLLECTION_IDX = "select_collection_idx";
     }
 
     //end class

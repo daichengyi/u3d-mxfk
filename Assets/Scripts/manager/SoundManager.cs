@@ -56,6 +56,7 @@ public class SoundManager : MonoBehaviour
             _isMusic = value;
             if (value)
             {
+                MusicSounds.volume = 1;
                 MusicSounds.Play();
             }
             else

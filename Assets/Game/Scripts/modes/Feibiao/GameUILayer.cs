@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Game.Scripts.modes.Feibiao
 {
-    public class GameUILayer: MonoBehaviour
+    public class GameUILayer : MonoBehaviour
     {
         [SerializeField] private GameObject gamePlayNode;
         [SerializeField] private TextMeshProUGUI layersLabel;
@@ -97,27 +97,27 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 layersLabel.gameObject.SetActive(true);
                 boardsLabel.gameObject.SetActive(true);
                 holesLabel.gameObject.SetActive(true);
-            }
 
-            gamePlay = gamePlayNode.GetComponent<GamePlay>();
-            layersLabel.text = "总层数：" + gamePlay.boardLayer.transform.childCount;
-            int boardsCount = 0;
-            int holesCount = 0;
+                gamePlay = gamePlayNode.GetComponent<GamePlay>();
+                layersLabel.text = "总层数：" + gamePlay.boardLayer.transform.childCount;
+                int boardsCount = 0;
+                int holesCount = 0;
 
-            for (int i = 0; i < gamePlay.boardLayer.transform.childCount; i++)
-            {
-                Transform boardNodeLayer = gamePlay.boardLayer.transform.GetChild(i);
-                boardsCount += boardNodeLayer.childCount;
-
-                for (int j = 0; j < boardNodeLayer.childCount; j++)
+                for (int i = 0; i < gamePlay.boardLayer.transform.childCount; i++)
                 {
-                    Board boardComp = boardNodeLayer.GetChild(j).GetComponent<Board>();
-                    holesCount += boardComp.holesNode.transform.childCount;
-                }
-            }
+                    Transform boardNodeLayer = gamePlay.boardLayer.transform.GetChild(i);
+                    boardsCount += boardNodeLayer.childCount;
 
-            boardsLabel.text = "总板子数：" + boardsCount;
-            holesLabel.text = "总洞数：" + holesCount;
+                    for (int j = 0; j < boardNodeLayer.childCount; j++)
+                    {
+                        Board boardComp = boardNodeLayer.GetChild(j).GetComponent<Board>();
+                        holesCount += boardComp.holesNode.transform.childCount;
+                    }
+                }
+
+                boardsLabel.text = "总板子数：" + boardsCount;
+                holesLabel.text = "总洞数：" + holesCount;
+            }
         }
 
         public void OnProp(GameObject sender)
@@ -146,9 +146,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             if (freeNumber > 0)
             {
-                
-                //EventManager.Instance.Emit(sender.name);
-                EventMng.dispatchEvent( (sender.name));
+                EventMng.dispatchEvent((sender.name));
                 foreach (var node in mianfeiNode)
                 {
                     node.SetActive(false);
@@ -160,13 +158,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             AdManager.Ins.ShowAd(0, (bool isSuc) =>
             {
-                EventMng.dispatchEvent( (sender.name));
+                EventMng.dispatchEvent((sender.name));
             });
         }
 
         public void OnPintu()
         {
-            //sers().uiSrv.ShowPage("Collection", "CollectionPage");
+            UIManager.Instance.OpenView(VIEW_NAME.CollectionView, VIEW_TYPE.view);
         }
 
         public void OnSkin()
