@@ -23,12 +23,13 @@ namespace Assets.Home.Scripts.collection
             btnclose.SetActive(GameManager.Instance.IsInGame());
             List<CollectionItemData> list = new List<CollectionItemData>();
             int curLv = UserModel.Instance.level;
+            int unlockLv = UserModel.Instance.tempLevel;
             for (int i = 0; i <= ConstVal.ROPE_MAX_LEVEL; i++) {
                 if (i > curLv)
                 {
                     break;
                 }
-                list.Add(new CollectionItemData() { index = i,isUnlock=( i<curLv)});
+                list.Add(new CollectionItemData() { index = i,isUnlock=( i< unlockLv) });
             }
             scrollList.AddDatas(list);
 

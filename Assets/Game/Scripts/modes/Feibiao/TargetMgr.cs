@@ -29,7 +29,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField] private PaintBoard paintBoard;
         [SerializeField] private Image progressBar;
         [SerializeField] private TextMeshProUGUI progressLabel;
-        [SerializeField] private TextMeshProUGUI slotNotEnoughLabel;
+        //[SerializeField] private TextMeshProUGUI slotNotEnoughLabel;
 
         private Feibiao feibiao;
         private List<int> data = new List<int>();
@@ -486,7 +486,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
         private void ShowSlotNotEnough()
         {
-            slotNotEnoughLabel.gameObject.transform.DOKill();
+            UIManager.Instance.ShowMsg("Only one slot left");
+            /*slotNotEnoughLabel.gameObject.transform.DOKill();
             slotNotEnoughLabel.gameObject.SetActive(true);
 
             CanvasGroup canvasGroup = slotNotEnoughLabel.gameObject.GetComponent<CanvasGroup>();
@@ -519,7 +520,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
             sequence.OnComplete(() =>
             {
                 slotNotEnoughLabel.gameObject.SetActive(false);
-            });
+            });*/
         }
 
         public bool IsTmpFull()
