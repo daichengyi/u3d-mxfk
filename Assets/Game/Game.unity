@@ -821,7 +821,7 @@ RectTransform:
   m_GameObject: {fileID: 184035759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1874024528}
@@ -5040,17 +5040,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5269\u4E0B\u4E00\u4E2A\u69FD\u4F4D"
+  m_text: Only one slot left
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4f14666121b6ab4dbffa83298cf0010, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 299f2fba0747c99489119768f4454d6e, type: 2}
+  m_sharedMaterial: {fileID: -8097939869009662852, guid: c4f14666121b6ab4dbffa83298cf0010, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278254079
-  m_fontColor: {r: 1, g: 0.97662324, b: 0, a: 1}
+    rgba: 4278737833
+  m_fontColor: {r: 0.6627451, g: 0.35686275, b: 0.03137255, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5205,7 +5205,7 @@ MonoBehaviour:
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
+  m_fontSizeMin: 22
   m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
