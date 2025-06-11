@@ -1,12 +1,17 @@
-﻿using UnityEditor;
+﻿
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.common.ScrollList
 {
+
     [CustomEditor(typeof(ScrollList))]
-    internal sealed class ScrollListInspector : UnityEditor.UI.ScrollRectEditor
+    internal sealed class ScrollListInspector : ScrollRectEditor
     {
         private static bool _isFoldoutElement = false;
+
 
         private SerializedProperty _elementTemplate;
         private SerializedProperty _scrollDirection;
@@ -71,4 +76,6 @@ namespace Assets.Scripts.common.ScrollList
             base.OnInspectorGUI();
         }
     }
+
 }
+#endif
