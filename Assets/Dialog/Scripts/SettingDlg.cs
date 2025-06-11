@@ -3,6 +3,7 @@ using Assets.Scripts.common;
 using Assets.Scripts.config;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -86,6 +87,12 @@ public class SettingDlg : BaseView
         {
             gmNode.SetActive(true);
         }
+    }
+
+    public void clickClearData()
+    {
+        Destroy(gameObject);
+        DataManager.Instance.ClearAll();
     }
     public void ClickGM()
     {

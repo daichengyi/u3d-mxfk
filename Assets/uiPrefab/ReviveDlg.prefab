@@ -1610,10 +1610,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a379ff82049bed04cbd87486a8feee02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breathDuration: 1.5
-  minScale: 0.95
-  maxScale: 1.05
-  easeType: 4
+  breathDuration: 0.8
+  minScale: 1
+  maxScale: 1.1
 --- !u!1 &7834675639273798864
 GameObject:
   m_ObjectHideFlags: 0

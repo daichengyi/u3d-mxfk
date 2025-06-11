@@ -20,7 +20,10 @@ namespace Assets.Scripts.config
         public const int ROPE_MAX_LEVEL = 5;
 
         public static readonly List<string> Guide_Data = new List<string> {
-        "先观察订单颜色","点击对应颜色绳\n子","匹配不上颜色的绳子会暂时存放在这里","完成拼图则游戏\n胜利"};
+            "Check the target color first.",
+            "Tap the rope of the matching color.",
+            "Unmatched ropes will stay here temporarily.",
+            "Match all colors to win!"};
 
         public static readonly List<string> Guide_Path = new List<string> {
         "target_node/target_layout/target0",
