@@ -4226,6 +4226,7 @@ MonoBehaviour:
   effectLayer: {fileID: 1332722624}
   paintNode: {fileID: 1410182650}
   levelText: {fileID: 2049312609}
+  imgBg: {fileID: 1637114259}
   guideUI: {fileID: 143859824}
   level: 1
 --- !u!114 &1633487745
@@ -4263,7 +4264,7 @@ GameObject:
   - component: {fileID: 1637114260}
   - component: {fileID: 1637114259}
   m_Layer: 5
-  m_Name: blueBg
+  m_Name: imgBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4308,7 +4309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 835d3f0c78e1e2341a8b499cd0dbc1ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90326861f14d8cc46b1c306a04ac69cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4832,7 +4833,6 @@ MonoBehaviour:
   paintBoard: {fileID: 1410182652}
   progressBar: {fileID: 1161402118}
   progressLabel: {fileID: 1107067490}
-  slotNotEnoughLabel: {fileID: 1870531649}
   totalTargetCount: 0
 --- !u!1 &1838697439
 GameObject:

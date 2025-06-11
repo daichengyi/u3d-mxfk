@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
 
 namespace Assets.Game.Scripts.modes.Feibiao
@@ -22,6 +23,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         //[SerializeField] private GameObject fuhuoNode;
         [SerializeField] private GameObject paintNode;
         [SerializeField] private TextMeshProUGUI levelText;
+        [SerializeField] private Image imgBg;
         //[SerializeField] private TextMeshProUGUI reviveText;
 
         [SerializeField] private GuideUI guideUI;
@@ -33,7 +35,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
         private int lianjiNumber = 0;
 
         // Use this for initialization
-        void Start()
+        async void Start()
         {
             Debug.Log("feibiao - start -------------");
             //Canvas canvas = GetComponent<Canvas>();
@@ -43,10 +45,14 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             SoundManager.Ins.PlayMusic("bgm");
             SetLevel();
-            LoadLevel(level);
+            await LoadLevel(level);
             string lvName = level < 1 ? "New Guide" : $"Level  {level}";
             levelText.text = lvName;
 
+            int bgIdx = level > 3 ? 3 : level;
+             await ResourceManager.AsyncLoadRes<Sprite>($"Res/bg/bg{bgIdx}.png", (res) => {
+                imgBg.sprite = res;
+            });
             /*if (Application.isEditor && Debug.isDebugBuild)
             {
                 transform.Find("testNode").gameObject.SetActive(true);
