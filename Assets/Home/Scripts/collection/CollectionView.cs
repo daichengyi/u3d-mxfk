@@ -25,10 +25,6 @@ namespace Assets.Home.Scripts.collection
             int curLv = UserModel.Instance.level;
             int unlockLv = UserModel.Instance.tempLevel;
             for (int i = 0; i <= ConstVal.ROPE_MAX_LEVEL; i++) {
-                if (i > curLv)
-                {
-                    break;
-                }
                 list.Add(new CollectionItemData() { index = i,isUnlock=( i< unlockLv) });
             }
             scrollList.AddDatas(list);

@@ -150,12 +150,12 @@ public class Load : MonoBehaviour
                 JObject gameConfig = (JObject)config["game"];
                 //ConfigManager.Ins.LoadAllConfig(gameConfig);
                 getLogin();
-                if (UserModel.Instance.level == 0)
+                /*8if (UserModel.Instance.level == 0)
                 {
                     //引导关
                     GameManager.Instance.SetModeData(GameMode.Feibiao);
                     goToSceneName = "Game";
-                }
+                }*/
                 LoadScene(goToSceneName);
             },
             fail = (code, msg) =>

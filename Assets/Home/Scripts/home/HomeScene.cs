@@ -23,7 +23,12 @@ public class HomeScene : MonoBehaviour
         {
             GameObject go = Instantiate(prefab);
             go.transform.SetParent(conetnt.GetChild(0));
-            go.transform.localPosition = Vector3.zero;
+            //go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            RectTransform rt = go.GetComponent<RectTransform>();
+            rt.anchoredPosition = Vector3.zero;
+            rt.offsetMin = Vector3.zero;
+            rt.offsetMax = Vector3.zero;
         });
     }
 
@@ -46,7 +51,7 @@ public class HomeScene : MonoBehaviour
 
         if (index == 2)
         {
-            UIManager.Instance.ShowMsg("Stay tuned");
+            UIManager.Instance.ShowMsg("Unlocked LV.100");
             return;
         }
 

@@ -2,6 +2,7 @@ using Assets.Game.Scripts;
 using Assets.Game.Scripts.modes.Feibiao;
 using Assets.Scripts.common;
 using Assets.Scripts.data;
+using DG.Tweening;
 using Spine.Unity;
 using TMPro;
 using UnityEngine;
@@ -46,15 +47,17 @@ public class ResultDlg : BaseView
         skeGraphic.initialSkinName = resultVo.isWin ? "shengli" : "shibai";
         skeGraphic.Initialize(true);
 
-        resultVo.paintNode.transform.SetParent(boradBg);
-        resultVo.paintNode.transform.localPosition = Vector3.zero;
-        resultVo.paintNode.transform.localScale = Vector3.one;
-        paintBoard = resultVo.paintNode.GetComponent<PaintBoard>();
-        paintBoard.maskNode = null;
-        if (resultVo.isWin)
-        {
-            paintBoard.JumpToLastStep();
-        }
+        DOVirtual.DelayedCall(0.5f,() => {
+            resultVo.paintNode.transform.SetParent(boradBg);
+            resultVo.paintNode.transform.localPosition = Vector3.zero;
+            resultVo.paintNode.transform.localScale = Vector3.one;
+            paintBoard = resultVo.paintNode.GetComponent<PaintBoard>();
+            paintBoard.maskNode = null;
+            if (resultVo.isWin)
+            {
+                paintBoard.JumpToLastStep();
+            }
+        });
     }
 
     // Update is called once per frame
