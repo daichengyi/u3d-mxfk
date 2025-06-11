@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Assets.Scripts.config;
 using Assets.Scripts.manager;
 using ZhiSe;
@@ -35,14 +37,28 @@ public class UserModel : SingletonBase<UserModel>
     private int _level = 0;
     public int level
     {
-        get { return _level; }
+        get { 
+            return _level; 
+        }
         set { 
-            _level = value; 
-            if(_level > ConstVal.ROPE_MAX_LEVEL)
+            _level = value;
+            tempLevel++;
+            if (_level > ConstVal.ROPE_MAX_LEVEL)
             {
                 _level = ConstVal.ROPE_MAX_LEVEL;
             }
             SetUserData("level", _level); 
+        }
+    }
+
+    private int _tempLevel = 0;
+    public int tempLevel
+    {
+        get { return _tempLevel; }
+        set
+        {
+            _tempLevel = value;
+            SetUserData("tempLevel", _tempLevel);
         }
     }
 
@@ -72,7 +88,9 @@ public class UserModel : SingletonBase<UserModel>
 
     public void InitData(Dictionary<string, object> ret)
     {
-        string key;
+        DataParse(ret, this);
+
+        /*string key;
         string value;
         foreach (var item in ret)
         {
@@ -94,6 +112,10 @@ public class UserModel : SingletonBase<UserModel>
             {
                 _level = int.Parse(value);
             }
+            else if (key.Equals("tempLevel"))
+            {
+                _tempLevel = int.Parse(value);
+            }
             else if (key.Equals("selectedPainting"))
             {
                 _selectedPainting = int.Parse(value);
@@ -102,7 +124,8 @@ public class UserModel : SingletonBase<UserModel>
             {
                 _skinID = int.Parse(value);
             }
-        }
+        }*/
+
 
         long currentTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
@@ -132,6 +155,29 @@ public class UserModel : SingletonBase<UserModel>
         SetUserData(data);
     }
 
+    void DataParse<T>(Dictionary<string, object> data, T target)
+    {
+        var type = typeof(T);
+        var fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+
+        foreach (var item in data)
+        {
+            string key = item.Key;
+            object value = item.Value;
+            var field = fields.FirstOrDefault(f => f.Name.Equals($"_{key}", StringComparison.OrdinalIgnoreCase));
+
+            if (field != null && value != null)
+            {
+                try
+                {
+                    // 转换为目标字段类型
+                    object convertedValue = Convert.ChangeType(value, field.FieldType);
+                    field.SetValue(target, convertedValue);
+                }
+                catch { /* 异常处理 */ }
+            }
+        }
+    }
     private void SetUserData<T>(string key, T value)
     {
 

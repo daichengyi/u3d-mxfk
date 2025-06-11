@@ -60,6 +60,7 @@
     <Analyzer Include="D:\Program Files\2022.3.14f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Game\Scripts\GuideUI.cs" />
     <Compile Include="Assets\Scripts\manager\BaseView.cs" />
     <Compile Include="Assets\Scripts\manager\UIManager.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\PaintBoard.cs" />
     <Compile Include="Assets\Home\Scripts\collection\CollectionItem.cs" />
     <Compile Include="Assets\Dialog\Scripts\ResultDlg.cs" />
+    <Compile Include="Assets\Scripts\common\GuideMask.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\Collider2DListener.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\GamePlay.cs" />
     <Compile Include="Assets\Scripts\common\ScrollList\ScrollList.cs" />
@@ -156,6 +158,7 @@
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Common\Shader\PartialGrayScaleShader.shader" />
     <None Include="Assets\Game\Spines\打扫\dx.atlas.txt" />
     <None Include="Assets\Game\Spines\shenglishibai\VICTORY.atlas.txt" />
     <None Include="Assets\Home\Spine\加载动画\jiazai.atlas.txt" />

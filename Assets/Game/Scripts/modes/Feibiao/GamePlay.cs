@@ -56,6 +56,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (GameManager.Instance.isGuide) return;
         OnTouchStart();
     }
 

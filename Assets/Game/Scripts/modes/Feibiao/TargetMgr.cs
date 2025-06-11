@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.common;
-using Assets.Scripts.data;
 using Assets.Scripts.Events;
 using DG.Tweening;
 using System;
@@ -103,6 +102,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
 
             GameObject node = Instantiate(targetPrefab, startPos, Quaternion.identity, targetsNode);
             node.transform.SetSiblingIndex(10 - index);
+
+            node.name = $"target{index}";
 
             Target targetComp = node.GetComponent<Target>();
             targetComp.InitWithType(type, () =>

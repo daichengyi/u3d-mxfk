@@ -92,7 +92,13 @@ public class SettingDlg : BaseView
         int level = int.Parse(inputFieldLevel.text);
         if(level >= 0)
         {
+            if(level > ConstVal.ROPE_MAX_LEVEL)
+            {
+                UIManager.Instance.ShowMsg("超过最大关卡");
+                return;
+            }
             UserModel.Instance.level = level;
+            UserModel.Instance.tempLevel = level;
             GameManager.Instance.EnterMode(GameMode.Feibiao);
             Destroy(gameObject);
         }

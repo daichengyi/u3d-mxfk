@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
 using TMPro;
+using Assets.Game.Scripts;
+using Assets.Scripts.common;
 #if PF_WX
 using WeChatWASM;
 #elif PF_TT
@@ -148,14 +150,20 @@ public class Load : MonoBehaviour
                 JObject gameConfig = (JObject)config["game"];
                 //ConfigManager.Ins.LoadAllConfig(gameConfig);
                 getLogin();
-                _ = LoadScene(goToSceneName);
+                if (UserModel.Instance.level == 0)
+                {
+                    //引导关
+                    GameManager.Instance.SetModeData(GameMode.Feibiao);
+                    goToSceneName = "Game";
+                }
+                LoadScene(goToSceneName);
             },
             fail = (code, msg) =>
             {
                 // 获取失败后使用本地配置
                 ConfigManager.Ins.LoadAllConfig(jsonArr);
                 Debug.LogFormat("游戏配置获取失败, 错误码=%s, 错误信息=%s", code, msg);
-                _ = LoadScene(goToSceneName);
+                LoadScene(goToSceneName);
             },
             complete = () =>
             {
@@ -225,7 +233,7 @@ public class Load : MonoBehaviour
         curProgress = 1f;
         maxCurProgess = 1f;
         img_rato.fillAmount = 1;
-        proBall.anchoredPosition = new Vector3(479,0);
+        proBall.anchoredPosition = new Vector3(479, 0);
         textPro.text = "100%";
         SoundManager.Ins.PlayMusic("bgm");
         _ = UIManager.Instance.PreloadView();
@@ -239,7 +247,7 @@ public class Load : MonoBehaviour
     float maxCurProgess = 0.5f;
     void Update()
     {
-        if(curProgress >= 1) return;
+        if (curProgress >= 1) return;
         curProgress += Time.deltaTime * 0.001f * 150;
         curProgress = Math.Min(curProgress, maxCurProgess);
         img_rato.fillAmount = curProgress;

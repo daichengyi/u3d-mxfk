@@ -44,6 +44,8 @@ namespace Assets.Game.Scripts
 
         public int maxLevel;
 
+        public bool isGuide;
+
         public async Task EnterMode(GameMode mode, bool showLoading = true)
         {
             RopeSegmentManager.Instance.ClearAllPools();
@@ -52,23 +54,20 @@ namespace Assets.Game.Scripts
                 UIManager.Instance.ShowLoading();
             }
 
-            var currMode = GameModeJson.GetMode(mode);
-            Debug.Log($"进入模式耗时---{currMode.explain}");
+            SetModeData(mode);
 
-            m_CurrMode = currMode;
-
-            if (currMode.bundle == null && !string.IsNullOrEmpty(currMode.bundleName))
+            if (m_CurrMode.bundle == null && !string.IsNullOrEmpty(m_CurrMode.bundleName))
             {
-                Debug.Log($"加载模式所需资源bundle---{currMode.bundleName}");
+                Debug.Log($"加载模式所需资源bundle---{m_CurrMode.bundleName}");
                 try
                 {
-                    /*currMode.bundle = await AssetBundle.LoadFromFileAsync(currMode.bundleName);
-                    await SceneManager.LoadSceneAsync(currMode.sceneName);*/
+                    /*m_CurrMode.bundle = await AssetBundle.LoadFromFileAsync(m_CurrMode.bundleName);
+                    await SceneManager.LoadSceneAsync(m_CurrMode.sceneName);*/
                     await GoToNeedEnterMode();
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"进入模式:{currMode.explain}, 加载所需bundle失败 {e.Message}");
+                    Debug.LogError($"进入模式:{m_CurrMode.explain}, 加载所需bundle失败 {e.Message}");
                     throw;
                 }
             }
@@ -76,6 +75,13 @@ namespace Assets.Game.Scripts
             {
                 await GoToNeedEnterMode();
             }
+        }
+
+        public void SetModeData(GameMode mode)
+        {
+            var currMode = GameModeJson.GetMode(mode);
+            Debug.Log($"进入模式耗时---{currMode.explain}");
+            m_CurrMode = currMode;
         }
 
         private async Task GoToNeedEnterMode()

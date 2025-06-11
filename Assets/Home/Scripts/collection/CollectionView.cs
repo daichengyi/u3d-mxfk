@@ -23,7 +23,7 @@ namespace Assets.Home.Scripts.collection
             btnclose.SetActive(GameManager.Instance.IsInGame());
             List<CollectionItemData> list = new List<CollectionItemData>();
             int curLv = UserModel.Instance.level;
-            for (int i = 0; i < ConstVal.ROPE_MAX_LEVEL; i++) {
+            for (int i = 0; i <= ConstVal.ROPE_MAX_LEVEL; i++) {
                 if (i > curLv)
                 {
                     break;
@@ -31,6 +31,8 @@ namespace Assets.Home.Scripts.collection
                 list.Add(new CollectionItemData() { index = i,isUnlock=( i<curLv)});
             }
             scrollList.AddDatas(list);
+
+            textProgress.text = $"Collect progress:{curLv}/{ConstVal.ROPE_MAX_LEVEL+1}";
 
             EventMng.addEventListener(EventTypes.SELECT_COLLECTION_IDX, onSelectHandler);
         }

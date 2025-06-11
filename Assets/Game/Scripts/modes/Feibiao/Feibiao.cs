@@ -24,6 +24,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField] private TextMeshProUGUI levelText;
         //[SerializeField] private TextMeshProUGUI reviveText;
 
+        [SerializeField] private GuideUI guideUI;
+
         private GameObject nowGuanqiaNode;
         private GameObject xinshouyindao;
         [HideInInspector] public int level = 1;
@@ -92,7 +94,7 @@ namespace Assets.Game.Scripts.modes.Feibiao
                     //level = fiveOneData.Level;
                     break;
                 default:
-                    level = UserModel.Instance.level;
+                    level = UserModel.Instance.tempLevel;
                     break;
             }
         }
@@ -123,6 +125,25 @@ namespace Assets.Game.Scripts.modes.Feibiao
             while (Time.frameCount - t < 10)
             {
                 await Task.Yield();
+            }
+            if (level == 0)
+            {
+                /*ResourceManager.AsyncLoadRes<GameObject>("uiPrefab/GuideUI.prefab",(res)=>{ 
+                    GameObject node = Instantiate(res);
+                    node.transform.SetParent(this.transform);
+                    node.transform.localPosition = Vector3.zero;
+                    //node.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                });*/
+                GameManager.Instance.isGuide = true;
+                DOVirtual.DelayedCall(1, () =>
+                {
+                    guideUI.init();
+                });
+            }
+            else
+            {
+                GameManager.Instance.isGuide = false;
+                guideUI.gameObject.SetActive(false);
             }
             /*if (level == 0)
             {
@@ -470,6 +491,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
         public async Task LoadLevel(int rlevel)
         {
             //string resId = LevelMgr.GetPrefabName(rlevel);
+            if(rlevel > 0)
+            {
+                //关卡循环使用
+                int maxLv = ConstVal.ROPE_MAX_LEVEL;
+                rlevel = rlevel % maxLv == 0 ? maxLv : rlevel % maxLv;
+            }
+
             Debug.Log($"loadLevel {rlevel}");
             UIManager.Instance.ShowLoading();
             try
