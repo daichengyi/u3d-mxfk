@@ -88,6 +88,7 @@
     <Compile Include="Assets\Lib\SeegExample\SeegTest.cs" />
     <Compile Include="Assets\Scripts\model\UserModel.cs" />
     <Compile Include="Assets\Scripts\manager\RankingManager.cs" />
+    <Compile Include="Assets\Game\Scripts\ResetCollider2D.cs" />
     <Compile Include="Assets\Load\Scripts\Load.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\TargetMgr.cs" />
     <Compile Include="Assets\Scripts\manager\AdManager.cs" />

@@ -13,6 +13,8 @@ namespace Assets.Game.Scripts.modes.Feibiao
         [SerializeField] private TextMeshProUGUI layersLabel;
         [SerializeField] private TextMeshProUGUI boardsLabel;
         [SerializeField] private TextMeshProUGUI holesLabel;
+        [SerializeField] private TextMeshProUGUI defaultHolesLabel;
+        [SerializeField] private TextMeshProUGUI needHolesLabel;
         [SerializeField] public int freeNumber = 1;
         [SerializeField] public List<GameObject> mianfeiNode = new List<GameObject>();
         //[SerializeField] private GameObject workBtn;
@@ -97,9 +99,13 @@ namespace Assets.Game.Scripts.modes.Feibiao
                 layersLabel.gameObject.SetActive(true);
                 boardsLabel.gameObject.SetActive(true);
                 holesLabel.gameObject.SetActive(true);
+                defaultHolesLabel.gameObject .SetActive(true);
+                needHolesLabel.gameObject.SetActive(true);
 
                 gamePlay = gamePlayNode.GetComponent<GamePlay>();
                 layersLabel.text = "总层数：" + gamePlay.boardLayer.transform.childCount;
+                defaultHolesLabel.text = "默认洞数：" + gamePlay.deafultHoleNum;
+                needHolesLabel.text = "需要洞数：" + gamePlay.needHoleNum;
                 int boardsCount = 0;
                 int holesCount = 0;
 

@@ -27,6 +27,11 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     [HideInInspector]
     public Transform boardLayer;//脚本 Feibiao中赋值
 
+    [HideInInspector]
+    public int deafultHoleNum;
+    [HideInInspector]
+    public int needHoleNum;
+
     private List<Board> boards = new List<Board>();
 
     private static readonly string[] COLORS = new string[]
@@ -250,15 +255,15 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
     {
         int holesCount = GetAllBoardHolesCount();
         int requiredHoles = paintBoard.GetOperateSteps().Count * 3;
-
+        deafultHoleNum = requiredHoles;
         if (holesCount < requiredHoles)
         {
             foreach (Transform boardNodeLayer in boardLayer)
             {
                 boardNodeLayer.SetSiblingIndex(1000 + boardNodeLayer.GetSiblingIndex());
             }
-
             int needToAdd = requiredHoles - holesCount;
+            needHoleNum = needToAdd;
             var availableBoards = new List<Transform>();
             int startLayer = 4;// 第5层（索引从0开始）
             int endLayer = boardLayer.childCount - 3;
