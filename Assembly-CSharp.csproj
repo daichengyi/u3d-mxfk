@@ -1,21 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="Current">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
+    <BaseIntermediateOutputPath>Temp\obj\$(Configuration)\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <ItemGroup>
+    <ProjectCapability Include="Unity" />
+  </ItemGroup>
   <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <LangVersion>9.0</LangVersion>
+    <Configurations>Debug;Release</Configurations>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7805DA74-E024-5BF8-0A65-162469D2CC2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,23 +44,22 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <NoConfig>true</NoConfig>
+    <NoStandardLibraries>true</NoStandardLibraries>
     <NoStdLib>true</NoStdLib>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
-    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+    <NoConfig>true</NoConfig>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <MSBuildWarningsAsMessages>MSB3277</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
-    <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
+    <UnityProjectGeneratorVersion>2.0.25</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorStyle>SDK</UnityProjectGeneratorStyle>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>2022.3.14f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Administrator\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Program Files\2022.3.14f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Program Files\2022.3.14f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -88,10 +92,12 @@
     <Compile Include="Assets\Lib\SeegExample\SeegTest.cs" />
     <Compile Include="Assets\Scripts\model\UserModel.cs" />
     <Compile Include="Assets\Scripts\manager\RankingManager.cs" />
-    <Compile Include="Assets\Game\Scripts\ResetCollider2D.cs" />
+    <Compile Include="Assets\Unity.VisualScripting.Generated\VisualScripting.Core\AotStubs.cs" />
+    <Compile Include="Assets\Collider2DOptimization\ShapeOptimizationHelper.cs" />
     <Compile Include="Assets\Load\Scripts\Load.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\TargetMgr.cs" />
     <Compile Include="Assets\Scripts\manager\AdManager.cs" />
+    <Compile Include="Assets\Collider2DOptimization\ResetCollider2D.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Scripts\common\WxUserInfoButton.cs" />
     <Compile Include="Assets\Scripts\common\ButtonScaleAnimation.cs" />
@@ -104,6 +110,7 @@
     <Compile Include="Assets\Scripts\manager\PlatformManager.cs" />
     <Compile Include="Assets\Scripts\data\OverPageData.cs" />
     <Compile Include="Assets\Scripts\manager\SingletonBase.cs" />
+    <Compile Include="Assets\Collider2DOptimization\PolygonColliderOptimizer.cs" />
     <Compile Include="Assets\Scripts\common\Port.cs" />
     <Compile Include="Assets\Scripts\common\DOTweenAnim.cs" />
     <Compile Include="Assets\Lib\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
@@ -126,6 +133,7 @@
     <Compile Include="Assets\Scripts\data\ReviveVo.cs" />
     <Compile Include="Assets\Scripts\common\ScrollList\ScrollListData.cs" />
     <Compile Include="Assets\Game\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Collider2DOptimization\EdgeColliderOptimizer.cs" />
     <Compile Include="Assets\Scripts\manager\DataManager.cs" />
     <Compile Include="Assets\Home\Scripts\collection\CollectionItemData.cs" />
     <Compile Include="Assets\Game\Scripts\modes\Feibiao\RopeSegmentManager.cs" />
@@ -142,6 +150,7 @@
     <None Include="Assets\Game\Spines\点击\touch.atlas.txt" />
     <None Include="Assets\Game\Spines\难度提升\bs.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Unity.VisualScripting.Generated\VisualScripting.Core\link.xml" />
     <None Include="Assets\Home\Spine\主界面小人待机动画\hua.atlas.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -154,6 +163,7 @@
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\SeegSdk\seeg_cs.dll" />
     <None Include="Assets\Lib\DOTween\DOTween.dll" />
+    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Lib\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Lib\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
@@ -1182,46 +1192,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="spine-csharp.csproj">
-      <Project>{7312877F-C792-5C52-A1D8-4898D9E68DE5}</Project>
-      <Name>spine-csharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj">
-      <Project>{6D6C2F8C-7648-EA80-4E1F-09C4BF675D22}</Project>
-      <Name>Sirenix.OdinInspector.Modules.Unity.Addressables</Name>
-    </ProjectReference>
-    <ProjectReference Include="Wx.csproj">
-      <Project>{10996CB4-F0A4-E2BA-1088-3E487BC9D259}</Project>
-      <Name>Wx</Name>
-    </ProjectReference>
-    <ProjectReference Include="spine-unity.csproj">
-      <Project>{A8FB3D47-B132-597F-D1E3-14431D48F86B}</Project>
-      <Name>spine-unity</Name>
-    </ProjectReference>
-    <ProjectReference Include="WxEditor.csproj">
-      <Project>{7EE2ED35-F27F-B3EC-D4B9-CC940D121472}</Project>
-      <Name>WxEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="spine-unity-examples-editor.csproj">
-      <Project>{239C73DD-B099-86B7-BAD4-49381FDB73B1}</Project>
-      <Name>spine-unity-examples-editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="spine-unity-editor.csproj">
-      <Project>{4AC8A1D8-B54D-A5D0-1E48-72FD22C9F107}</Project>
-      <Name>spine-unity-editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="spine-unity-examples.csproj">
-      <Project>{ED97B506-4B8A-D5D4-3AB6-8CF804890E16}</Project>
-      <Name>spine-unity-examples</Name>
-    </ProjectReference>
+    <ProjectReference Include="spine-csharp.csproj" />
+    <ProjectReference Include="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
+    <ProjectReference Include="Wx.csproj" />
+    <ProjectReference Include="spine-unity.csproj" />
+    <ProjectReference Include="WxEditor.csproj" />
+    <ProjectReference Include="spine-unity-examples-editor.csproj" />
+    <ProjectReference Include="spine-unity-editor.csproj" />
+    <ProjectReference Include="spine-unity-examples.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <ItemGroup>
+    <ProjectCapability Remove="LaunchProfiles" />
+    <ProjectCapability Remove="SharedProjectReferences" />
+    <ProjectCapability Remove="ReferenceManagerSharedProjects" />
+    <ProjectCapability Remove="ProjectReferences" />
+    <ProjectCapability Remove="ReferenceManagerProjects" />
+    <ProjectCapability Remove="COMReferences" />
+    <ProjectCapability Remove="ReferenceManagerCOM" />
+    <ProjectCapability Remove="AssemblyReferences" />
+    <ProjectCapability Remove="ReferenceManagerAssemblies" />
+  </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 using static Assets.Game.Scripts.modes.Feibiao.PaintBoard;
 
 
-public class GamePlay : MonoBehaviour,IPointerClickHandler
+public class GamePlay : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameUILayer gameUILayer;
     [SerializeField] private TargetMgr targetMgr;
@@ -133,7 +133,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         {
             var e1 = curLevelConfig[i - 1];
             var e2 = curLevelConfig[i];
-            float offset = (float)( e2.Min - e1.Min);
+            float offset = (float)(e2.Min - e1.Min);
             int count = Mathf.FloorToInt(offset * total);
 
             if (i == curLevelConfig.Count - 1)
@@ -201,7 +201,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         if (GameManager.Instance.currMode.id != GameMode.Feibiao)
         {
             paintBoard.FixHistory(120);
-           return;
+            return;
         }
         ///if (!LevelMgr.IsABTest()) return;
 
@@ -256,6 +256,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
         int holesCount = GetAllBoardHolesCount();
         int requiredHoles = paintBoard.GetOperateSteps().Count * 3;
         deafultHoleNum = requiredHoles;
+        needHoleNum = requiredHoles - holesCount;
         if (holesCount < requiredHoles)
         {
             foreach (Transform boardNodeLayer in boardLayer)
@@ -263,7 +264,6 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 boardNodeLayer.SetSiblingIndex(1000 + boardNodeLayer.GetSiblingIndex());
             }
             int needToAdd = requiredHoles - holesCount;
-            needHoleNum = needToAdd;
             var availableBoards = new List<Transform>();
             int startLayer = 4;// 第5层（索引从0开始）
             int endLayer = boardLayer.childCount - 3;
@@ -370,7 +370,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
 
             //await Task.Delay(index * 10);
             var t = Time.frameCount;
-            while(Time.frameCount - t < 2)
+            while (Time.frameCount - t < 2)
             {
                 await Task.Yield();
             }
@@ -566,7 +566,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 {
                     blockLayer.SetActive(false);
                     //blockLayer.GetComponent<Button>().onClick.AddListener(OnBlockLayerTouchStart);
-                    EventMng.dispatchEvent( (EventTypes.REMOVE_BOARD), board);
+                    EventMng.dispatchEvent((EventTypes.REMOVE_BOARD), board);
                     SoundManager.Ins.PlaySfx("banzisui");
                 });
                 return;
@@ -600,7 +600,7 @@ public class GamePlay : MonoBehaviour,IPointerClickHandler
                 if (IsPointInPolygon(touchLoc, worldPoints))
                 {
                     Transform trans = curBoard.transform.parent;
-                    Debug.Log("板子层数===="+ trans);
+                    Debug.Log("板子层数====" + trans);
                     if (!IsTouchenEnabled(curBoard, curObj))
                     {
                         curObj.Shake();
